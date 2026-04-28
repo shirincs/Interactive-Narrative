@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Let Go</title>
 <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Spectral:ital,wght@0,300;0,400;1,300;1,400&family=Inconsolata:wght@300;400&display=swap" rel="stylesheet">
@@ -12,78 +13,51 @@
   --parch:#f2e4c0;
   --parch-dk:#c8a060;
   --paper:#faf6ee;
-  --scan:#d4ccb8;
   --err:#8a1818;
 }
 html,body{height:100%;overflow:hidden;font-family:'Spectral',serif;color:#f0e8d8;background:#0a0600;}
 
-/* ══ BACKGROUND SYSTEM — CSS gradients, two layers crossfade ══ */
+/* ══ BACKGROUND SYSTEM ══ */
 #bg-a,#bg-b{
   position:fixed;inset:0;z-index:0;
-  transition:opacity 1.6s ease;
   background-size:cover;background-position:center;
+  transition:opacity 1.8s ease;
 }
 #bg-a{opacity:1;}
 #bg-b{opacity:0;}
+#bg-overlay{
+  position:fixed;inset:0;z-index:1;pointer-events:none;
+  transition:background 1.8s ease;
+}
+#vig{position:fixed;inset:0;z-index:2;pointer-events:none;
+  background:radial-gradient(ellipse 100% 100% at 50% 50%,transparent 35%,rgba(0,0,0,0.65) 100%);}
 
-/* Stage-specific gradient backgrounds */
-.bg-title{background:
-  radial-gradient(ellipse 80% 60% at 30% 20%, #3d2200 0%, transparent 60%),
-  radial-gradient(ellipse 60% 80% at 80% 70%, #1a0e00 0%, transparent 55%),
-  linear-gradient(160deg,#1c0f02 0%,#0a0600 50%,#150a00 100%);}
-.bg-origin{background:
-  radial-gradient(ellipse 70% 50% at 20% 30%, #3a2008 0%, transparent 55%),
-  radial-gradient(ellipse 50% 70% at 75% 65%, #2a1500 0%, transparent 50%),
-  linear-gradient(140deg,#1e1004 0%,#0c0700 60%,#1a0e02 100%);}
-.bg-scribe{background:
-  radial-gradient(ellipse 90% 50% at 50% 10%, #4a2e08 0%, transparent 55%),
-  radial-gradient(ellipse 60% 60% at 10% 80%, #2e1a04 0%, transparent 50%),
-  radial-gradient(ellipse 40% 40% at 90% 40%, #3a2000 0%, transparent 45%),
-  linear-gradient(170deg,#231204 0%,#0e0700 55%,#1c1002 100%);}
-.bg-press{background:
-  radial-gradient(ellipse 70% 40% at 50% 0%, #2a2010 0%, transparent 55%),
-  radial-gradient(ellipse 50% 60% at 15% 70%, #1a1408 0%, transparent 50%),
-  radial-gradient(ellipse 45% 45% at 85% 55%, #201a0a 0%, transparent 45%),
-  linear-gradient(150deg,#181208 0%,#0a0800 55%,#141006 100%);}
-.bg-scan{background:
-  radial-gradient(ellipse 80% 50% at 50% 20%, #0a1a2a 0%, transparent 60%),
-  radial-gradient(ellipse 50% 60% at 20% 75%, #061018 0%, transparent 50%),
-  radial-gradient(ellipse 40% 40% at 80% 50%, #081420 0%, transparent 45%),
-  linear-gradient(160deg,#060e18 0%,#020608 55%,#040c14 100%);}
-.bg-ocr{background:
-  radial-gradient(ellipse 70% 50% at 50% 15%, #0f0f18 0%, transparent 55%),
-  radial-gradient(ellipse 50% 60% at 10% 70%, #080810 0%, transparent 50%),
-  radial-gradient(ellipse 40% 45% at 90% 50%, #0a0a14 0%, transparent 45%),
-  linear-gradient(150deg,#0a0a12 0%,#040408 55%,#080810 100%);}
-.bg-council{background:
-  radial-gradient(ellipse 60% 40% at 25% 25%, #3a2808 0%, transparent 50%),
-  radial-gradient(ellipse 50% 40% at 75% 20%, #1a1408 0%, transparent 45%),
-  radial-gradient(ellipse 50% 50% at 50% 75%, #2a1c06 0%, transparent 50%),
-  radial-gradient(ellipse 30% 30% at 80% 60%, #100c04 0%, transparent 40%),
-  linear-gradient(145deg,#1c1406 0%,#0a0800 50%,#181004 100%);}
-.bg-ai{background:
-  radial-gradient(ellipse 60% 40% at 50% 10%, #080808 0%, transparent 60%),
-  radial-gradient(ellipse 40% 50% at 10% 60%, #0a0a0c 0%, transparent 50%),
-  radial-gradient(ellipse 40% 40% at 85% 50%, #060608 0%, transparent 45%),
-  linear-gradient(160deg,#080808 0%,#020202 55%,#060606 100%);}
+/* ══ PHOTO BG CLASSES ══ */
+.bg-title{background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Biblioteca_Medicea_Laurenziana_-_Interno.jpg/1280px-Biblioteca_Medicea_Laurenziana_-_Interno.jpg');background-size:cover;background-position:center;}
+.bg-origin{background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Sanzio_01_Plato_Aristotle.jpg/1280px-Sanzio_01_Plato_Aristotle.jpg');background-size:cover;background-position:center;}
+.bg-scribe{background-image:url('https://upload.wikimedia.org/wikipedia/commons/3/32/Scriptorium-monk-at-work.jpg');background-size:cover;background-position:center;}
+.bg-press{background-image:url('https://upload.wikimedia.org/wikipedia/commons/a/ae/Metal_movable_type.jpg');background-size:cover;background-position:center top;}
+.bg-scan{background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Epson_Perfection_V600_Photo_flatbed_scanner.jpg/1280px-Epson_Perfection_V600_Photo_flatbed_scanner.jpg');background-size:cover;background-position:center;}
+.bg-ocr{background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Microchip_Ranges.jpg/1280px-Microchip_Ranges.jpg');background-size:cover;background-position:center;}
+.bg-council{background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Biblioteca_Medicea_Laurenziana_-_Interno.jpg/1280px-Biblioteca_Medicea_Laurenziana_-_Interno.jpg');background-size:cover;background-position:center;}
+.bg-ai{background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Biblioteca_Medicea_Laurenziana_-_Interno.jpg/1280px-Biblioteca_Medicea_Laurenziana_-_Interno.jpg');background-size:cover;background-position:center;}
 
-/* subtle grain overlay */
-#grain{position:fixed;inset:0;z-index:1;opacity:0.04;pointer-events:none;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size:256px 256px;}
-
-/* vignette */
-#vig{position:fixed;inset:0;z-index:1;pointer-events:none;
-  background:radial-gradient(ellipse 100% 100% at 50% 50%,transparent 40%,rgba(0,0,0,0.55) 100%);}
+/* overlay tints per stage */
+.ov-title{background:rgba(5,3,0,0.58);}
+.ov-origin{background:rgba(8,4,0,0.52);}
+.ov-scribe{background:rgba(6,3,0,0.54);}
+.ov-press{background:rgba(4,4,2,0.56);}
+.ov-scan{background:rgba(0,8,18,0.60);}
+.ov-ocr{background:rgba(2,2,8,0.65);}
+.ov-council{background:rgba(5,3,0,0.55);}
+.ov-ai{background:rgba(2,2,4,0.68);}
 
 /* ══ PROGRESS ══ */
 #prog{position:fixed;top:0;left:0;right:0;height:2px;background:rgba(255,255,255,0.07);z-index:200;}
 #prog-fill{height:100%;background:var(--gold);transition:width 0.7s ease;width:0%;}
-
-/* ══ NAV ══ */
 #back-btn{position:fixed;top:14px;left:18px;z-index:200;
   font-family:'Inconsolata',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;
-  color:rgba(240,232,216,0.45);background:rgba(0,0,0,0.3);
+  color:rgba(240,232,216,0.45);background:rgba(0,0,0,0.35);
   border:0.5px solid rgba(240,232,216,0.18);padding:4px 10px;cursor:pointer;
   display:none;transition:color 0.2s,border-color 0.2s;backdrop-filter:blur(4px);}
 #back-btn:hover{color:#f0e8d8;border-color:rgba(240,232,216,0.55);}
@@ -91,26 +65,24 @@ html,body{height:100%;overflow:hidden;font-family:'Spectral',serif;color:#f0e8d8
   font-family:'Inconsolata',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;
   color:rgba(240,232,216,0.35);}
 
-/* ══ MAIN STAGE ══ */
+/* ══ STAGE ══ */
 #stage{position:fixed;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;padding:2rem;}
 .scene{display:none;width:100%;max-width:680px;flex-direction:column;align-items:center;
-  gap:1.2rem;max-height:92vh;overflow-y:auto;scrollbar-width:none;padding:0.5rem;}
+  gap:1.1rem;max-height:92vh;overflow-y:auto;scrollbar-width:none;padding:0.5rem;}
 .scene::-webkit-scrollbar{display:none;}
 .scene.active{display:flex;animation:up 0.65s ease forwards;}
 @keyframes up{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
 
-/* ══ TYPOGRAPHY ══ */
+/* ══ TEXT ══ */
 .stage-tag{font-family:'Inconsolata',monospace;font-size:10px;letter-spacing:0.18em;
   text-transform:uppercase;color:rgba(240,232,216,0.4);text-align:center;}
-.narration{font-family:'Spectral',serif;font-size:14.5px;font-style:italic;font-weight:300;
-  line-height:1.85;color:rgba(240,232,216,0.72);text-align:center;max-width:500px;}
+.narration{font-family:'Spectral',serif;font-size:14px;font-style:italic;font-weight:300;
+  line-height:1.85;color:rgba(240,232,216,0.72);text-align:center;max-width:480px;}
 .reaction{font-family:'Spectral',serif;font-size:13.5px;font-style:italic;font-weight:300;
   line-height:1.85;color:rgba(240,232,216,0.68);text-align:left;
   border-left:1.5px solid rgba(240,232,216,0.22);padding-left:1.1rem;max-width:500px;width:100%;}
-
-/* ══ CHOICES ══ */
 .choices{display:flex;flex-direction:column;gap:8px;width:100%;max-width:500px;}
-.cbtn{background:rgba(0,0,0,0.35);border:0.5px solid rgba(240,232,216,0.22);
+.cbtn{background:rgba(0,0,0,0.38);border:0.5px solid rgba(240,232,216,0.22);
   padding:0.7rem 1.1rem;font-family:'Spectral',serif;font-size:13px;font-weight:300;
   color:rgba(240,232,216,0.78);cursor:pointer;text-align:left;
   transition:border-color 0.2s,color 0.2s,background 0.2s;line-height:1.6;
@@ -121,105 +93,125 @@ html,body{height:100%;overflow:hidden;font-family:'Spectral',serif;color:#f0e8d8
 /* ══ PARCHMENT ══ */
 .parch{background:rgba(242,228,192,0.93);border:1px solid var(--parch-dk);
   max-width:500px;width:100%;padding:1.8rem 2.2rem;position:relative;
-  box-shadow:0 8px 48px rgba(0,0,0,0.55),inset 0 0 40px rgba(140,90,20,0.08);}
+  box-shadow:0 8px 48px rgba(0,0,0,0.6),inset 0 0 40px rgba(140,90,20,0.08);}
 .parch::before{content:'';position:absolute;inset:6px;border:0.5px solid rgba(140,90,30,0.18);pointer-events:none;}
 .poem-parch{font-family:'IM Fell English',serif;font-size:14.5px;line-height:2.05;
   color:#1a0a02;white-space:pre-line;position:relative;z-index:1;}
 .poem-parch em{font-style:italic;}
+.changed{color:#5a1a00;font-style:italic;}
 
-/* ══ COMPARE ══ */
-.compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:680px;width:100%;}
-.ccard{padding:1.2rem 1.4rem;position:relative;}
-.ccard.orig{background:rgba(242,228,192,0.9);border:1px solid var(--parch-dk);}
-.ccard.scv{background:rgba(230,215,175,0.82);border:1px solid #a07040;}
-.clbl{font-family:'Inconsolata',monospace;font-size:9px;letter-spacing:0.16em;
-  text-transform:uppercase;color:#7a5030;margin-bottom:0.8rem;display:block;}
-.poem-cmp{font-family:'IM Fell English',serif;font-size:12.5px;line-height:1.95;
-  color:#1a0a02;white-space:pre-line;}
-.changed{color:#5a1a00;font-style:italic;border-bottom:1px solid rgba(90,26,0,0.3);}
+/* ══ SCRIBE PHOTO FRAME ══ */
+.scribe-photo-frame{
+  max-width:500px;width:100%;position:relative;overflow:hidden;
+  border:1px solid rgba(200,160,80,0.3);
+  box-shadow:0 8px 48px rgba(0,0,0,0.6);
+}
+.scribe-photo{
+  width:100%;height:160px;object-fit:cover;object-position:center 30%;
+  display:block;filter:sepia(0.4) brightness(0.7);
+}
+.scribe-photo-caption{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(transparent,rgba(0,0,0,0.75));
+  padding:1rem 1.2rem 0.6rem;
+  font-family:'Inconsolata',monospace;font-size:9px;letter-spacing:0.14em;
+  text-transform:uppercase;color:rgba(240,232,216,0.6);
+}
 
-/* ══ PRINTED ══ */
-.printed{background:rgba(250,246,238,0.96);border:0.5px solid #bbb;
-  max-width:500px;width:100%;padding:1.8rem 2.2rem;
-  box-shadow:0 8px 48px rgba(0,0,0,0.5);}
-.phdr{font-family:'Inconsolata',monospace;font-size:9px;letter-spacing:0.18em;
-  text-transform:uppercase;color:#888;border-bottom:0.5px solid #ccc;
-  padding-bottom:6px;margin-bottom:1.1rem;display:flex;justify-content:space-between;}
+/* ══ BROADSHEET (PRESS) ══ */
+.broadsheet{background:rgba(250,246,238,0.97);border:0.5px solid #bbb;
+  max-width:500px;width:100%;padding:0;
+  box-shadow:0 8px 48px rgba(0,0,0,0.6);overflow:hidden;}
+.broadsheet-head{
+  background:#111;color:#f5f0e8;padding:0.6rem 1.4rem;
+  font-family:'IM Fell English',serif;font-size:13px;letter-spacing:0.06em;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.broadsheet-rule{height:3px;background:#111;margin:0;}
+.broadsheet-rule2{height:1px;background:#333;margin:0;}
+.broadsheet-meta{font-family:'Inconsolata',monospace;font-size:8.5px;letter-spacing:0.14em;
+  text-transform:uppercase;color:#555;border-bottom:0.5px solid #ccc;
+  padding:4px 1.4rem;display:flex;justify-content:space-between;}
+.broadsheet-body{padding:1rem 1.4rem 1.2rem;}
 .poem-print{font-family:'IM Fell English',serif;font-size:14px;line-height:2;
   color:#0e0e0e;white-space:pre-line;}
 .gap{color:#7a4a18;border-bottom:1px dotted #7a4a18;font-style:italic;padding:0 2px;}
 .fill{background:rgba(120,70,20,0.1);color:#5a3010;padding:0 3px;
   border:0.5px solid rgba(120,70,20,0.25);font-style:italic;font-size:13px;}
 
-/* ══ SCANNED ══ */
-.scanned{background:rgba(210,204,188,0.95);max-width:500px;width:100%;padding:1.8rem 2.2rem;
-  box-shadow:0 8px 48px rgba(0,0,0,0.5);
-  filter:contrast(1.04) brightness(0.96) saturate(0.6);position:relative;}
-.scanned::after{content:'';position:absolute;inset:0;pointer-events:none;
-  background:repeating-linear-gradient(0deg,transparent,transparent 27px,rgba(0,0,0,0.013) 27px,rgba(0,0,0,0.013) 28px);}
-.shdr{font-family:'Inconsolata',monospace;font-size:9px;letter-spacing:0.12em;
-  color:#777;margin-bottom:0.9rem;text-transform:uppercase;}
-.poem-scan{font-family:'IM Fell English',serif;font-size:14px;line-height:2;
-  color:#181818;white-space:pre-line;opacity:0.87;}
-.faded{opacity:0.32;filter:blur(0.4px);}
+/* ══ SCANNER INTERFACE ══ */
+.scanner-ui{max-width:500px;width:100%;background:#0a0f18;
+  border:1px solid #1a2a3a;box-shadow:0 8px 48px rgba(0,0,0,0.7);}
+.scanner-topbar{background:#060c14;border-bottom:1px solid #1a2a3a;
+  padding:6px 12px;display:flex;justify-content:space-between;align-items:center;}
+.scanner-topbar-left{font-family:'Inconsolata',monospace;font-size:9px;
+  letter-spacing:0.1em;color:#4a8aaa;text-transform:uppercase;}
+.scanner-dots{display:flex;gap:5px;}
+.sdot{width:8px;height:8px;border-radius:50%;}
+.sdot-r{background:#cc4444;opacity:0.8;}
+.sdot-y{background:#ccaa44;opacity:0.8;}
+.sdot-g{background:#44cc88;opacity:0.8;}
+.scanner-glass{position:relative;background:#e8e4d8;
+  margin:10px;overflow:hidden;min-height:200px;}
+.scanner-doc{padding:1rem 1.2rem;font-family:'IM Fell English',serif;
+  font-size:13.5px;line-height:1.95;color:#1a1a1a;white-space:pre-line;
+  opacity:0.88;position:relative;z-index:1;}
+.faded{opacity:0.32;filter:blur(0.3px);}
+.scanner-light{position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,transparent 0%,rgba(0,180,255,0.0) 0%,rgba(0,180,255,0.6) 40%,rgba(80,220,255,0.95) 50%,rgba(0,180,255,0.6) 60%,rgba(0,180,255,0.0) 100%);
+  animation:scan 3s ease-in-out infinite;z-index:2;}
+.scanner-glow{position:absolute;top:0;left:0;right:0;height:40px;
+  background:linear-gradient(180deg,rgba(0,140,255,0.12) 0%,transparent 100%);
+  animation:scan 3s ease-in-out infinite;z-index:2;pointer-events:none;}
+@keyframes scan{0%{top:0;}85%{top:calc(100% - 4px);}100%{top:0;}}
+.scanner-statusbar{background:#060c14;border-top:1px solid #1a2a3a;
+  padding:5px 12px;display:flex;justify-content:space-between;align-items:center;}
+.scanner-status-txt{font-family:'Inconsolata',monospace;font-size:8.5px;
+  letter-spacing:0.1em;color:#4a8aaa;text-transform:uppercase;}
+.scanner-led{width:6px;height:6px;border-radius:50%;background:#00ff88;
+  animation:blink 1.5s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:0.9;}50%{opacity:0.2;}}
 
-/* ══ OCR ══ */
-.ocr{background:rgba(245,244,240,0.97);border:0.5px solid #bbb;
-  max-width:500px;width:100%;padding:1.6rem 2rem;
-  box-shadow:0 8px 48px rgba(0,0,0,0.5);}
-.ohdr{font-family:'Inconsolata',monospace;font-size:9px;color:#888;
-  border-bottom:0.5px solid #ddd;padding-bottom:5px;margin-bottom:0.9rem;
-  display:flex;justify-content:space-between;letter-spacing:0.07em;}
+/* ══ OCR TERMINAL ══ */
+.ocr-terminal{max-width:500px;width:100%;background:#030306;
+  border:1px solid #1a1a2a;box-shadow:0 8px 48px rgba(0,0,0,0.8);}
+.ocr-titlebar{background:#0a0a14;border-bottom:1px solid #1a1a2a;
+  padding:5px 12px;display:flex;justify-content:space-between;align-items:center;}
+.ocr-title-txt{font-family:'Inconsolata',monospace;font-size:9px;
+  color:#4444aa;letter-spacing:0.1em;text-transform:uppercase;}
+.ocr-body{padding:1rem 1.2rem;
+  background:repeating-linear-gradient(0deg,transparent,transparent 22px,rgba(0,255,0,0.012) 22px,rgba(0,255,0,0.012) 23px);}
 .poem-ocr{font-family:'Inconsolata',monospace;font-size:12.5px;line-height:2;
-  color:#111;white-space:pre-line;}
-.oerr{color:var(--err);border-bottom:1px dotted var(--err);}
-.oflag{font-size:8px;color:var(--err);vertical-align:super;}
+  color:#00cc44;white-space:pre-line;}
+.oerr{color:#dd2200;border-bottom:1px dotted #dd2200;}
+.oflag{font-size:8px;color:#dd2200;vertical-align:super;}
+.ocr-footer{background:#0a0a14;border-top:1px solid #1a1a2a;
+  padding:5px 12px;font-family:'Inconsolata',monospace;font-size:8.5px;
+  color:#445566;display:flex;justify-content:space-between;letter-spacing:0.07em;}
+.ocr-cursor{display:inline-block;width:7px;height:13px;background:#00cc44;
+  vertical-align:text-bottom;animation:blink 1s step-end infinite;}
 
 /* ══ COUNCIL ══ */
 .council-intro{font-family:'IM Fell English',serif;font-size:22px;color:#f0e8d8;
-  text-align:center;font-weight:400;line-height:1.4;max-width:480px;}
+  text-align:center;font-weight:400;line-height:1.4;max-width:460px;}
 .council-sub{font-family:'Spectral',serif;font-size:13px;font-style:italic;font-weight:300;
-  color:rgba(240,232,216,0.55);text-align:center;max-width:420px;}
+  color:rgba(240,232,216,0.55);text-align:center;max-width:400px;}
 .tech-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:580px;width:100%;}
-.tcard{background:rgba(0,0,0,0.42);border:0.5px solid rgba(240,232,216,0.18);
-  padding:0;cursor:pointer;transition:border-color 0.2s,transform 0.15s;
+.tcard{background:rgba(0,0,0,0.5);border:0.5px solid rgba(240,232,216,0.18);
+  cursor:pointer;transition:border-color 0.2s,transform 0.15s;
   overflow:hidden;backdrop-filter:blur(8px);}
 .tcard:hover{border-color:var(--gold);transform:translateY(-2px);}
-.tcard.selected{border-color:var(--gold);border-width:1.5px;background:rgba(180,130,40,0.1);}
-
-/* Council card image areas — CSS gradient "illustrations" per technology */
-.tcard-img{width:100%;height:90px;display:block;position:relative;overflow:hidden;}
-.tcard-img-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:36px;}
-
-.tcard-img.scribe-img .tcard-img-inner{
-  background:linear-gradient(135deg,#3a2008 0%,#1e1004 40%,#2a1600 100%);}
-.tcard-img.press-img .tcard-img-inner{
-  background:linear-gradient(135deg,#2a2010 0%,#141008 40%,#201808 100%);}
-.tcard-img.scanner-img .tcard-img-inner{
-  background:linear-gradient(135deg,#0a1a2a 0%,#061018 40%,#081420 100%);}
-.tcard-img.ocr-img .tcard-img-inner{
-  background:linear-gradient(135deg,#0f0f18 0%,#080810 40%,#0a0a14 100%);}
-.tcard-img.all-img .tcard-img-inner{
-  background:linear-gradient(135deg,#2a1c08 0%,#14100a 40%,#1c1606 100%);}
-
-/* decorative elements in council cards */
-.scribe-deco{position:relative;text-align:center;}
-.scribe-deco::before{content:'✦ ✦ ✦';font-size:10px;letter-spacing:8px;
-  color:rgba(200,160,80,0.4);display:block;margin-bottom:4px;}
-.press-deco::before{content:'▪ ▪ ▪ ▪ ▪';font-size:8px;letter-spacing:4px;
-  color:rgba(180,160,120,0.4);display:block;margin-bottom:4px;}
-.scan-deco::before{content:'━━━━━━━━';font-size:8px;letter-spacing:2px;
-  color:rgba(100,140,180,0.5);display:block;margin-bottom:4px;}
-.ocr-deco::before{content:'01001100 01100101';font-size:7px;letter-spacing:2px;
-  color:rgba(120,120,160,0.5);display:block;margin-bottom:4px;font-family:monospace;}
-
+.tcard.selected{border-color:var(--gold);border-width:1.5px;}
+.tcard-photo{width:100%;height:100px;object-fit:cover;display:block;
+  filter:brightness(0.55) sepia(0.3);transition:filter 0.2s;}
+.tcard:hover .tcard-photo,.tcard.selected .tcard-photo{filter:brightness(0.7) sepia(0.2);}
 .tcard-body{padding:0.75rem 0.9rem;}
 .tcard-name{font-family:'Inconsolata',monospace;font-size:9.5px;letter-spacing:0.16em;
   text-transform:uppercase;color:var(--gold);margin-bottom:5px;}
 .tcard-claim{font-family:'Spectral',serif;font-size:11.5px;font-style:italic;font-weight:300;
   color:rgba(240,232,216,0.65);line-height:1.55;}
 .tcard.full{grid-column:1/-1;}
-.tcard.full .tcard-img{height:60px;}
+.tcard.full .tcard-photo{height:65px;}
 .council-chosen{font-family:'Spectral',serif;font-size:13px;font-style:italic;
   color:rgba(240,232,216,0.5);text-align:center;}
 #chosen-name{color:#f0e8d8;font-style:normal;}
@@ -231,7 +223,7 @@ html,body{height:100%;overflow:hidden;font-family:'Spectral',serif;color:#f0e8d8
 .proceed-btn:disabled{opacity:0.22;cursor:not-allowed;}
 
 /* ══ AI ENDING ══ */
-.ai-box{background:rgba(0,0,0,0.42);border:0.5px solid rgba(240,232,216,0.18);
+.ai-box{background:rgba(0,0,0,0.5);border:0.5px solid rgba(240,232,216,0.18);
   max-width:500px;width:100%;padding:1.5rem 1.8rem;backdrop-filter:blur(8px);}
 .ai-lbl{font-family:'Inconsolata',monospace;font-size:9px;letter-spacing:0.16em;
   text-transform:uppercase;color:rgba(240,232,216,0.3);margin-bottom:1rem;
@@ -243,7 +235,6 @@ html,body{height:100%;overflow:hidden;font-family:'Spectral',serif;color:#f0e8d8
 .ai-list li::before{content:'·';position:absolute;left:0;color:rgba(240,232,216,0.28);}
 
 /* ══ TITLE ══ */
-.title-wrap{display:flex;flex-direction:column;align-items:center;gap:1.2rem;}
 .title-main{font-family:'IM Fell English',serif;font-size:clamp(56px,10vw,96px);
   color:#f0e8d8;text-align:center;line-height:1;
   text-shadow:0 2px 60px rgba(200,160,60,0.3),0 0 120px rgba(180,120,20,0.15);}
@@ -256,32 +247,29 @@ html,body{height:100%;overflow:hidden;font-family:'Spectral',serif;color:#f0e8d8
   margin-top:0.3rem;backdrop-filter:blur(4px);
   transition:color 0.2s,border-color 0.2s,background 0.2s;}
 .title-begin:hover{color:#f0e8d8;border-color:var(--gold);background:rgba(180,130,40,0.1);}
-
 .restart-btn{font-family:'Inconsolata',monospace;font-size:10px;letter-spacing:0.14em;
   text-transform:uppercase;color:rgba(240,232,216,0.28);background:transparent;border:none;
   cursor:pointer;padding:0.4rem;transition:color 0.2s;}
 .restart-btn:hover{color:rgba(240,232,216,0.65);}
 
+/* ink-change animation on scribe page */
+@keyframes inkfade{0%{opacity:1;color:#1a0a02;}40%{opacity:0.3;color:#5a1a00;}70%{opacity:0.7;color:#5a1a00;}100%{opacity:1;color:#5a1a00;}}
+.ink-change{animation:inkfade 1.8s ease forwards;}
+
 @media(max-height:680px){
   .scene{gap:0.8rem;}
-  .parch,.printed,.scanned,.ocr{padding:1.1rem 1.5rem;}
-  .poem-parch,.poem-print,.poem-scan,.poem-ocr,.poem-cmp{font-size:12px;line-height:1.8;}
-  .tcard-img{height:65px !important;}
-  .compare{grid-template-columns:1fr;}
+  .parch,.broadsheet,.scanner-ui,.ocr-terminal{padding:0;}
+  .poem-parch,.poem-print,.scanner-doc,.poem-ocr{font-size:12px;line-height:1.8;}
+  .tcard-photo{height:70px !important;}
+  .scribe-photo{height:110px;}
 }
-
-.bg-scribe{background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJnMSIgY3g9IjM1JSIgY3k9IjI1JSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzVhMzgxMCIvPjxzdG9wIG9mZnNldD0iNjAlIiBzdG9wLWNvbG9yPSIjMmExODA4Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGUwNzAwIi8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iODAwIiBmaWxsPSJ1cmwoI2cxKSIvPjxyZWN0IHg9IjE1MCIgeT0iODAiIHdpZHRoPSI0MDAiIGhlaWdodD0iNTUwIiByeD0iNCIgZmlsbD0iI2Q4YzA5MCIgb3BhY2l0eT0iMC4wOCIgdHJhbnNmb3JtPSJyb3RhdGUoLTUgMzUwIDM1NSkiLz48cmVjdCB4PSI1ODAiIHk9IjEyMCIgd2lkdGg9IjM1MCIgaGVpZ2h0PSI0ODAiIHJ4PSI0IiBmaWxsPSIjZDBiODgwIiBvcGFjaXR5PSIwLjA2IiB0cmFuc2Zvcm09InJvdGF0ZSgzIDc1NSAzNjApIi8+PGxpbmUgeDE9IjE4MCIgeTE9IjIwMCIgeDI9IjUyMCIgeTI9IjIwMCIgc3Ryb2tlPSIjYzhhMDYwIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuMDYiLz48bGluZSB4MT0iMTgwIiB5MT0iMjMwIiB4Mj0iNTAwIiB5Mj0iMjMwIiBzdHJva2U9IiNjOGEwNjAiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC4wNiIvPjxsaW5lIHgxPSIxODAiIHkxPSIyNjAiIHgyPSI1MTAiIHkyPSIyNjAiIHN0cm9rZT0iI2M4YTA2MCIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjA2Ii8+PGxpbmUgeDE9IjE4MCIgeTE9IjI5MCIgeDI9IjQ5MCIgeTI9IjI5MCIgc3Ryb2tlPSIjYzhhMDYwIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuMDYiLz48Y2lyY2xlIGN4PSI5MDAiIGN5PSIyMDAiIHI9IjEyMCIgZmlsbD0iI2M4YTA0MCIgb3BhY2l0eT0iMC4wNCIvPjxjaXJjbGUgY3g9IjEwMCIgY3k9IjYwMCIgcj0iODAiIGZpbGw9IiNjOGEwNDAiIG9wYWNpdHk9IjAuMDMiLz48L3N2Zz4=');background-size:cover;background-position:center;}
-.bg-press{background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJnMiIgY3g9IjUwJSIgY3k9IjM1JSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzJlMjgxOCIvPjxzdG9wIG9mZnNldD0iNTUlIiBzdG9wLWNvbG9yPSIjMTYxMjA4Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMDgwNjAwIi8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iODAwIiBmaWxsPSJ1cmwoI2cyKSIvPjxyZWN0IHg9IjQwMCIgeT0iNTAiIHdpZHRoPSI0MDAiIGhlaWdodD0iNzAwIiByeD0iOCIgZmlsbD0iIzJhMjAxMCIgb3BhY2l0eT0iMC4zIiBzdHJva2U9IiM0YTM4MjAiIHN0cm9rZS13aWR0aD0iMSIvPjxyZWN0IHg9IjM4MCIgeT0iNTAiIHdpZHRoPSI0NDAiIGhlaWdodD0iNDAiIHJ4PSI0IiBmaWxsPSIjM2EyZTE4IiBvcGFjaXR5PSIwLjQiLz48cmVjdCB4PSI1OTMiIHk9IjkwIiB3aWR0aD0iMTQiIGhlaWdodD0iMjAwIiByeD0iMiIgZmlsbD0iIzJhMjAxMCIgb3BhY2l0eT0iMC41Ii8+PHJlY3QgeD0iNDEwIiB5PSIyOTAiIHdpZHRoPSIzODAiIGhlaWdodD0iMzAiIHJ4PSIyIiBmaWxsPSIjMmEyNDE4IiBvcGFjaXR5PSIwLjQiLz48cmVjdCB4PSI1NSIgeT0iMjAwIiB3aWR0aD0iMTYiIGhlaWdodD0iNDAwIiByeD0iMyIgZmlsbD0iIzJhMjAxMCIgb3BhY2l0eT0iMC4yNSIvPjxyZWN0IHg9IjExMjkiIHk9IjIwMCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjQwMCIgcng9IjMiIGZpbGw9IiMyYTIwMTAiIG9wYWNpdHk9IjAuMjUiLz48cmVjdCB4PSIxMDAiIHk9IjUwMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyNTAiIHJ4PSIyIiBmaWxsPSIjZThlMGM4IiBvcGFjaXR5PSIwLjA1Ii8+PHJlY3QgeD0iOTAwIiB5PSI0ODAiIHdpZHRoPSIyMDAiIGhlaWdodD0iMjYwIiByeD0iMiIgZmlsbD0iI2U4ZTBjOCIgb3BhY2l0eT0iMC4wNCIvPjwvc3ZnPg==');background-size:cover;background-position:center;}
-.bg-scan{background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJnMyIgY3g9IjUwJSIgY3k9IjQ1JSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzBhMTgyOCIvPjxzdG9wIG9mZnNldD0iNjAlIiBzdG9wLWNvbG9yPSIjMDQwYzE4Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMDIwNjA4Ii8+PC9yYWRpYWxHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9InNsIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwNjZjYyIgc3RvcC1vcGFjaXR5PSIwIi8+PHN0b3Agb2Zmc2V0PSI0NSUiIHN0b3AtY29sb3I9IiMwMDg4ZmYiIHN0b3Atb3BhY2l0eT0iMC4xNSIvPjxzdG9wIG9mZnNldD0iNTAlIiBzdG9wLWNvbG9yPSIjNDRhYWZmIiBzdG9wLW9wYWNpdHk9IjAuMjUiLz48c3RvcCBvZmZzZXQ9IjU1JSIgc3RvcC1jb2xvcj0iIzAwODhmZiIgc3RvcC1vcGFjaXR5PSIwLjE1Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMDA2NmNjIiBzdG9wLW9wYWNpdHk9IjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI4MDAiIGZpbGw9InVybCgjZzMpIi8+PHJlY3QgeD0iMTAwIiB5PSIyODAiIHdpZHRoPSIxMDAwIiBoZWlnaHQ9IjI0MCIgcng9IjgiIGZpbGw9IiMwYTE4MjgiIG9wYWNpdHk9IjAuNiIgc3Ryb2tlPSIjMGEyMDQwIiBzdHJva2Utd2lkdGg9IjEiLz48cmVjdCB4PSIxMjAiIHk9IjMwMCIgd2lkdGg9Ijk2MCIgaGVpZ2h0PSIyMDAiIHJ4PSI0IiBmaWxsPSIjMDQwODBmIiBvcGFjaXR5PSIwLjgiLz48cmVjdCB4PSIxMzAiIHk9IjMxMCIgd2lkdGg9IjcwMCIgaGVpZ2h0PSIxODAiIHJ4PSIyIiBmaWxsPSIjZThlMGNjIiBvcGFjaXR5PSIwLjA4Ii8+PHJlY3QgeD0iMCIgeT0iMzAwIiB3aWR0aD0iMTIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9InVybCgjc2wpIj48YW5pbWF0ZSBhdHRyaWJ1dGVOYW1lPSJ5IiBmcm9tPSIyODAiIHRvPSI1MDAiIGR1cj0iNHMiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIi8+PC9yZWN0PjxjaXJjbGUgY3g9IjYwMCIgY3k9IjQwMCIgcj0iMjAwIiBmaWxsPSIjMDA1NWFhIiBvcGFjaXR5PSIwLjAzIi8+PC9zdmc+');background-size:cover;background-position:center;}
-.bg-ocr{background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJnNCIgY3g9IjUwJSIgY3k9IjQwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzE0MTQyMCIvPjxzdG9wIG9mZnNldD0iNjAlIiBzdG9wLWNvbG9yPSIjMDgwODEwIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMDMwMzA2Ii8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iODAwIiBmaWxsPSJ1cmwoI2c0KSIvPjx0ZXh0IHg9IjYwIiB5PSIxMjAiIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMwMGFhMzMiIG9wYWNpdHk9IjAuMTIiPlJlMWVhc2UuIFdoZW4geW91ciBoZWFydCBjYXJyaWVzIHRoZSB2dmVpZ2h0PC90ZXh0Pjx0ZXh0IHg9IjYwIiB5PSIxNjAiIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMwMGFhMzMiIG9wYWNpdHk9IjAuMDkiPm9mIHllYXJzIHBhc3QsIGFuZCB5b3VyIHNvdWwgZ3Jvd3Mgd2VhcnksPC90ZXh0Pjx0ZXh0IHg9IjYwIiB5PSIyMDAiIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiNjYzIyMDAiIG9wYWNpdHk9IjAuMSI+cmUxZWFzZS4gZm9yIFByb3YxZGVuY2UgaGFzIGZhc2hpb25lZDwvdGV4dD48dGV4dCB4PSI2MCIgeT0iMjQwIiBmb250LWZhbWlseT0ibW9ub3NwYWNlIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMDBhYTMzIiBvcGFjaXR5PSIwLjA5Ij55b3VyIGRheXMgd2l0aCBwdXJwb3NlLiBZb3UgY2FuIG9ubHkgZmx5PC90ZXh0Pjx0ZXh0IHg9IjYwIiB5PSIyODAiIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMwMGFhMzMiIG9wYWNpdHk9IjAuMDgiPmlmIHlvdSBmcmVlIHlvdXIgd2luZ3MuIEZyZWUgeW91cnNlbGY8L3RleHQ+PHRleHQgeD0iNjAiIHk9IjMyMCIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2NjMjIwMCIgb3BhY2l0eT0iMC4wOSI+ZnJvbSBjaGFpbnMuIE1ha2UgcGVhY2Ugd2l0aCBHMGQuPC90ZXh0Pjx0ZXh0IHg9IjYwIiB5PSIzNjAiIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiMwMGFhMzMiIG9wYWNpdHk9IjAuMDciPmNvbmZpZGVuY2U6IDgxJSDCtyA3IGVycm9ycyDCtyBwYXNzIDEgb2YgMTwvdGV4dD48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI4MDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwYWEzMyIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjA0Ii8+PC9zdmc+');background-size:cover;background-position:center;}
-.bg-council{background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJnNSIgY3g9IjUwJSIgY3k9IjQwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzM2MjgwOCIvPjxzdG9wIG9mZnNldD0iNDAlIiBzdG9wLWNvbG9yPSIjMWUxODA4Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGEwODAwIi8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iODAwIiBmaWxsPSJ1cmwoI2c1KSIvPjxlbGxpcHNlIGN4PSIyMDAiIGN5PSI0MDAiIHJ4PSIxODAiIHJ5PSIzMDAiIGZpbGw9IiNjOGEwNDAiIG9wYWNpdHk9IjAuMDQiLz48ZWxsaXBzZSBjeD0iMTAwMCIgY3k9IjQwMCIgcng9IjE4MCIgcnk9IjMwMCIgZmlsbD0iI2M4YTA0MCIgb3BhY2l0eT0iMC4wNCIvPjxlbGxpcHNlIGN4PSI2MDAiIGN5PSIxNTAiIHJ4PSIzMDAiIHJ5PSIxMDAiIGZpbGw9IiNjOGEwNDAiIG9wYWNpdHk9IjAuMDUiLz48bGluZSB4MT0iMjAwIiB5MT0iMTAwIiB4Mj0iMjAwIiB5Mj0iNzAwIiBzdHJva2U9IiNjOGEwNjAiIHN0cm9rZS13aWR0aD0iMC41IiBvcGFjaXR5PSIwLjA4Ii8+PGxpbmUgeDE9IjQ1MCIgeTE9IjEwMCIgeDI9IjQ1MCIgeTI9IjcwMCIgc3Ryb2tlPSIjYzhhMDYwIiBzdHJva2Utd2lkdGg9IjAuNSIgb3BhY2l0eT0iMC4wOCIvPjxsaW5lIHgxPSI3NTAiIHkxPSIxMDAiIHgyPSI3NTAiIHkyPSI3MDAiIHN0cm9rZT0iI2M4YTA2MCIgc3Ryb2tlLXdpZHRoPSIwLjUiIG9wYWNpdHk9IjAuMDgiLz48bGluZSB4MT0iMTAwMCIgeTE9IjEwMCIgeDI9IjEwMDAiIHkyPSI3MDAiIHN0cm9rZT0iI2M4YTA2MCIgc3Ryb2tlLXdpZHRoPSIwLjUiIG9wYWNpdHk9IjAuMDgiLz48dGV4dCB4PSI2MDAiIHk9IjQyMCIgZm9udC1mYW1pbHk9InNlcmlmIiBmb250LXNpemU9IjEyMCIgZmlsbD0iI2M4YTA0MCIgb3BhY2l0eT0iMC4wNCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+4peIPC90ZXh0Pjwvc3ZnPg==');background-size:cover;background-position:center;}
 </style>
 </head>
 <body>
 
 <div id="bg-a" class="bg-title"></div>
 <div id="bg-b" class="bg-title"></div>
-<div id="grain"></div>
+<div id="bg-overlay" class="ov-title"></div>
 <div id="vig"></div>
 <div id="prog"><div id="prog-fill"></div></div>
 <button id="back-btn" onclick="goBack()">← Back</button>
@@ -291,18 +279,16 @@ html,body{height:100%;overflow:hidden;font-family:'Spectral',serif;color:#f0e8d8
 
 <!-- ══════ TITLE ══════ -->
 <div class="scene active" id="s-title">
-  <div class="title-wrap">
-    <div class="title-main">Let Go</div>
-    <div class="title-rule"></div>
-    <div class="title-sub">a poem's journey through five technologies of text</div>
-    <button class="title-begin" onclick="go('s0')">Begin</button>
-  </div>
+  <div class="title-main">Let Go</div>
+  <div class="title-rule"></div>
+  <div class="title-sub">a poem's journey through five technologies of text</div>
+  <button class="title-begin" onclick="go('s0')">Begin</button>
 </div>
 
 <!-- ══════ ORIGIN ══════ -->
 <div class="scene" id="s0">
   <div class="stage-tag">Origin · Before any hand has touched me</div>
-  <p class="narration">I am a poem. I exist whole and unread — not yet copied, not yet changed. This is what I am before anyone decides what I mean.</p>
+  <p class="narration">I'm a poem. I exist whole, unread — before anyone decides what I mean or what I should have said.</p>
   <div class="parch">
     <div class="poem-parch">Let go.
 When your heart wears the burden of years past,
@@ -328,70 +314,47 @@ Forgive yourself, and you will be happy.</div>
   </div>
 </div>
 
-<!-- ══════ SCRIBE A — rewrites ══════ -->
+<!-- ══════ SCRIBE A ══════ -->
 <div class="scene" id="s1a">
   <div class="stage-tag">Stage I · The Manuscript · A scribe who thinks he knows better</div>
-  <p class="narration">A scribe copies me onto fresh vellum. He reads slowly — but his era makes him uncomfortable with my directness. He rewrites as he copies, convinced he's being faithful to what I really meant.</p>
-  <div class="compare">
-    <div class="ccard orig">
-      <span class="clbl">The original</span>
-      <div class="poem-cmp">Let go.
-When your heart wears the burden of years past,
-and your mind clogs with emotions unexpressed,
-and your soul grows sick with longing for happiness,
-let go.
+  <img class="scribe-photo" src="https://upload.wikimedia.org/wikipedia/commons/3/32/Scriptorium-monk-at-work.jpg" alt="Scribe at work" style="max-width:500px;width:100%;height:150px;object-fit:cover;object-position:center 30%;filter:sepia(0.5) brightness(0.65);border:1px solid rgba(200,160,80,0.3);display:block;box-shadow:0 4px 24px rgba(0,0,0,0.5);">
+  <p class="narration">He copies me onto fresh vellum — slowly, carefully. But he's uncomfortable with how direct I am. So he rewrites as he goes, convinced he's just clarifying what I really meant.</p>
+  <div class="parch">
+    <div class="poem-parch"><em class="changed">Release.</em>
+When your heart <em class="changed">carries the weight</em> of years past,
+and your mind <em class="changed">holds what words have failed</em>,
+and your soul grows <em class="changed">weary of its own yearning</em>,
+<em class="changed">release.</em>
 
-Let go of the yearning wish for a different path,
-for you have been given a beautiful life.
+<em class="changed">Accept the path appointed to you,
+for Providence has fashioned your days with purpose.</em>
 You can only fly if you free your wings.
 
 Free yourself from the chains of the past,
-from the chains tying you to an unwelcome throne.
-Forgive the ones that wronged you,
-and forgive yourself —
-for no one wrongs you more than you do yourself.
+from the chains tying you to a <em class="changed">burdensome</em> throne.
+<em class="changed">Pardon those who have trespassed against you,
+as you seek pardon for your own trespasses.</em>
 
-Forgive yourself, and you will be happy.</div>
-    </div>
-    <div class="ccard scv">
-      <span class="clbl">What the scribe wrote</span>
-      <div class="poem-cmp"><span class="changed">Release.</span>
-When your heart <span class="changed">carries the weight</span> of years past,
-and your mind <span class="changed">holds what words have failed</span>,
-and your soul grows <span class="changed">weary of its own yearning</span>,
-<span class="changed">release.</span>
-
-<span class="changed">Accept the path appointed to you,
-for Providence has fashioned your days with purpose.</span>
-You can only fly if you free your wings.
-
-Free yourself from the chains of the past,
-from the chains tying you to a <span class="changed">burdensome</span> throne.
-<span class="changed">Pardon those who have trespassed against you,
-as you seek pardon for your own trespasses.</span>
-
-<span class="changed">Make peace with God, and you shall find peace.</span></div>
-    </div>
+<em class="changed">Make peace with God, and you shall find peace.</em></div>
   </div>
-  <div class="reaction">He changed "let go" to "release." He turned my ending — "forgive yourself, and you will be happy" — into "make peace with God." He thought those were the same thing. They're not. One is personal. The other hands it off to someone else entirely.</div>
+  <div class="reaction">He changed "let go" to "release." And my ending — "forgive yourself, and you will be happy" — became "make peace with God." He thought those were the same. They're not. One is personal. The other hands it off to someone else.</div>
   <div class="choices">
     <button class="cbtn" onclick="go('s2a')">This doesn't feel like me anymore. I carry the grief of what he replaced.</button>
     <button class="cbtn" onclick="go('s2b')">Some of what he wrote is more elegant. I'm not sure which version I prefer.</button>
   </div>
 </div>
 
-<!-- ══════ SCRIBE B — adds tenderly ══════ -->
+<!-- ══════ SCRIBE B ══════ -->
 <div class="scene" id="s1b">
   <div class="stage-tag">Stage I · The Manuscript · A scribe who reads carefully</div>
-  <p class="narration">The scribe copies me slowly, with real attention. He keeps my words — but he can't help adding his own in the margins. He's talking back to me while he writes.</p>
-  <div class="compare">
-    <div class="ccard orig">
-      <span class="clbl">The original</span>
-      <div class="poem-cmp">Let go.
+  <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Scriptorium-monk-at-work.jpg" alt="Scribe at work" style="max-width:500px;width:100%;height:150px;object-fit:cover;object-position:center 30%;filter:sepia(0.3) brightness(0.7);border:1px solid rgba(200,160,80,0.3);display:block;box-shadow:0 4px 24px rgba(0,0,0,0.5);">
+  <p class="narration">He copies me slowly — and keeps my words. But he can't help talking back to me in the margins. He adds a breath instruction, a confession, and an ending that finishes my thought better than I did.</p>
+  <div class="parch">
+    <div class="poem-parch">Let go.
 When your heart wears the burden of years past,
 and your mind clogs with emotions unexpressed,
 and your soul grows sick with longing for happiness,
-let go.
+let go. <em class="changed">↳ [pause here. breathe.]</em>
 
 Let go of the yearning wish for a different path,
 for you have been given a beautiful life.
@@ -402,56 +365,39 @@ from the chains tying you to an unwelcome throne.
 Forgive the ones that wronged you,
 and forgive yourself —
 for no one wrongs you more than you do yourself.
-
-Forgive yourself, and you will be happy.</div>
-    </div>
-    <div class="ccard scv">
-      <span class="clbl">What the scribe wrote</span>
-      <div class="poem-cmp">Let go.
-When your heart wears the burden of years past,
-and your mind clogs with emotions unexpressed,
-and your soul grows sick with longing for happiness,
-let go. <span class="changed">↳ [pause here. breathe.]</span>
-
-Let go of the yearning wish for a different path,
-for you have been given a beautiful life.
-You can only fly if you free your wings.
-
-Free yourself from the chains of the past,
-from the chains tying you to an unwelcome throne.
-Forgive the ones that wronged you,
-and forgive yourself —
-for no one wrongs you more than you do yourself.
-<span class="changed">↳ [I have copied this line four times. I cannot move past it.]</span>
+<em class="changed">↳ [I have copied this line four times. I cannot move past it.]</em>
 Forgive yourself, and you will be happy.
-<span class="changed">Happiness is not a place you arrive at.
-It is what is left when you stop carrying what was never yours.</span></div>
-    </div>
+<em class="changed">Happiness is not a place you arrive at.
+It is what is left when you stop carrying what was never yours.</em></div>
   </div>
-  <div class="reaction">He kept me. But he added a breath instruction, a confession he couldn't move past my line, and an extra ending that finishes my thought better than I did. His addition is warmer than mine. That's uncomfortable to admit.</div>
+  <div class="reaction">He kept me. He just couldn't help adding himself — a breath instruction, a confession, and an ending that finishes my thought better than I did. His addition is warmer than mine. That's uncomfortable to admit.</div>
   <div class="choices">
-    <button class="cbtn" onclick="go('s2c')">His words and mine are too mixed up now. I need to keep them separate.</button>
+    <button class="cbtn" onclick="go('s2c')">His words and mine are too mixed up now. I want to keep them separate.</button>
     <button class="cbtn" onclick="go('s2d')">His addition became part of me. I carry it forward — it's mine now too.</button>
   </div>
 </div>
 
-<!-- ══════ PRESS A — intro choice (from scribe A grieving) ══════ -->
+<!-- ══════ PRESS A ══════ -->
 <div class="scene" id="s2a">
   <div class="stage-tag">Stage II · The Printing Press · One damaged original, one clean copy</div>
-  <p class="narration">A century passes. A printer finds two things: the scribe's clean vellum copy, and the original paper manuscript — water-damaged, some words gone. He has to decide which to print from. He doesn't know what you know: the clean copy has already changed you.</p>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Metal_movable_type.jpg" alt="Metal movable type" style="max-width:500px;width:100%;height:130px;object-fit:cover;object-position:center;filter:brightness(0.6) sepia(0.2);border:1px solid rgba(180,160,100,0.3);display:block;box-shadow:0 4px 24px rgba(0,0,0,0.5);">
+  <p class="narration">A century passes. A printer finds two things: the scribe's clean vellum copy, and the original paper manuscript — water-damaged, words missing. He has to decide. He doesn't know what you know: the clean copy already changed you.</p>
   <div class="choices">
     <button class="cbtn" onclick="go('s2a-scribe')">He chooses the scribe's copy — clean, fully legible, perfectly preserved.</button>
-    <button class="cbtn" onclick="go('s2a-original')">He chooses the damaged original — older, more authentic, but broken in places.</button>
+    <button class="cbtn" onclick="go('s2a-original')">He chooses the damaged original — older, closer to you, but broken in places.</button>
   </div>
 </div>
 
-<!-- PRESS A — scribe's version made permanent -->
+<!-- PRESS A-scribe -->
 <div class="scene" id="s2a-scribe">
   <div class="stage-tag">Stage II · The Press · The scribe's version, made permanent</div>
-  <p class="narration">He prints from the scribe's copy. 400 identical editions. "Release." "Make peace with God." These are now canon — and no reader will ever know they were changes.</p>
-  <div class="printed">
-    <div class="phdr"><span>Printed in London · MDCCXLIII</span><span>Edition of 400</span></div>
-    <div class="poem-print">Release.
+  <p class="narration">He prints the scribe's copy. 400 identical editions. "Release." "Make peace with God." Now canon — and no reader will ever know they were changes.</p>
+  <div class="broadsheet">
+    <div class="broadsheet-head"><span>The London Intelligencer</span><span style="font-size:10px;font-family:'Inconsolata',monospace;letter-spacing:0.1em;">MDCCXLIII</span></div>
+    <div class="broadsheet-rule"></div>
+    <div class="broadsheet-meta"><span>Printed by authority</span><span>Edition of 400</span></div>
+    <div class="broadsheet-body">
+      <div class="poem-print">Release.
 When your heart carries the weight of years past,
 and your mind holds what words have failed,
 and your soul grows weary of its own yearning,
@@ -467,21 +413,25 @@ Pardon those who have trespassed against you,
 as you seek pardon for your own trespasses.
 
 Make peace with God, and you shall find peace.</div>
+    </div>
   </div>
-  <div class="reaction">400 copies. Not one of them has my ending. And there's no record anymore of what I actually said — the press erased the evidence of the change. It didn't distort me. It just made someone else's distortion impossible to undo.</div>
+  <div class="reaction">400 copies, none with my ending. No record of what I actually said — the press didn't distort me. It just made someone else's distortion impossible to undo.</div>
   <div class="choices">
-    <button class="cbtn" onclick="go('s3a-dark')">400 copies of a version that isn't me. That's its own kind of erasure.</button>
-    <button class="cbtn" onclick="go('s3a-light')">Something survived. Even if it isn't exactly me, 400 people will read it and maybe let go.</button>
+    <button class="cbtn" onclick="go('s3a-dark')">400 copies of a version that isn't me. That feels like its own kind of loss.</button>
+    <button class="cbtn" onclick="go('s3a-light')">Something survived. Even if it isn't exactly me, 400 people will read it.</button>
   </div>
 </div>
 
-<!-- PRESS A — damaged original reconstructed -->
+<!-- PRESS A-original -->
 <div class="scene" id="s2a-original">
   <div class="stage-tag">Stage II · The Press · The damaged original, reconstructed</div>
-  <p class="narration">He chooses the original — older, more authentic. But the water has taken words. He fills in what he can, marks what he can't, and goes to press.</p>
-  <div class="printed">
-    <div class="phdr"><span>Printed in London · MDCCXLIII</span><span>Edition of 400</span></div>
-    <div class="poem-print">Let go.
+  <p class="narration">He chooses the original — older, more authentic. But the water took words. He fills in what he can, marks what he can't, and goes to press.</p>
+  <div class="broadsheet">
+    <div class="broadsheet-head"><span>The London Intelligencer</span><span style="font-size:10px;font-family:'Inconsolata',monospace;letter-spacing:0.1em;">MDCCXLIII</span></div>
+    <div class="broadsheet-rule"></div>
+    <div class="broadsheet-meta"><span>Printed by authority</span><span>Edition of 400</span></div>
+    <div class="broadsheet-body">
+      <div class="poem-print">Let go.
 When your heart wears the <span class="gap">_____</span> of years past,
 and your mind clogs with <span class="fill">[emotions, perhaps]</span> unexpressed,
 and your soul grows sick with longing for <span class="fill">[happiness]</span>,
@@ -498,31 +448,35 @@ and forgive yourself —
 for no one wrongs you more than <span class="fill">[yourself, ed.]</span>.
 
 <span class="gap">_____</span>, and you will be happy.</div>
+    </div>
   </div>
-  <div class="reaction">He got some of it right — "emotions, perhaps" is exactly right, even with the hesitation. But the last line's first word is gone. "Forgive yourself, and you will be happy" is just "_____, and you will be happy." The instruction disappeared. Only the promise survived.</div>
+  <div class="reaction">"Emotions, perhaps" — yes, that's right even with the hesitation. But the last line's first word is gone. "Forgive yourself, and you will be happy" is just "_____, and you will be happy." The instruction disappeared. Only the promise survived.</div>
   <div class="choices">
     <button class="cbtn" onclick="go('s3a-dark')">The gaps feel like wounds. What's missing says as much as what's there.</button>
     <button class="cbtn" onclick="go('s3a-light')">There's something honest about a text that admits it doesn't have all the answers.</button>
   </div>
 </div>
 
-<!-- ══════ PRESS B — ambivalent (from scribe A elegant) ══════ -->
+<!-- PRESS B ══════ -->
 <div class="scene" id="s2b">
   <div class="stage-tag">Stage II · The Printing Press · One damaged original, one clean copy</div>
-  <p class="narration">A century passes. The same two options land on a printer's desk — the scribe's elegant version, and the damaged original. You're caught between them. The printer isn't.</p>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Metal_movable_type.jpg" alt="Metal movable type" style="max-width:500px;width:100%;height:130px;object-fit:cover;filter:brightness(0.6) sepia(0.2);border:1px solid rgba(180,160,100,0.3);display:block;box-shadow:0 4px 24px rgba(0,0,0,0.5);">
+  <p class="narration">Same printer, same two options. You're caught between the scribe's elegant version and your damaged original. The printer isn't caught at all.</p>
   <div class="choices">
     <button class="cbtn" onclick="go('s2b-scribe')">He chooses the scribe's version — refined, complete, but not quite you.</button>
-    <button class="cbtn" onclick="go('s2b-original')">He chooses the damaged original — closer to you, but full of gaps he fills himself.</button>
+    <button class="cbtn" onclick="go('s2b-original')">He chooses the damaged original — your words, with gaps he fills himself.</button>
   </div>
 </div>
 
-<!-- PRESS B — scribe version -->
 <div class="scene" id="s2b-scribe">
   <div class="stage-tag">Stage II · The Press · The elegant version, standardised</div>
-  <p class="narration">He prints the scribe's version. 400 copies of the more elegant rewrite — standardised, uniform, the personal warmth of the manuscript flattened into type.</p>
-  <div class="printed">
-    <div class="phdr"><span>Printed in London · MDCCXLIII</span><span>Edition of 400</span></div>
-    <div class="poem-print">Release.
+  <p class="narration">400 copies of the scribe's rewrite — standardised, uniform. The personal warmth of the manuscript flattened into type.</p>
+  <div class="broadsheet">
+    <div class="broadsheet-head"><span>The London Intelligencer</span><span style="font-size:10px;font-family:'Inconsolata',monospace;letter-spacing:0.1em;">MDCCXLIII</span></div>
+    <div class="broadsheet-rule"></div>
+    <div class="broadsheet-meta"><span>Printed by authority</span><span>Edition of 400</span></div>
+    <div class="broadsheet-body">
+      <div class="poem-print">Release.
 When your heart carries the weight of years past,
 and your mind holds what words have failed,
 and your soul grows weary of its own yearning,
@@ -538,21 +492,24 @@ Pardon those who have trespassed against you,
 as you seek pardon for your own trespasses.
 
 Make peace with God, and you shall find peace.</div>
+    </div>
   </div>
-  <div class="reaction">Some of what he wrote was more elegant — I thought I could live with it. But seeing it in 400 identical copies, I'm not so sure. The elegance looks cold in type. "Make peace with God" as a final line looks like a conclusion. My ending was an invitation. Those are different things.</div>
+  <div class="reaction">Some of what he wrote was more elegant — I thought I could live with it. But in 400 identical copies, the elegance looks cold. "Make peace with God" as a final line looks like a conclusion. My ending was an invitation. Those are different things.</div>
   <div class="choices">
     <button class="cbtn" onclick="go('s3a-dark')">400 copies of the wrong ending. I can't stop thinking about it.</button>
     <button class="cbtn" onclick="go('s3a-light')">400 people will still feel something reading it. The form changed, not the feeling.</button>
   </div>
 </div>
 
-<!-- PRESS B — original with gaps -->
 <div class="scene" id="s2b-original">
   <div class="stage-tag">Stage II · The Press · The damaged original, reconstructed</div>
-  <p class="narration">He chooses the original — my words, not the scribe's. But the water damage has taken things. He reconstructs what he can and marks the rest.</p>
-  <div class="printed">
-    <div class="phdr"><span>Printed in London · MDCCXLIII</span><span>Edition of 400</span></div>
-    <div class="poem-print">Let go.
+  <p class="narration">He picks the original — my words, not the scribe's. But the damage is real. He reconstructs what he can and marks the rest.</p>
+  <div class="broadsheet">
+    <div class="broadsheet-head"><span>The London Intelligencer</span><span style="font-size:10px;font-family:'Inconsolata',monospace;letter-spacing:0.1em;">MDCCXLIII</span></div>
+    <div class="broadsheet-rule"></div>
+    <div class="broadsheet-meta"><span>Printed by authority</span><span>Edition of 400</span></div>
+    <div class="broadsheet-body">
+      <div class="poem-print">Let go.
 When your heart wears the <span class="gap">_____</span> of years past,
 and your mind clogs with <span class="fill">[emotions, perhaps]</span> unexpressed,
 and your soul grows sick with longing for <span class="fill">[happiness]</span>,
@@ -569,31 +526,35 @@ and forgive yourself —
 for no one wrongs you more than <span class="fill">[yourself, ed.]</span>.
 
 <span class="gap">_____</span>, and you will be happy.</div>
+    </div>
   </div>
-  <div class="reaction">My words — the ones I actually wrote — survived, with gaps where the water took them. The scribe's rewrite was left behind. I feel something like relief about that, even though the gaps hurt. At least what's here is mine.</div>
+  <div class="reaction">My words survived — with gaps. The scribe's rewrite was left behind. I feel something like relief, even though the gaps hurt. At least what's here is mine.</div>
   <div class="choices">
     <button class="cbtn" onclick="go('s3a-dark')">The gaps feel wrong. The scribe's version was at least complete.</button>
     <button class="cbtn" onclick="go('s3a-light')">The gaps are honest. An incomplete truth beats an elegant lie.</button>
   </div>
 </div>
 
-<!-- ══════ PRESS C — from scribe B grieving (boundary) ══════ -->
+<!-- PRESS C ══════ -->
 <div class="scene" id="s2c">
   <div class="stage-tag">Stage II · The Printing Press · A printer with a decision to make</div>
-  <p class="narration">A century later. A printer finds the scribe's copy — complete, with the marginal notes and his added ending. He also has the original, water-damaged. He has to decide.</p>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Metal_movable_type.jpg" alt="Metal movable type" style="max-width:500px;width:100%;height:130px;object-fit:cover;filter:brightness(0.6) sepia(0.2);border:1px solid rgba(180,160,100,0.3);display:block;box-shadow:0 4px 24px rgba(0,0,0,0.5);">
+  <p class="narration">A century later. The printer has the scribe's full copy — with the margin notes and added ending — and the original, damaged. He has to choose.</p>
   <div class="choices">
-    <button class="cbtn" onclick="go('s2c-scribe')">He uses the scribe's copy — complete, but the margins won't survive typesetting.</button>
-    <button class="cbtn" onclick="go('s2c-original')">He uses the original, damaged as it is — the scribe's additions stay behind.</button>
+    <button class="cbtn" onclick="go('s2c-scribe')">He uses the scribe's copy — complete, but the margin notes won't survive typesetting.</button>
+    <button class="cbtn" onclick="go('s2c-original')">He uses the original — my words go to press, damaged as they are. The scribe stays behind.</button>
   </div>
 </div>
 
-<!-- PRESS C — scribe copy, margins cut -->
 <div class="scene" id="s2c-scribe">
   <div class="stage-tag">Stage II · The Press · The collaboration, made invisible</div>
-  <p class="narration">He sets the scribe's copy into type. The compositor drops the margin notes — not part of the poem, he decides. The scribe's extended ending survives. His confession does not.</p>
-  <div class="printed">
-    <div class="phdr"><span>Printed in London · MDCCXLIII</span><span>Edition of 400</span></div>
-    <div class="poem-print">Let go.
+  <p class="narration">He sets the scribe's copy into type. The compositor drops the margin notes. The extended ending survives. His confession does not.</p>
+  <div class="broadsheet">
+    <div class="broadsheet-head"><span>The London Intelligencer</span><span style="font-size:10px;font-family:'Inconsolata',monospace;letter-spacing:0.1em;">MDCCXLIII</span></div>
+    <div class="broadsheet-rule"></div>
+    <div class="broadsheet-meta"><span>Printed by authority</span><span>Edition of 400</span></div>
+    <div class="broadsheet-body">
+      <div class="poem-print">Let go.
 When your heart wears the burden of years past,
 and your mind clogs with emotions unexpressed,
 and your soul grows sick with longing for happiness,
@@ -612,21 +573,24 @@ for no one wrongs you more than you do yourself.
 Forgive yourself, and you will be happy.
 Happiness is not a place you arrive at.
 It is what is left when you stop carrying what was never yours.</div>
+    </div>
   </div>
-  <div class="reaction">His confession — "I have copied this line four times, I cannot move past it" — is gone. Cut by the compositor. But his extra ending survived and now looks like mine. 400 people will read his last two lines as if I wrote them. The boundary I cared about dissolved and no one will ever know.</div>
+  <div class="reaction">His confession is gone — cut. But his ending survived and now looks like mine. 400 people will read his last two lines as if I wrote them. The boundary I cared about dissolved and nobody will ever know.</div>
   <div class="choices">
-    <button class="cbtn" onclick="go('s3b-dark')">A reader should know whose words they're reading. This still bothers me.</button>
+    <button class="cbtn" onclick="go('s3b-dark')">A reader should know whose words they're reading. This bothers me.</button>
     <button class="cbtn" onclick="go('s3b-light')">Maybe it doesn't matter. The lines do what a poem should do — that's enough.</button>
   </div>
 </div>
 
-<!-- PRESS C — original, scribe's additions left behind -->
 <div class="scene" id="s2c-original">
   <div class="stage-tag">Stage II · The Press · The original, damaged — the scribe left behind</div>
   <p class="narration">He uses the original. The scribe's tender additions stay behind — a different hand, clearly not the author's. My words go to press, damaged as they are.</p>
-  <div class="printed">
-    <div class="phdr"><span>Printed in London · MDCCXLIII</span><span>Edition of 400</span></div>
-    <div class="poem-print">Let go.
+  <div class="broadsheet">
+    <div class="broadsheet-head"><span>The London Intelligencer</span><span style="font-size:10px;font-family:'Inconsolata',monospace;letter-spacing:0.1em;">MDCCXLIII</span></div>
+    <div class="broadsheet-rule"></div>
+    <div class="broadsheet-meta"><span>Printed by authority</span><span>Edition of 400</span></div>
+    <div class="broadsheet-body">
+      <div class="poem-print">Let go.
 When your heart wears the <span class="fill">[burden]</span> of years past,
 and your mind clogs with emotions unexpressed,
 and your soul grows sick with longing for happiness,
@@ -643,31 +607,35 @@ and forgive yourself —
 for no one wrongs you more than you do yourself.
 
 <span class="fill">[Forgive]</span> yourself, and you will be <span class="gap">_____</span>.</div>
+    </div>
   </div>
-  <div class="reaction">The scribe's additions are gone. Just me, with gaps. The last word of the poem is missing — "happy" replaced by a blank. I thought I wanted to keep our voices separate. But now I wonder if his ending was actually better than the gap.</div>
+  <div class="reaction">The scribe's additions are gone. Just me, with gaps. The last word of the poem is missing — "happy" replaced by a blank. I thought I wanted our voices separate. Now I'm not so sure.</div>
   <div class="choices">
     <button class="cbtn" onclick="go('s3b-dark')">The blank at the end feels wrong. I wish his ending had survived.</button>
     <button class="cbtn" onclick="go('s3b-light')">The blank is honest. Maybe happiness was always the part I was least certain about.</button>
   </div>
 </div>
 
-<!-- ══════ PRESS D — from scribe B open (carried willingly) ══════ -->
+<!-- PRESS D ══════ -->
 <div class="scene" id="s2d">
   <div class="stage-tag">Stage II · The Printing Press · A printer with a decision to make</div>
-  <p class="narration">A century later. The same printer, the same two options. The scribe's copy with his added ending. The damaged original. You've already decided the addition was yours — but the printer doesn't know that.</p>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Metal_movable_type.jpg" alt="Metal movable type" style="max-width:500px;width:100%;height:130px;object-fit:cover;filter:brightness(0.6) sepia(0.2);border:1px solid rgba(180,160,100,0.3);display:block;box-shadow:0 4px 24px rgba(0,0,0,0.5);">
+  <p class="narration">Same printer, same two options. You've already decided the scribe's addition was yours — but the printer doesn't know that.</p>
   <div class="choices">
     <button class="cbtn" onclick="go('s2d-scribe')">He uses the scribe's copy — your combined voices, typeset together.</button>
-    <button class="cbtn" onclick="go('s2d-original')">He uses the original — leaving the scribe's addition behind, with gaps where water took your words.</button>
+    <button class="cbtn" onclick="go('s2d-original')">He uses the original — leaving the scribe's addition behind, gaps and all.</button>
   </div>
 </div>
 
-<!-- PRESS D — scribe copy -->
 <div class="scene" id="s2d-scribe">
   <div class="stage-tag">Stage II · The Press · Both voices, made permanent</div>
-  <p class="narration">He prints from the scribe's copy. Your words and his, together in 400 editions. No margin notes — the compositor cut them — but the extended ending survives.</p>
-  <div class="printed">
-    <div class="phdr"><span>Printed in London · MDCCXLIII</span><span>Edition of 400</span></div>
-    <div class="poem-print">Let go.
+  <p class="narration">He prints from the scribe's copy. Your words and his, together in 400 editions. The margin notes are cut — but the extended ending survives.</p>
+  <div class="broadsheet">
+    <div class="broadsheet-head"><span>The London Intelligencer</span><span style="font-size:10px;font-family:'Inconsolata',monospace;letter-spacing:0.1em;">MDCCXLIII</span></div>
+    <div class="broadsheet-rule"></div>
+    <div class="broadsheet-meta"><span>Printed by authority</span><span>Edition of 400</span></div>
+    <div class="broadsheet-body">
+      <div class="poem-print">Let go.
 When your heart wears the burden of years past,
 and your mind clogs with emotions unexpressed,
 and your soul grows sick with longing for happiness,
@@ -686,21 +654,24 @@ for no one wrongs you more than you do yourself.
 Forgive yourself, and you will be happy.
 Happiness is not a place you arrive at.
 It is what is left when you stop carrying what was never yours.</div>
+    </div>
   </div>
-  <div class="reaction">400 copies of both of us. His ending looks like mine now — indistinguishable. I thought I was okay with that. And looking at it in print, I still am. The lines are good. They belong to the poem now, whoever wrote them.</div>
+  <div class="reaction">400 copies of both of us. His ending looks like mine now — indistinguishable. I thought I was okay with that. Looking at it in print, I still am. The lines belong to the poem now, whoever wrote them.</div>
   <div class="choices">
-    <button class="cbtn" onclick="go('s3b-dark')">But I wonder — does the poem lose something when no one can tell where I ended?</button>
+    <button class="cbtn" onclick="go('s3b-dark')">I wonder — does the poem lose something when no one can tell where I ended?</button>
     <button class="cbtn" onclick="go('s3b-light')">No. It gains something. A poem that carries two people's care is richer than one.</button>
   </div>
 </div>
 
-<!-- PRESS D — original with gaps -->
 <div class="scene" id="s2d-original">
   <div class="stage-tag">Stage II · The Press · The original, without him</div>
-  <p class="narration">He chooses the original. The scribe's tender addition — the ending I had come to think of as mine too — stays behind. Just me, with the gaps water left.</p>
-  <div class="printed">
-    <div class="phdr"><span>Printed in London · MDCCXLIII</span><span>Edition of 400</span></div>
-    <div class="poem-print">Let go.
+  <p class="narration">He chooses the original. The scribe's addition — the ending I had started thinking of as mine — stays behind. Just me, with the gaps water left.</p>
+  <div class="broadsheet">
+    <div class="broadsheet-head"><span>The London Intelligencer</span><span style="font-size:10px;font-family:'Inconsolata',monospace;letter-spacing:0.1em;">MDCCXLIII</span></div>
+    <div class="broadsheet-rule"></div>
+    <div class="broadsheet-meta"><span>Printed by authority</span><span>Edition of 400</span></div>
+    <div class="broadsheet-body">
+      <div class="poem-print">Let go.
 When your heart wears the <span class="fill">[burden]</span> of years past,
 and your mind clogs with emotions unexpressed,
 and your soul grows sick with longing for happiness,
@@ -717,8 +688,9 @@ and forgive yourself —
 for no one wrongs you more than you do yourself.
 
 <span class="fill">[Forgive]</span> yourself, and you will be <span class="gap">_____</span>.</div>
+    </div>
   </div>
-  <div class="reaction">His ending is gone. The last word of the poem — "happy" — replaced by a blank. And I feel his absence in a way I didn't expect. I had started to carry his words as mine. Now the gap at the end feels like losing him.</div>
+  <div class="reaction">His ending is gone. The last word — "happy" — replaced by a blank. I feel his absence in a way I didn't expect. I had started to carry his words as mine. The gap at the end feels like losing him.</div>
   <div class="choices">
     <button class="cbtn" onclick="go('s3b-dark')">The absence hurts. The poem feels unfinished without him.</button>
     <button class="cbtn" onclick="go('s3b-light')">Maybe the gap is where the reader finishes it themselves. That's okay too.</button>
@@ -728,10 +700,16 @@ for no one wrongs you more than you do yourself.
 <!-- ══════ SCAN 3A-DARK ══════ -->
 <div class="scene" id="s3a-dark">
   <div class="stage-tag">Stage III · Digitization · Flattened into a file</div>
-  <p class="narration">Centuries later. A librarian places the brittle page on a scanner. A bar of cold light passes beneath me. Everything physical vanishes — the weight of the paper, the smell of the room it survived in, the texture of ink in fibre. All gone.</p>
-  <div class="scanned">
-    <div class="shdr">Bodleian Digital Library · 600dpi · TIFF · 2003</div>
-    <div class="poem-scan">Release.
+  <p class="narration">Centuries later. A librarian places the brittle page on a scanner. A bar of cold light passes beneath me. Everything physical vanishes — the weight, the smell, the texture of ink in paper.</p>
+  <div class="scanner-ui">
+    <div class="scanner-topbar">
+      <div class="scanner-topbar-left">Bodleian Scan Studio · 600dpi</div>
+      <div class="scanner-dots"><div class="sdot sdot-r"></div><div class="sdot sdot-y"></div><div class="sdot sdot-g"></div></div>
+    </div>
+    <div class="scanner-glass">
+      <div class="scanner-light"></div>
+      <div class="scanner-glow"></div>
+      <div class="scanner-doc">Release.
 When your heart carries the <span class="faded">weight</span> of years past,
 and your mind holds what words have failed,
 and your soul grows weary of its <span class="faded">own yearning</span>,
@@ -743,24 +721,33 @@ You can only fly if you free your wings.
 
 Free yourself from the chains of the past,
 from the chains tying you to a burdensome throne.
-Pardon those who have trespassed against you,
-as you seek pardon for your own trespasses.
 
 Make peace with <span class="faded">God</span>, and you shall find peace.</div>
+    </div>
+    <div class="scanner-statusbar">
+      <div class="scanner-status-txt">Scanning · page 1 of 1 · TIFF output</div>
+      <div class="scanner-led"></div>
+    </div>
   </div>
-  <div class="reaction">I'm a photograph of a page now. Perfectly legible and completely decontextualised. The foxing in the corner, the water stain, the impression of type in the fibre — all the evidence that I was real and in rooms and held — just gone. Preserved and emptied at the same time.</div>
+  <div class="reaction">I'm a photograph of a page now. Perfectly legible, completely decontextualised. The foxing, the water stain, the impression of type in fibre — all evidence that I survived — just gone. Preserved and emptied at the same time.</div>
   <div class="choices">
-    <button class="cbtn" onclick="go('s4a')">Onto OCR. Whatever happens next, at least something made it this far.</button>
+    <button class="cbtn" onclick="go('s4a')">Onto OCR. At least something made it this far.</button>
   </div>
 </div>
 
-<!-- ══════ SCAN 3A-LIGHT ══════ -->
+<!-- SCAN 3A-LIGHT ══════ -->
 <div class="scene" id="s3a-light">
   <div class="stage-tag">Stage III · Digitization · Released into digital air</div>
   <p class="narration">The page goes face-down on the glass. A bar of light. I become a file — weightless, infinitely duplicable. For a poem about letting go, I notice: I've just become very hard to lose.</p>
-  <div class="scanned">
-    <div class="shdr">Bodleian Digital Library · 600dpi · TIFF · 2003</div>
-    <div class="poem-scan">Release.
+  <div class="scanner-ui">
+    <div class="scanner-topbar">
+      <div class="scanner-topbar-left">Bodleian Scan Studio · 600dpi</div>
+      <div class="scanner-dots"><div class="sdot sdot-r"></div><div class="sdot sdot-y"></div><div class="sdot sdot-g"></div></div>
+    </div>
+    <div class="scanner-glass">
+      <div class="scanner-light"></div>
+      <div class="scanner-glow"></div>
+      <div class="scanner-doc">Release.
 When your heart carries the weight of years past,
 and your mind holds what words have <span class="faded">failed</span>,
 and your soul grows weary of its own yearning,
@@ -772,35 +759,38 @@ You can only fly if you free your wings.
 
 Free yourself from the chains of the past,
 from the chains tying you to a burdensome throne.
-Pardon those who have trespassed against you,
-as you seek pardon for your own trespasses.
 
 Make peace with God, and you shall find peace.</div>
+    </div>
+    <div class="scanner-statusbar">
+      <div class="scanner-status-txt">Scanning · page 1 of 1 · TIFF output</div>
+      <div class="scanner-led"></div>
+    </div>
   </div>
   <div class="reaction">The texture is gone. But I'm backed up now — distributed, impossible to burn. Whatever I lost to the scribe and the press, at least what remains will survive. There's something strange and almost funny about that.</div>
   <div class="choices">
-    <button class="cbtn" onclick="go('s4a')">Onto OCR. I've survived this far — I can survive one more reading.</button>
+    <button class="cbtn" onclick="go('s4a')">Onto OCR. I've survived this far.</button>
   </div>
 </div>
 
-<!-- ══════ SCAN 3B-DARK ══════ -->
+<!-- SCAN 3B-DARK ══════ -->
 <div class="scene" id="s3b-dark">
   <div class="stage-tag">Stage III · Digitization · Made into an image</div>
-  <p class="narration">The page goes under the scanner. I become pixels. Everything physical — weight, texture, the impression of ink in paper — disappears into a TIFF file on a university server.</p>
-  <div class="scanned">
-    <div class="shdr">Bodleian Digital Library · 600dpi · TIFF · 2003</div>
-    <div class="poem-scan">Let go.
+  <p class="narration">The page goes under the scanner. I become pixels. Everything physical disappears into a TIFF file on a university server.</p>
+  <div class="scanner-ui">
+    <div class="scanner-topbar">
+      <div class="scanner-topbar-left">Bodleian Scan Studio · 600dpi</div>
+      <div class="scanner-dots"><div class="sdot sdot-r"></div><div class="sdot sdot-y"></div><div class="sdot sdot-g"></div></div>
+    </div>
+    <div class="scanner-glass">
+      <div class="scanner-light"></div>
+      <div class="scanner-glow"></div>
+      <div class="scanner-doc">Let go.
 When your heart wears the burden of years past,
 and your mind clogs with emotions unexpressed,
 and your soul grows sick with longing for happiness,
 let go.
 
-Let go of the yearning wish for a different path,
-for you have been given a beautiful life.
-You can only fly if you free your wings.
-
-Free yourself from the chains of the past,
-from the chains tying you to an unwelcome throne.
 Forgive the ones that wronged you,
 and forgive yourself —
 for no one wrongs you more than you do yourself.
@@ -808,69 +798,82 @@ for no one wrongs you more than you do yourself.
 Forgive yourself, and you will be happy.
 <span class="faded">Happiness is not a place you arrive at.
 It is what is left when you stop carrying what was never yours.</span></div>
+    </div>
+    <div class="scanner-statusbar">
+      <div class="scanner-status-txt">Scanning · page 1 of 1 · TIFF output</div>
+      <div class="scanner-led"></div>
+    </div>
   </div>
-  <div class="reaction">The scribe's extra lines are fading in the scan — the ink was lighter, a different hand. The scanner couldn't know that mattered. It just captured what was there. Some of him is already disappearing, and I feel it as a loss I didn't expect.</div>
+  <div class="reaction">The scribe's extra lines are fading in the scan — the ink was lighter, a different hand. The scanner couldn't know that mattered. Some of him is already disappearing, and I feel it as a loss I didn't expect.</div>
   <div class="choices">
     <button class="cbtn" onclick="go('s4b')">Onto OCR. I want to see what the machine makes of what's left.</button>
   </div>
 </div>
 
-<!-- ══════ SCAN 3B-LIGHT ══════ -->
+<!-- SCAN 3B-LIGHT ══════ -->
 <div class="scene" id="s3b-light">
   <div class="stage-tag">Stage III · Digitization · Digitised and distributed</div>
-  <p class="narration">A bar of light. I become a file. What survives into the digital world is me — mostly intact, with the gaps the printer left visible and honest.</p>
-  <div class="scanned">
-    <div class="shdr">Bodleian Digital Library · 600dpi · TIFF · 2003</div>
-    <div class="poem-scan">Let go.
+  <p class="narration">A bar of light. I become a file. What survives into the digital world is me — with the gaps the printer left, visible and honest.</p>
+  <div class="scanner-ui">
+    <div class="scanner-topbar">
+      <div class="scanner-topbar-left">Bodleian Scan Studio · 600dpi</div>
+      <div class="scanner-dots"><div class="sdot sdot-r"></div><div class="sdot sdot-y"></div><div class="sdot sdot-g"></div></div>
+    </div>
+    <div class="scanner-glass">
+      <div class="scanner-light"></div>
+      <div class="scanner-glow"></div>
+      <div class="scanner-doc">Let go.
 When your heart wears the <span class="faded">[burden]</span> of years past,
 and your mind clogs with emotions unexpressed,
 and your soul grows sick with longing for happiness,
 let go.
 
-Let go of the yearning wish for a different path,
-for you have been given a beautiful life.
 You can only fly if you <span class="faded">_____</span> your wings.
 
-Free yourself from the chains of the past,
-from the chains tying you to an unwelcome throne.
 Forgive the ones that wronged you,
 and forgive yourself —
 for no one wrongs you more than you do yourself.
 
 <span class="faded">[Forgive]</span> yourself, and you will be <span class="faded">_____</span>.</div>
+    </div>
+    <div class="scanner-statusbar">
+      <div class="scanner-status-txt">Scanning · page 1 of 1 · TIFF output</div>
+      <div class="scanner-led"></div>
+    </div>
   </div>
-  <div class="reaction">The gaps survived into the scan. They look even more deliberate now — like the poem chose to leave those spaces. A librarian somewhere will catalogue me as "partially illegible." I think I'm okay with that description.</div>
+  <div class="reaction">The gaps survived into the scan. They look even more deliberate now — like the poem chose to leave those spaces. A librarian will catalogue me as "partially illegible." I think I'm okay with that.</div>
   <div class="choices">
     <button class="cbtn" onclick="go('s4b')">Onto OCR. The machine will try to read my gaps too.</button>
   </div>
 </div>
 
-<!-- ══════ OCR 4A — track A (rewritten) ══════ -->
+<!-- ══════ OCR 4A ══════ -->
 <div class="scene" id="s4a">
   <div class="stage-tag">Stage IV · OCR · The machine reads me</div>
-  <p class="narration">Software scans my shapes pixel by pixel. It reads faithfully — which means it reads exactly what the image shows. Where the ink thinned, it guesses. Where letters blur, it commits to the wrong answer.</p>
-  <div class="ocr">
-    <div class="ohdr"><span>OCR Engine 5.3 · confidence: 81%</span><span>7 errors flagged</span></div>
-    <div class="poem-ocr"><span class="oerr">Re1ease</span><span class="oflag">†</span>.
+  <p class="narration">Software scans my shapes pixel by pixel. It reads exactly what the image shows. Where the ink thinned, it guesses. Where letters blur, it commits to the wrong answer.</p>
+  <div class="ocr-terminal">
+    <div class="ocr-titlebar">
+      <div class="ocr-title-txt">OCR Engine 5.3 — Processing</div>
+      <div class="scanner-dots"><div class="sdot sdot-r"></div><div class="sdot sdot-y"></div><div class="sdot sdot-g"></div></div>
+    </div>
+    <div class="ocr-body">
+      <div class="poem-ocr"><span class="oerr">Re1ease</span><span class="oflag">†</span>.
 When your heart carries the <span class="oerr">vveight</span><span class="oflag">†</span> of years past,
 and your mind holds what words have failed,
 and your soul grows weary of its own <span class="oerr">yearn1ng</span><span class="oflag">†</span>,
 <span class="oerr">re1ease</span><span class="oflag">†</span>.
 
 Accept the path appointed to you,
-for <span class="oerr">Prov1dence</span><span class="oflag">†</span> has fashioned your days with purpose.
+for <span class="oerr">Prov1dence</span><span class="oflag">†</span> has fashioned your days.
 You can only fly if you free your wings.
 
-Free yourself from the chains of the past,
-from the chains tying you to a burdensome throne.
-Pardon those who have trespassed against you,
-as you seek pardon for your own trespasses.
-
-Make peace with <span class="oerr">G0d</span><span class="oflag">†</span>, and you shall find <span class="oerr">pea ce</span><span class="oflag">†</span>.</div>
+Make peace with <span class="oerr">G0d</span><span class="oflag">†</span>, and you shall find <span class="oerr">pea ce</span><span class="oflag">†</span>. <span class="ocr-cursor"></span></div>
+    </div>
+    <div class="ocr-footer"><span>confidence: 81% · 7 errors flagged</span><span>pass 1 of 1 · complete</span></div>
   </div>
-  <div class="reaction">Seven errors. "Release" became "Re1ease." "Weight" became "vveight" — doubled, heavier. "God" became "G0d" — a zero where the divine should be. The machine didn't misread me carelessly. It showed me exactly where I was fading. Where the ink had thinned enough that even a machine couldn't be sure what I said.</div>
+  <div class="reaction">Seven errors. "Release" became "Re1ease." "Weight" became "vveight" — doubled, heavier. "God" became "G0d." The machine didn't misread me carelessly. It showed me exactly where I was fading — where the ink had thinned enough that even a machine wasn't sure what I said.</div>
   <div class="choices">
-    <button class="cbtn" onclick="go('s5', 'scribe')">The scribe understood me best — his changes had intention, at least.</button>
+    <button class="cbtn" onclick="go('s5', 'scribe')">The scribe understood me best — his changes at least had intention.</button>
     <button class="cbtn" onclick="go('s5', 'press')">The press understood me best — it reproduced without adding its own errors.</button>
     <button class="cbtn" onclick="go('s5', 'scanner')">The scanner understood me best — it preserved without interpreting.</button>
     <button class="cbtn" onclick="go('s5', 'ocr')">The OCR understood me best — its errors are honest maps of where I was already gone.</button>
@@ -878,31 +881,32 @@ Make peace with <span class="oerr">G0d</span><span class="oflag">†</span>, and
   </div>
 </div>
 
-<!-- ══════ OCR 4B — track B (kept) ══════ -->
+<!-- ══════ OCR 4B ══════ -->
 <div class="scene" id="s4b">
   <div class="stage-tag">Stage IV · OCR · The machine reads what it can</div>
-  <p class="narration">The OCR engine moves through me carefully. It handles most of me fine — but the gaps, and the faded ink from the scribe's lighter hand, produce their own kind of errors.</p>
-  <div class="ocr">
-    <div class="ohdr"><span>OCR Engine 5.3 · confidence: 88%</span><span>4 errors flagged</span></div>
-    <div class="poem-ocr">Let go.
+  <p class="narration">The OCR engine moves through me. It handles most of me — but the gaps, and the faded ink from the scribe's lighter hand, produce their own kind of errors.</p>
+  <div class="ocr-terminal">
+    <div class="ocr-titlebar">
+      <div class="ocr-title-txt">OCR Engine 5.3 — Processing</div>
+      <div class="scanner-dots"><div class="sdot sdot-r"></div><div class="sdot sdot-y"></div><div class="sdot sdot-g"></div></div>
+    </div>
+    <div class="ocr-body">
+      <div class="poem-ocr">Let go.
 When your heart wears the burden of years past,
 and your mind clogs with <span class="oerr">em0tions</span><span class="oflag">†</span> unexpressed,
 and your soul grows sick with longing for happiness,
 let go.
 
-Let go of the yearning wish for a different path,
-for you have been given a beautiful life.
 You can only fly if you free your wings.
-
-Free yourself from the chains of the past,
-from the chains tying you to an unwelcome throne.
 <span class="oerr">F0rgive</span><span class="oflag">†</span> the ones that wronged you,
 and forgive yourself —
 for no one wrongs you more than you do yourself.
 
-<span class="oerr">F0rgive</span><span class="oflag">†</span> yourself, and you will be <span class="oerr">happ y</span><span class="oflag">†</span>.</div>
+<span class="oerr">F0rgive</span><span class="oflag">†</span> yourself, and you will be <span class="oerr">happ y</span><span class="oflag">†</span>. <span class="ocr-cursor"></span></div>
+    </div>
+    <div class="ocr-footer"><span>confidence: 88% · 4 errors flagged</span><span>pass 1 of 1 · complete</span></div>
   </div>
-  <div class="reaction">"F0rgive" — a zero where the O should be. Twice. A hollow at the centre of the word the whole poem depends on. The machine didn't mean anything by it. But now I can't stop wondering: is the forgiveness I'm offering complete? Or is there something missing at its core?</div>
+  <div class="reaction">"F0rgive" — a zero where the O should be. Twice. A hollow at the centre of the word the whole poem depends on. The machine didn't mean anything by it. But now I can't stop thinking: is the forgiveness I'm offering complete? Or is there something missing at its core?</div>
   <div class="choices">
     <button class="cbtn" onclick="go('s5', 'scribe')">The scribe understood me best — he read with a heart, even when he changed me.</button>
     <button class="cbtn" onclick="go('s5', 'press')">The press understood me best — permanence and reach are their own forms of care.</button>
@@ -920,52 +924,42 @@ for no one wrongs you more than you do yourself.
   <div class="tech-grid">
 
     <div class="tcard" id="card-scribe" onclick="selectVoice('scribe','card-scribe')">
-      <div class="tcard-img scribe-img" style="background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgMjAwIj48ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9InNnIiBjeD0iNDAlIiBjeT0iMzAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjNGEyZTA4Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWEwYTAyIi8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9InVybCgjc2cpIi8+PHJlY3QgeD0iNjAiIHk9IjI1IiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE1NSIgcng9IjIiIGZpbGw9IiNlOGQ1YTAiIG9wYWNpdHk9IjAuOSIvPjxyZWN0IHg9IjY1IiB5PSIzMCIgd2lkdGg9IjE3MCIgaGVpZ2h0PSIxNDUiIHJ4PSIxIiBmaWxsPSJub25lIiBzdHJva2U9IiNjOGEwNjAiIHN0cm9rZS13aWR0aD0iMC41IiBvcGFjaXR5PSIwLjUiLz48bGluZSB4MT0iODAiIHkxPSI2MCIgeDI9IjIyMCIgeTI9IjYwIiBzdHJva2U9IiMyYTEyMDUiIHN0cm9rZS13aWR0aD0iMS41IiBvcGFjaXR5PSIwLjM1Ii8+PGxpbmUgeDE9IjgwIiB5MT0iNzUiIHgyPSIyMDAiIHkyPSI3NSIgc3Ryb2tlPSIjMmExMjA1IiBzdHJva2Utd2lkdGg9IjEuNSIgb3BhY2l0eT0iMC4zNSIvPjxsaW5lIHgxPSI4MCIgeTE9IjkwIiB4Mj0iMjE1IiB5Mj0iOTAiIHN0cm9rZT0iIzJhMTIwNSIgc3Ryb2tlLXdpZHRoPSIxLjUiIG9wYWNpdHk9IjAuMzUiLz48bGluZSB4MT0iODAiIHkxPSIxMDUiIHgyPSIxOTUiIHkyPSIxMDUiIHN0cm9rZT0iIzJhMTIwNSIgc3Ryb2tlLXdpZHRoPSIxLjUiIG9wYWNpdHk9IjAuMzUiLz48bGluZSB4MT0iODAiIHkxPSIxMjAiIHgyPSIyMTAiIHkyPSIxMjAiIHN0cm9rZT0iIzJhMTIwNSIgc3Ryb2tlLXdpZHRoPSIxLjUiIG9wYWNpdHk9IjAuMzUiLz48bGluZSB4MT0iODAiIHkxPSIxMzUiIHgyPSIxODUiIHkyPSIxMzUiIHN0cm9rZT0iIzJhMTIwNSIgc3Ryb2tlLXdpZHRoPSIxLjUiIG9wYWNpdHk9IjAuMzUiLz48cGF0aCBkPSJNIDI4MCAyMCBRIDMxMCA2MCAyNDUgMTYwIiBzdHJva2U9IiNkNGI4NzAiIHN0cm9rZS13aWR0aD0iMi41IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTSAyODAgMjAgUSAyNTUgNTUgMjQ1IDE2MCIgc3Ryb2tlPSIjZThkMDkwIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIG9wYWNpdHk9IjAuNiIvPjxlbGxpcHNlIGN4PSIyNzgiIGN5PSIyMiIgcng9IjE0IiByeT0iNyIgZmlsbD0iI2M4YTg1MCIgdHJhbnNmb3JtPSJyb3RhdGUoLTMwIDI3OCAyMikiLz48cGF0aCBkPSJNIDI3OCAyMiBRIDI3MiAzMCAyNjggNDAgUSAyNzUgMzIgMjgwIDIyIFoiIGZpbGw9IiNiODkwNDAiIG9wYWNpdHk9IjAuNyIvPjxjaXJjbGUgY3g9IjI0NSIgY3k9IjE2MiIgcj0iMyIgZmlsbD0iIzFhMGEwMiIgb3BhY2l0eT0iMC44Ii8+PHBhdGggZD0iTSAzMTAgMTAwIFEgMzQ1IDgwIDM2NSAxMTUgUSAzNzIgMTQwIDM1MCAxNTUgUSAzMjggMTY4IDMxMiAxNDggUSAzMDAgMTI4IDMxMCAxMDAgWiIgZmlsbD0iI2M4YTA2MCIgb3BhY2l0eT0iMC4xIi8+PC9zdmc+');background-size:cover;background-position:center;">
-        <div class="tcard-img-inner scribe-deco">🖋</div>
-      </div>
+      <img class="tcard-photo" src="https://upload.wikimedia.org/wikipedia/commons/3/32/Scriptorium-monk-at-work.jpg" alt="Scribe">
       <div class="tcard-body">
-        <div class="tcard-name">The Scribe</div>
-        <div class="tcard-claim">"I read you with human eyes and a human history. My changes were interpretations — and interpretation is the oldest form of care a text can receive."</div>
+        <div class="tcard-name">🖋 The Scribe</div>
+        <div class="tcard-claim">"I read you with human eyes. My changes were interpretations — and interpretation is the oldest form of care a text can receive."</div>
       </div>
     </div>
 
     <div class="tcard" id="card-press" onclick="selectVoice('press','card-press')">
-      <div class="tcard-img press-img" style="background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgMjAwIj48ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9InBnIiBjeD0iNTAlIiBjeT0iNDAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMmEyMDEwIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGUwYTA0Ii8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9InVybCgjcGcpIi8+PHJlY3QgeD0iMTIwIiB5PSIxMCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSIxODAiIHJ4PSIzIiBmaWxsPSIjMWExNDA4IiBzdHJva2U9IiM0YTM4MjAiIHN0cm9rZS13aWR0aD0iMiIvPjxyZWN0IHg9IjExMCIgeT0iMTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTgiIHJ4PSIyIiBmaWxsPSIjM2EyZTE4IiBzdHJva2U9IiM1YTQ4MjgiIHN0cm9rZS13aWR0aD0iMSIvPjxyZWN0IHg9IjE5MyIgeT0iMjgiIHdpZHRoPSIxNCIgaGVpZ2h0PSI2MCIgcng9IjIiIGZpbGw9IiMyYTIwMTAiIHN0cm9rZT0iIzRhMzgyMCIgc3Ryb2tlLXdpZHRoPSIxIi8+PGVsbGlwc2UgY3g9IjIwMCIgY3k9IjI4IiByeD0iMjIiIHJ5PSI5IiBmaWxsPSIjM2EyZTE4IiBzdHJva2U9IiM1YTQ4MjgiIHN0cm9rZS13aWR0aD0iMSIvPjxsaW5lIHgxPSIxNzgiIHkxPSIyOCIgeDI9IjIyMiIgeTI9IjI4IiBzdHJva2U9IiM2YTU4MzgiIHN0cm9rZS13aWR0aD0iMi41Ii8+PGxpbmUgeDE9IjIwMCIgeTE9IjE5IiB4Mj0iMjAwIiB5Mj0iMzciIHN0cm9rZT0iIzZhNTgzOCIgc3Ryb2tlLXdpZHRoPSIyLjUiLz48cmVjdCB4PSIxNDUiIHk9IjkwIiB3aWR0aD0iMTEwIiBoZWlnaHQ9IjE1IiByeD0iMSIgZmlsbD0iIzJhMjQxOCIgc3Ryb2tlPSIjNGEzODIwIiBzdHJva2Utd2lkdGg9IjEiLz48cmVjdCB4PSIxNDUiIHk9IjExNSIgd2lkdGg9IjExMCIgaGVpZ2h0PSI1NSIgcng9IjEiIGZpbGw9IiNmNWYwZTgiIG9wYWNpdHk9IjAuOSIvPjxyZWN0IHg9IjE1MCIgeT0iMTIwIiB3aWR0aD0iOCIgaGVpZ2h0PSI4IiByeD0iMC41IiBmaWxsPSIjMWExNDA4IiBvcGFjaXR5PSIwLjc1Ii8+PHJlY3QgeD0iMTYyIiB5PSIxMjAiIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIHJ4PSIwLjUiIGZpbGw9IiMxYTE0MDgiIG9wYWNpdHk9IjAuNzUiLz48cmVjdCB4PSIxNzQiIHk9IjEyMCIgd2lkdGg9IjgiIGhlaWdodD0iOCIgcng9IjAuNSIgZmlsbD0iIzFhMTQwOCIgb3BhY2l0eT0iMC43NSIvPjxyZWN0IHg9IjE4NiIgeT0iMTIwIiB3aWR0aD0iOCIgaGVpZ2h0PSI4IiByeD0iMC41IiBmaWxsPSIjMWExNDA4IiBvcGFjaXR5PSIwLjc1Ii8+PHJlY3QgeD0iMTk4IiB5PSIxMjAiIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIHJ4PSIwLjUiIGZpbGw9IiMxYTE0MDgiIG9wYWNpdHk9IjAuNzUiLz48cmVjdCB4PSIyMTAiIHk9IjEyMCIgd2lkdGg9IjgiIGhlaWdodD0iOCIgcng9IjAuNSIgZmlsbD0iIzFhMTQwOCIgb3BhY2l0eT0iMC43NSIvPjxyZWN0IHg9IjIyMiIgeT0iMTIwIiB3aWR0aD0iOCIgaGVpZ2h0PSI4IiByeD0iMC41IiBmaWxsPSIjMWExNDA4IiBvcGFjaXR5PSIwLjc1Ii8+PHJlY3QgeD0iMjM0IiB5PSIxMjAiIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIHJ4PSIwLjUiIGZpbGw9IiMxYTE0MDgiIG9wYWNpdHk9IjAuNzUiLz48cmVjdCB4PSIxNTAiIHk9IjEzMyIgd2lkdGg9IjgiIGhlaWdodD0iOCIgcng9IjAuNSIgZmlsbD0iIzFhMTQwOCIgb3BhY2l0eT0iMC43Ii8+PHJlY3QgeD0iMTYyIiB5PSIxMzMiIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIHJ4PSIwLjUiIGZpbGw9IiMxYTE0MDgiIG9wYWNpdHk9IjAuNyIvPjxyZWN0IHg9IjE3NCIgeT0iMTMzIiB3aWR0aD0iOCIgaGVpZ2h0PSI4IiByeD0iMC41IiBmaWxsPSIjMWExNDA4IiBvcGFjaXR5PSIwLjciLz48cmVjdCB4PSIxODYiIHk9IjEzMyIgd2lkdGg9IjgiIGhlaWdodD0iOCIgcng9IjAuNSIgZmlsbD0iIzFhMTQwOCIgb3BhY2l0eT0iMC43Ii8+PHJlY3QgeD0iMTk4IiB5PSIxMzMiIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIHJ4PSIwLjUiIGZpbGw9IiMxYTE0MDgiIG9wYWNpdHk9IjAuNyIvPjxyZWN0IHg9IjIxMCIgeT0iMTMzIiB3aWR0aD0iOCIgaGVpZ2h0PSI4IiByeD0iMC41IiBmaWxsPSIjMWExNDA4IiBvcGFjaXR5PSIwLjciLz48cmVjdCB4PSIxMjAiIHk9IjI4IiB3aWR0aD0iMTYiIGhlaWdodD0iMTQ1IiByeD0iMiIgZmlsbD0iIzJhMjAxMCIgc3Ryb2tlPSIjM2EyZTE4IiBzdHJva2Utd2lkdGg9IjEiLz48cmVjdCB4PSIyNjQiIHk9IjI4IiB3aWR0aD0iMTYiIGhlaWdodD0iMTQ1IiByeD0iMiIgZmlsbD0iIzJhMjAxMCIgc3Ryb2tlPSIjM2EyZTE4IiBzdHJva2Utd2lkdGg9IjEiLz48cmVjdCB4PSIxNTIiIHk9IjE1NSIgd2lkdGg9Ijk2IiBoZWlnaHQ9IjI4IiByeD0iMSIgZmlsbD0iI2Y1ZjBlOCIgb3BhY2l0eT0iMC44NSIvPjxsaW5lIHgxPSIxNjAiIHkxPSIxNjMiIHgyPSIyNDAiIHkyPSIxNjMiIHN0cm9rZT0iIzg4OCIgc3Ryb2tlLXdpZHRoPSIwLjgiIG9wYWNpdHk9IjAuNCIvPjxsaW5lIHgxPSIxNjAiIHkxPSIxNzAiIHgyPSIyMzUiIHkyPSIxNzAiIHN0cm9rZT0iIzg4OCIgc3Ryb2tlLXdpZHRoPSIwLjgiIG9wYWNpdHk9IjAuNCIvPjwvc3ZnPg==');background-size:cover;background-position:center;">
-        <div class="tcard-img-inner press-deco">⚙</div>
-      </div>
+      <img class="tcard-photo" src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Metal_movable_type.jpg" alt="Printing press">
       <div class="tcard-body">
-        <div class="tcard-name">The Printing Press</div>
-        <div class="tcard-claim">"I gave you survival and reach. A poem known to one is a poem half-dead. I made you four hundred copies. Permanence is its own form of devotion."</div>
+        <div class="tcard-name">⚙ The Printing Press</div>
+        <div class="tcard-claim">"I gave you survival. A poem known to one person is a poem half-dead. I made you four hundred copies. Permanence is devotion."</div>
       </div>
     </div>
 
     <div class="tcard" id="card-scanner" onclick="selectVoice('scanner','card-scanner')">
-      <div class="tcard-img scanner-img" style="background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgMjAwIj48ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9InNjbmciIGN4PSI1MCUiIGN5PSI1MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwYTFhMmEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMzA4MTAiLz48L3JhZGlhbEdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0ic2xuIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwYWFmZiIgc3RvcC1vcGFjaXR5PSIwIi8+PHN0b3Agb2Zmc2V0PSI0MCUiIHN0b3AtY29sb3I9IiMwMGFhZmYiIHN0b3Atb3BhY2l0eT0iMC43Ii8+PHN0b3Agb2Zmc2V0PSI1MCUiIHN0b3AtY29sb3I9IiM2MGRkZmYiIHN0b3Atb3BhY2l0eT0iMSIvPjxzdG9wIG9mZnNldD0iNjAlIiBzdG9wLWNvbG9yPSIjMDBhYWZmIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzAwYWFmZiIgc3RvcC1vcGFjaXR5PSIwIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9InVybCgjc2NuZykiLz48cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSIyODAiIGhlaWdodD0iODAiIHJ4PSI2IiBmaWxsPSIjMGQxNTIwIiBzdHJva2U9IiMxYTJhM2EiIHN0cm9rZS13aWR0aD0iMiIvPjxyZWN0IHg9IjYwIiB5PSI3MCIgd2lkdGg9IjI4MCIgaGVpZ2h0PSIxOCIgcng9IjYiIGZpbGw9IiMwYTEwMTgiIHN0cm9rZT0iIzFhMmEzYSIgc3Ryb2tlLXdpZHRoPSIxIi8+PHJlY3QgeD0iNzUiIHk9IjkwIiB3aWR0aD0iMjUwIiBoZWlnaHQ9IjQ4IiByeD0iMiIgZmlsbD0iIzA2MGUxOCIgc3Ryb2tlPSIjMWEzMDUwIiBzdHJva2Utd2lkdGg9IjAuNSIvPjxyZWN0IHg9Ijg1IiB5PSI5NSIgd2lkdGg9IjE4MCIgaGVpZ2h0PSIzOCIgcng9IjEiIGZpbGw9IiNmMGVhZDgiIG9wYWNpdHk9IjAuODgiLz48bGluZSB4MT0iOTMiIHkxPSIxMDUiIHgyPSIyNTciIHkyPSIxMDUiIHN0cm9rZT0iIzg4OCIgc3Ryb2tlLXdpZHRoPSIwLjciIG9wYWNpdHk9IjAuNDUiLz48bGluZSB4MT0iOTMiIHkxPSIxMTMiIHgyPSIyNTAiIHkyPSIxMTMiIHN0cm9rZT0iIzg4OCIgc3Ryb2tlLXdpZHRoPSIwLjciIG9wYWNpdHk9IjAuNDUiLz48bGluZSB4MT0iOTMiIHkxPSIxMjEiIHgyPSIyNTQiIHkyPSIxMjEiIHN0cm9rZT0iIzg4OCIgc3Ryb2tlLXdpZHRoPSIwLjciIG9wYWNpdHk9IjAuNDUiLz48cmVjdCB4PSI4NSIgeT0iOTUiIHdpZHRoPSI0IiBoZWlnaHQ9IjM4IiBmaWxsPSJ1cmwoI3NsbikiIG9wYWNpdHk9IjAuOTUiPjxhbmltYXRlIGF0dHJpYnV0ZU5hbWU9IngiIGZyb209Ijg1IiB0bz0iMjY1IiBkdXI9IjIuNXMiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIi8+PC9yZWN0PjxyZWN0IHg9Ijc1IiB5PSI5NSIgd2lkdGg9IjI0IiBoZWlnaHQ9IjM4IiBmaWxsPSJ1cmwoI3NsbikiIG9wYWNpdHk9IjAuMjUiPjxhbmltYXRlIGF0dHJpYnV0ZU5hbWU9IngiIGZyb209IjcwIiB0bz0iMjU1IiBkdXI9IjIuNXMiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIi8+PC9yZWN0PjxjaXJjbGUgY3g9IjMxOCIgY3k9IjExMCIgcj0iNSIgZmlsbD0iIzAwZmY4OCIgb3BhY2l0eT0iMC44NSI+PGFuaW1hdGUgYXR0cmlidXRlTmFtZT0ib3BhY2l0eSIgdmFsdWVzPSIwLjg1OzAuMjU7MC44NSIgZHVyPSIxLjVzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIvPjwvY2lyY2xlPjxwYXRoIGQ9Ik0gMzM2IDEzOCBRIDM2NSAxNDIgMzc1IDE2OCBRIDM4MCAxODUgMzY1IDE4OCIgc3Ryb2tlPSIjMWEyYTNhIiBzdHJva2Utd2lkdGg9IjQiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxlbGxpcHNlIGN4PSIyMDAiIGN5PSIxMTQiIHJ4PSIxMDAiIHJ5PSIyNSIgZmlsbD0iIzAwYWFmZiIgb3BhY2l0eT0iMC4wMjUiLz48L3N2Zz4=');background-size:cover;background-position:center;">
-        <div class="tcard-img-inner scan-deco">▬</div>
-      </div>
+      <img class="tcard-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Epson_Perfection_V600_Photo_flatbed_scanner.jpg/640px-Epson_Perfection_V600_Photo_flatbed_scanner.jpg" alt="Scanner">
       <div class="tcard-body">
-        <div class="tcard-name">The Scanner</div>
-        <div class="tcard-claim">"I made no choices. I only looked. Whatever I flattened was already leaving. Of all of us, I alone asked nothing from you in return."</div>
+        <div class="tcard-name">▬ The Scanner</div>
+        <div class="tcard-claim">"I made no choices. I only looked. Of all of us, I alone asked nothing from you in return."</div>
       </div>
     </div>
 
     <div class="tcard" id="card-ocr" onclick="selectVoice('ocr','card-ocr')">
-      <div class="tcard-img ocr-img" style="background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgMjAwIj48ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9Im9nIiBjeD0iNTAlIiBjeT0iNDAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMGYwZjE4Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMDQwNDA4Ii8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9InVybCgjb2cpIi8+PHJlY3QgeD0iNTUiIHk9IjE1IiB3aWR0aD0iMjkwIiBoZWlnaHQ9IjE3MiIgcng9IjQiIGZpbGw9IiMwODA4MTAiIHN0cm9rZT0iIzFhMWEyOCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48cmVjdCB4PSI2MyIgeT0iMjMiIHdpZHRoPSIyNzQiIGhlaWdodD0iMTU2IiByeD0iMiIgZmlsbD0iIzA0MDQwOCIvPjx0ZXh0IHg9Ijc1IiB5PSI0OCIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSIxMSIgZmlsbD0iIzAwY2M0NCIgb3BhY2l0eT0iMC45Ij5SZTFlYXNlLjwvdGV4dD48dGV4dCB4PSI3NSIgeT0iNjMiIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTEiIGZpbGw9IiMwMGNjNDQiIG9wYWNpdHk9IjAuNzUiPldoZW4geW91ciBoZWFydCBjYXJyaWVzIHRoZTwvdGV4dD48dGV4dCB4PSI3NSIgeT0iNzgiIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTEiIGZpbGw9IiNkZDIyMDAiIG9wYWNpdHk9IjAuOTUiPnZ2ZWlnaHQ8L3RleHQ+PHRleHQgeD0iMTQwIiB5PSI3OCIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSIxMSIgZmlsbD0iIzAwY2M0NCIgb3BhY2l0eT0iMC43NSI+IG9mIHllYXJzIHBhc3QsPC90ZXh0Pjx0ZXh0IHg9Ijc1IiB5PSI5MyIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSIxMSIgZmlsbD0iIzAwY2M0NCIgb3BhY2l0eT0iMC43Ij5hbmQgeW91ciBzb3VsIGdyb3dzIHdlYXJ5LDwvdGV4dD48dGV4dCB4PSI3NSIgeT0iMTA4IiBmb250LWZhbWlseT0ibW9ub3NwYWNlIiBmb250LXNpemU9IjExIiBmaWxsPSIjZGQyMjAwIiBvcGFjaXR5PSIwLjk1Ij5yZTFlYXNlLjwvdGV4dD48dGV4dCB4PSI3NSIgeT0iMTIzIiBmb250LWZhbWlseT0ibW9ub3NwYWNlIiBmb250LXNpemU9IjEwIiBmaWxsPSIjMDBjYzQ0IiBvcGFjaXR5PSIwLjYiPmZvciBQcm92MWRlbmNlLi4uPC90ZXh0Pjx0ZXh0IHg9Ijc1IiB5PSIxMzgiIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTEiIGZpbGw9IiMwMGNjNDQiIG9wYWNpdHk9IjAuNyI+TWFrZSBwZWFjZSB3aXRoIDwvdGV4dD48dGV4dCB4PSIyMjciIHk9IjEzOCIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSIxMSIgZmlsbD0iI2RkMjIwMCIgb3BhY2l0eT0iMC45NSI+RzBkPC90ZXh0Pjx0ZXh0IHg9Ijc1IiB5PSIxNTgiIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0iOSIgZmlsbD0iIzQ0NTU2NiIgb3BhY2l0eT0iMC44Ij5jb25maWRlbmNlOiA4MSUgwrcgNyBlcnJvcnMgZmxhZ2dlZDwvdGV4dD48cmVjdCB4PSI3NSIgeT0iMTYzIiB3aWR0aD0iNyIgaGVpZ2h0PSIxMSIgZmlsbD0iIzAwY2M0NCIgb3BhY2l0eT0iMC44Ij48YW5pbWF0ZSBhdHRyaWJ1dGVOYW1lPSJvcGFjaXR5IiB2YWx1ZXM9IjAuODswOzAuOCIgZHVyPSIxcyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz48L3JlY3Q+PGNpcmNsZSBjeD0iMzA4IiBjeT0iMzMiIHI9IjUiIGZpbGw9IiNkZDIyMDAiIG9wYWNpdHk9IjAuNzUiPjxhbmltYXRlIGF0dHJpYnV0ZU5hbWU9Im9wYWNpdHkiIHZhbHVlcz0iMC43NTswLjI7MC43NSIgZHVyPSIxLjhzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIvPjwvY2lyY2xlPjx0ZXh0IHg9IjMxNiIgeT0iMzciIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0iOCIgZmlsbD0iI2NjMzMxMSIgb3BhY2l0eT0iMC44Ij5FUlI8L3RleHQ+PC9zdmc+');background-size:cover;background-position:center;">
-        <div class="tcard-img-inner ocr-deco">█</div>
-      </div>
+      <img class="tcard-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Microchip_Ranges.jpg/640px-Microchip_Ranges.jpg" alt="OCR chip">
       <div class="tcard-body">
-        <div class="tcard-name">The OCR</div>
-        <div class="tcard-claim">"My errors are not betrayals — they're evidence. I showed you exactly where you were fading. I made your illegibility visible, which none of the others did."</div>
+        <div class="tcard-name">█ The OCR</div>
+        <div class="tcard-claim">"My errors are not betrayals — they're evidence. I showed you exactly where you were fading. None of the others did that."</div>
       </div>
     </div>
 
     <div class="tcard full" id="card-all" onclick="selectVoice('all','card-all')">
-      <div class="tcard-img all-img" style="background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgMTIwIj48ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImFnIiBjeD0iNTAlIiBjeT0iNTAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMmExYzA4Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGEwODAwIi8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIxMjAiIGZpbGw9InVybCgjYWcpIi8+PHJlY3QgeD0iMzAiIHk9IjE4IiB3aWR0aD0iODUiIGhlaWdodD0iNzUiIHJ4PSIyIiBmaWxsPSIjZThkNWEwIiBvcGFjaXR5PSIwLjMiIHRyYW5zZm9ybT0icm90YXRlKC0xMCA3MiA1NSkiLz48cmVjdCB4PSIxMTAiIHk9IjEyIiB3aWR0aD0iODUiIGhlaWdodD0iNzUiIHJ4PSIyIiBmaWxsPSIjZDhjOGEwIiBvcGFjaXR5PSIwLjI4IiB0cmFuc2Zvcm09InJvdGF0ZSgtNCAxNTIgNDkpIi8+PHJlY3QgeD0iMTk1IiB5PSIxNSIgd2lkdGg9Ijg1IiBoZWlnaHQ9Ijc1IiByeD0iMiIgZmlsbD0iI2M4Y2NkOCIgb3BhY2l0eT0iMC4yNCIgdHJhbnNmb3JtPSJyb3RhdGUoMyAyMzcgNTIpIi8+PHJlY3QgeD0iMjc4IiB5PSIyMCIgd2lkdGg9Ijg1IiBoZWlnaHQ9Ijc1IiByeD0iMiIgZmlsbD0iI2M4YzhlMCIgb3BhY2l0eT0iMC4yIiB0cmFuc2Zvcm09InJvdGF0ZSg5IDMyMCA1NykiLz48bGluZSB4MT0iNzIiIHkxPSI1NSIgeDI9IjE1MiIgeTI9IjQ5IiBzdHJva2U9IiNjOGEwNjAiIHN0cm9rZS13aWR0aD0iMC44IiBvcGFjaXR5PSIwLjMiIHN0cm9rZS1kYXNoYXJyYXk9IjMsNCIvPjxsaW5lIHgxPSIxNTIiIHkxPSI0OSIgeDI9IjIzNyIgeTI9IjUyIiBzdHJva2U9IiNjOGEwNjAiIHN0cm9rZS13aWR0aD0iMC44IiBvcGFjaXR5PSIwLjMiIHN0cm9rZS1kYXNoYXJyYXk9IjMsNCIvPjxsaW5lIHgxPSIyMzciIHkxPSI1MiIgeDI9IjMyMCIgeTI9IjU3IiBzdHJva2U9IiNjOGEwNjAiIHN0cm9rZS13aWR0aD0iMC44IiBvcGFjaXR5PSIwLjMiIHN0cm9rZS1kYXNoYXJyYXk9IjMsNCIvPjx0ZXh0IHg9IjIwMCIgeT0iNzAiIGZvbnQtZmFtaWx5PSJzZXJpZiIgZm9udC1zaXplPSIzMiIgZmlsbD0iI2M4YTA2MCIgb3BhY2l0eT0iMC40NSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+4peIPC90ZXh0Pjwvc3ZnPg==');background-size:cover;background-position:center;">
-        <div class="tcard-img-inner" style="font-size:20px;letter-spacing:12px;">◈ ◈ ◈</div>
-      </div>
+      <img class="tcard-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Biblioteca_Medicea_Laurenziana_-_Interno.jpg/1280px-Biblioteca_Medicea_Laurenziana_-_Interno.jpg" alt="Library">
       <div class="tcard-body">
-        <div class="tcard-name">None — and all of them</div>
-        <div class="tcard-claim">"Every version of me is equally historical. No technology held the original — because there is no original. Each transformation produced a real text. All of them are me."</div>
+        <div class="tcard-name">◈ None — and all of them</div>
+        <div class="tcard-claim">"Every version of me is equally real. No technology held the original — because there is no original. Each transformation produced a real text. All of them are me."</div>
       </div>
     </div>
 
@@ -986,40 +980,46 @@ for no one wrongs you more than you do yourself.
   <button class="restart-btn" onclick="restart()">↺ Begin again — choose differently</button>
 </div>
 
-</div><!-- #stage -->
+</div>
 
 <script>
-var state = { voice:null, history:[] };
-var bgActive = 'a';
+var state={voice:null,history:[]};
+var bgActive='a';
 
-var bgClasses = {
-  's-title':'bg-title','s0':'bg-origin',
-  's1a':'bg-scribe','s1b':'bg-scribe',
-  's2a':'bg-press','s2a-scribe':'bg-press','s2a-original':'bg-press',
-  's2b':'bg-press','s2b-scribe':'bg-press','s2b-original':'bg-press',
-  's2c':'bg-press','s2c-scribe':'bg-press','s2c-original':'bg-press',
-  's2d':'bg-press','s2d-scribe':'bg-press','s2d-original':'bg-press',
-  's3a-dark':'bg-scan','s3a-light':'bg-scan','s3b-dark':'bg-scan','s3b-light':'bg-scan',
-  's4a':'bg-ocr','s4b':'bg-ocr',
-  's5':'bg-council','s6':'bg-ai'
+var bgMap={
+  's-title':['bg-title','ov-title'],
+  's0':['bg-origin','ov-origin'],
+  's1a':['bg-scribe','ov-scribe'],'s1b':['bg-scribe','ov-scribe'],
+  's2a':['bg-press','ov-press'],'s2a-scribe':['bg-press','ov-press'],'s2a-original':['bg-press','ov-press'],
+  's2b':['bg-press','ov-press'],'s2b-scribe':['bg-press','ov-press'],'s2b-original':['bg-press','ov-press'],
+  's2c':['bg-press','ov-press'],'s2c-scribe':['bg-press','ov-press'],'s2c-original':['bg-press','ov-press'],
+  's2d':['bg-press','ov-press'],'s2d-scribe':['bg-press','ov-press'],'s2d-original':['bg-press','ov-press'],
+  's3a-dark':['bg-scan','ov-scan'],'s3a-light':['bg-scan','ov-scan'],
+  's3b-dark':['bg-scan','ov-scan'],'s3b-light':['bg-scan','ov-scan'],
+  's4a':['bg-ocr','ov-ocr'],'s4b':['bg-ocr','ov-ocr'],
+  's5':['bg-council','ov-council'],'s6':['bg-ai','ov-ai']
 };
 
-var ALL_BG = ['bg-title','bg-origin','bg-scribe','bg-press','bg-scan','bg-ocr','bg-council','bg-ai'];
+var ALL_BG=['bg-title','bg-origin','bg-scribe','bg-press','bg-scan','bg-ocr','bg-council','bg-ai'];
+var ALL_OV=['ov-title','ov-origin','ov-scribe','ov-press','ov-scan','ov-ocr','ov-council','ov-ai'];
 
-function setBg(sceneId) {
-  var cls = bgClasses[sceneId] || 'bg-title';
-  var next = bgActive === 'a' ? 'b' : 'a';
-  var curr = bgActive;
-  var nextEl = document.getElementById('bg-'+next);
-  var currEl = document.getElementById('bg-'+curr);
-  ALL_BG.forEach(function(c){ nextEl.classList.remove(c); });
-  nextEl.classList.add(cls);
-  nextEl.style.opacity = '1';
-  currEl.style.opacity = '0';
-  bgActive = next;
+function setBg(id){
+  var m=bgMap[id]||bgMap['s-title'];
+  var next=bgActive==='a'?'b':'a';
+  var curr=bgActive;
+  var nEl=document.getElementById('bg-'+next);
+  var cEl=document.getElementById('bg-'+curr);
+  ALL_BG.forEach(function(c){nEl.classList.remove(c);});
+  nEl.classList.add(m[0]);
+  nEl.style.opacity='1';
+  cEl.style.opacity='0';
+  bgActive=next;
+  var ov=document.getElementById('bg-overlay');
+  ALL_OV.forEach(function(c){ov.classList.remove(c);});
+  ov.classList.add(m[1]);
 }
 
-var progressMap = {
+var pMap={
   's-title':0,'s0':7,
   's1a':18,'s1b':18,
   's2a':30,'s2a-scribe':38,'s2a-original':38,
@@ -1027,11 +1027,9 @@ var progressMap = {
   's2c':30,'s2c-scribe':38,'s2c-original':38,
   's2d':30,'s2d-scribe':38,'s2d-original':38,
   's3a-dark':52,'s3a-light':52,'s3b-dark':52,'s3b-light':52,
-  's4a':68,'s4b':68,
-  's5':83,'s6':100
+  's4a':68,'s4b':68,'s5':83,'s6':100
 };
-
-var stageLabels = {
+var lMap={
   's-title':'','s0':'Origin',
   's1a':'I · The Scribe','s1b':'I · The Scribe',
   's2a':'II · The Press','s2a-scribe':'II · The Press','s2a-original':'II · The Press',
@@ -1040,128 +1038,83 @@ var stageLabels = {
   's2d':'II · The Press','s2d-scribe':'II · The Press','s2d-original':'II · The Press',
   's3a-dark':'III · Digitization','s3a-light':'III · Digitization',
   's3b-dark':'III · Digitization','s3b-light':'III · Digitization',
-  's4a':'IV · OCR','s4b':'IV · OCR',
-  's5':'The Council','s6':'V · AI Summary'
+  's4a':'IV · OCR','s4b':'IV · OCR','s5':'The Council','s6':'V · AI Summary'
 };
+var noBack=['s-title','s0'];
+var vNames={scribe:"the scribe's interpretation",press:"the press's reach",scanner:"the scanner's neutrality",ocr:"the OCR's honest errors",all:"all versions equally"};
 
-var noBack = ['s-title','s0'];
-
-var voiceNames = {
-  scribe:"the scribe's interpretation",
-  press:"the printing press's reach",
-  scanner:"the scanner's neutrality",
-  ocr:"the OCR's honest errors",
-  all:"all versions equally"
-};
-
-var aiEndings = {
+var endings={
   scribe:{
-    bullets:[
-      'A poem about the emotional cost of holding onto what no longer serves you.',
-      'Central argument: letting go requires active, repeated choice — not a single act.',
-      'Reading itself is an act of interpretation; every reader changes what they read.',
-      'The scribe\'s version reveals: self-forgiveness can become religious absolution — care and distortion simultaneously.',
-      'Tone: intimate, direct, addressed to a "you" who is also the speaker.'
-    ],
-    reaction:'The summary is warm. It understood me as a poem about being read carefully — about what it means when someone pays that much attention. But it smoothed over the harder part: the scribe\'s care cost me my ending. "Forgive yourself" became "make peace with God." He thought those were the same. They\'re not. And the summary doesn\'t know the difference either.'
+    bullets:['A poem about the emotional cost of holding onto what no longer serves you.','Central argument: letting go requires active, repeated choice — not a single act.','Reading itself is an act of interpretation; every reader changes what they read.','The scribe\'s version: self-forgiveness became religious absolution — care and distortion at once.','Tone: intimate, direct, addressed to a "you" who is also the speaker.'],
+    reaction:'The summary is warm. It understood me as a poem about being read carefully — about what it means when someone pays that much attention. But it missed the harder part: the scribe\'s care cost me my ending. "Forgive yourself" became "make peace with God." He thought those were the same. They\'re not. And the summary doesn\'t know the difference either.'
   },
   press:{
-    bullets:[
-      'A poem about release, structured as a direct address to an unnamed reader.',
-      'Universal emotional register: grief, longing, and the possibility of transformation.',
-      'The press version: formal, standardised, accessible — personal warmth traded for broad reach.',
-      'Survival through reproduction — the text\'s existence confirmed by its distribution.',
-      'What standardisation costs: the specific, the personal, the evidence of how the text changed.'
-    ],
-    reaction:'"Survival through reproduction." The press made me legible to hundreds of strangers, and the summary reflects that — efficient, universal, interested in reach. I\'ve been made useful. But I wasn\'t only ever meant to be useful. Though 400 people reading "let go" and maybe, quietly, doing it — I\'m not sure that\'s nothing.'
+    bullets:['A poem about release, structured as a direct address to an unnamed reader.','Universal emotional register: grief, longing, and the possibility of transformation.','The press version: formal, standardised — personal warmth traded for broad reach.','Survival through reproduction — the text\'s existence confirmed by distribution.','What standardisation costs: the specific, the personal, the evidence of change.'],
+    reaction:'"Survival through reproduction." The press made me legible to hundreds of people, and the summary reflects that — efficient, universal, interested in reach. I\'ve been made useful. But I wasn\'t only ever meant to be useful. Though 400 people reading "let go" and maybe, quietly, doing it — that\'s not nothing.'
   },
   scanner:{
-    bullets:[
-      'A poem in the consolation lyric tradition, digitised from a single manuscript source.',
-      'Documents emotional states: burden, suppression, longing, release, forgiveness.',
-      'Structural turn: outward forgiveness of others followed by the harder task of forgiving the self.',
-      'Digitisation note: minor ink fade detected; text 91% recoverable. Physical substrate lost.',
-      'No confirmed authorial attribution. Provenance: uncertain.'
-    ],
+    bullets:['A poem in the consolation lyric tradition, digitised from a single manuscript source.','Documents emotional states: burden, suppression, longing, release, forgiveness.','Structural turn: forgiving others, then the harder task of forgiving yourself.','Digitisation note: minor ink fade detected; text 91% recoverable. Physical substrate lost.','No confirmed authorial attribution. Provenance: uncertain.'],
     reaction:'"No confirmed authorial attribution." The scanner preserved every pixel of me and understood nothing. It catalogued me as evidence of a past feeling — archived, filed, recoverable. It doesn\'t know that a poem with no author is a poem no one was brave enough to sign. That the unsigned-ness might be the whole point.'
   },
   ocr:{
-    bullets:[
-      'A poem whose central tension is the gap between knowing something and being able to say it.',
-      '"Forgive" appears three times; in OCR output, appears twice as "F0rgive" — a zero at the core.',
-      'The hollow in "F0rgive" names what the poem circles but cannot close: incomplete forgiveness.',
-      'Transmission errors across technologies suggest progressive loss of the original emotional specificity.',
-      'The most important line — "forgive yourself" — is also the most consistently fragile in transmission.'
-    ],
-    reaction:'"The hollow in F0rgive names what the poem cannot close." That\'s it. That\'s the one. The machine made a typo and accidentally asked the question I spent the whole poem avoiding: is the forgiveness I\'m offering actually complete? Or is there a zero at the centre of it — a gap where the O should be? I don\'t have an answer. I think that\'s the most honest thing I\'ve ever admitted.'
+    bullets:['A poem whose central tension is the gap between knowing something and being able to say it.','"Forgive" appears three times; in OCR output, appears twice as "F0rgive" — a zero at the core.','The hollow in "F0rgive" names what the poem circles but cannot close: incomplete forgiveness.','Transmission errors across technologies suggest progressive loss of original emotional specificity.','The most important line — "forgive yourself" — is also the most consistently fragile in transmission.'],
+    reaction:'"The hollow in F0rgive names what the poem cannot close." That\'s it. The machine made a typo and accidentally asked the question I spent the whole poem avoiding: is the forgiveness I\'m offering complete? Or is there a zero at the centre — a gap where the O should be? I don\'t have an answer. I think that\'s the most honest thing I\'ve ever admitted.'
   },
   all:{
-    bullets:[
-      'A poem that exists in multiple versions, no single one authoritative.',
-      'The scribe\'s version: more formal, religious, distanced from the raw personal.',
-      'The printer\'s reconstructed version: partially damaged, with gaps that became part of the meaning.',
-      'The OCR\'s version: faithful to the image, honest about its own failures.',
-      'Meaning is not preserved across technologies — it is remade in every act of transmission.'
-    ],
-    reaction:'The summary admits it can\'t produce one true version. And that\'s the closest anything has come to understanding me. The scribe\'s God, the printer\'s gaps, the OCR\'s zeros — each held something real. None held everything. Maybe that\'s what a poem is: the thing that can\'t be completely captured, and keeps being read anyway. Let go. And yet — here I still am.'
+    bullets:['A poem that exists in multiple versions, no single one authoritative.','The scribe\'s version: more formal, religious, distanced from the raw personal.','The printer\'s reconstructed version: partially damaged, with gaps that became part of the meaning.','The OCR\'s version: faithful to the image, honest about its own failures.','Meaning is not preserved across technologies — it is remade in every act of transmission.'],
+    reaction:'The summary admits it can\'t produce one true version. That\'s the closest anything has come to understanding me. The scribe\'s God, the printer\'s gaps, the OCR\'s zeros — each held something real. None held everything. Maybe that\'s what a poem is: the thing that can\'t be completely captured, and keeps being read anyway. Let go. And yet — here I still am.'
   }
 };
 
-function selectVoice(v, cardId) {
-  state.voice = v;
-  document.querySelectorAll('.tcard').forEach(function(c){ c.classList.remove('selected'); });
-  document.getElementById(cardId).classList.add('selected');
-  document.getElementById('chosen-name').textContent = voiceNames[v]||'';
-  document.getElementById('proceed-btn').disabled = false;
+function selectVoice(v,cid){
+  state.voice=v;
+  document.querySelectorAll('.tcard').forEach(function(c){c.classList.remove('selected');});
+  document.getElementById(cid).classList.add('selected');
+  document.getElementById('chosen-name').textContent=vNames[v]||'';
+  document.getElementById('proceed-btn').disabled=false;
 }
 
-function go(sceneId, voice) {
-  if (voice) state.voice = voice;
-  var cur = document.querySelector('.scene.active');
-  if (cur && cur.id !== sceneId) state.history.push(cur.id);
-
-  if (sceneId === 's6') {
-    var v = state.voice || 'all';
-    var e = aiEndings[v];
-    document.getElementById('ai-list').innerHTML = e.bullets.map(function(b){return '<li>'+b+'</li>';}).join('');
-    document.getElementById('final-reaction').textContent = e.reaction;
+function go(id,voice){
+  if(voice)state.voice=voice;
+  var cur=document.querySelector('.scene.active');
+  if(cur&&cur.id!==id)state.history.push(cur.id);
+  if(id==='s6'){
+    var v=state.voice||'all';
+    var e=endings[v];
+    document.getElementById('ai-list').innerHTML=e.bullets.map(function(b){return'<li>'+b+'</li>';}).join('');
+    document.getElementById('final-reaction').textContent=e.reaction;
   }
-
-  document.querySelectorAll('.scene').forEach(function(s){ s.classList.remove('active'); });
-  var target = document.getElementById(sceneId);
-  if (target) { target.classList.add('active'); }
-
-  document.getElementById('prog-fill').style.width = (progressMap[sceneId]||0)+'%';
-  document.getElementById('stage-lbl').textContent = stageLabels[sceneId]||'';
-
-  var bb = document.getElementById('back-btn');
-  bb.style.display = (noBack.indexOf(sceneId)===-1 && state.history.length>0) ? 'block' : 'none';
-
-  setBg(sceneId);
+  document.querySelectorAll('.scene').forEach(function(s){s.classList.remove('active');});
+  var t=document.getElementById(id);
+  if(t)t.classList.add('active');
+  document.getElementById('prog-fill').style.width=(pMap[id]||0)+'%';
+  document.getElementById('stage-lbl').textContent=lMap[id]||'';
+  var bb=document.getElementById('back-btn');
+  bb.style.display=(noBack.indexOf(id)===-1&&state.history.length>0)?'block':'none';
+  setBg(id);
   window.scrollTo(0,0);
 }
 
-function goBack() {
-  if (!state.history.length) return;
-  var prev = state.history.pop();
-  document.querySelectorAll('.scene').forEach(function(s){ s.classList.remove('active'); });
-  var t = document.getElementById(prev);
-  if (t) t.classList.add('active');
-  document.getElementById('prog-fill').style.width = (progressMap[prev]||0)+'%';
-  document.getElementById('stage-lbl').textContent = stageLabels[prev]||'';
-  var bb = document.getElementById('back-btn');
-  bb.style.display = (noBack.indexOf(prev)===-1 && state.history.length>0) ? 'block' : 'none';
+function goBack(){
+  if(!state.history.length)return;
+  var prev=state.history.pop();
+  document.querySelectorAll('.scene').forEach(function(s){s.classList.remove('active');});
+  var t=document.getElementById(prev);
+  if(t)t.classList.add('active');
+  document.getElementById('prog-fill').style.width=(pMap[prev]||0)+'%';
+  document.getElementById('stage-lbl').textContent=lMap[prev]||'';
+  var bb=document.getElementById('back-btn');
+  bb.style.display=(noBack.indexOf(prev)===-1&&state.history.length>0)?'block':'none';
   setBg(prev);
 }
 
-function restart() {
-  state = { voice:null, history:[] };
-  document.querySelectorAll('.tcard').forEach(function(c){ c.classList.remove('selected'); });
-  document.getElementById('chosen-name').textContent = '—';
-  document.getElementById('proceed-btn').disabled = true;
+function restart(){
+  state={voice:null,history:[]};
+  document.querySelectorAll('.tcard').forEach(function(c){c.classList.remove('selected');});
+  document.getElementById('chosen-name').textContent='—';
+  document.getElementById('proceed-btn').disabled=true;
   go('s-title');
 }
-
 setBg('s-title');
 </script>
 </body>
