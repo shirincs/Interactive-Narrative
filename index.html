@@ -33,14 +33,14 @@ html,body{height:100%;overflow:hidden;font-family:'Spectral',serif;color:#f0e8d8
   background:radial-gradient(ellipse 100% 100% at 50% 50%,transparent 35%,rgba(0,0,0,0.65) 100%);}
 
 /* ══ PHOTO BG CLASSES ══ */
-.bg-title{background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Biblioteca_Medicea_Laurenziana_-_Interno.jpg/1280px-Biblioteca_Medicea_Laurenziana_-_Interno.jpg');background-size:cover;background-position:center;}
-.bg-origin{background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Sanzio_01_Plato_Aristotle.jpg/1280px-Sanzio_01_Plato_Aristotle.jpg');background-size:cover;background-position:center;}
+.bg-title{background-image:url('https://upload.wikimedia.org/wikipedia/commons/4/4f/Biblioteca_Medicea_Laurenziana_-_Interno.jpg');background-size:cover;background-position:center;}
+.bg-origin{background-image:url('https://upload.wikimedia.org/wikipedia/commons/d/d8/Sanzio_01_Plato_Aristotle.jpg');background-size:cover;background-position:center;}
 .bg-scribe{background-image:url('https://upload.wikimedia.org/wikipedia/commons/3/32/Scriptorium-monk-at-work.jpg');background-size:cover;background-position:center;}
 .bg-press{background-image:url('https://upload.wikimedia.org/wikipedia/commons/a/ae/Metal_movable_type.jpg');background-size:cover;background-position:center top;}
-.bg-scan{background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Epson_Perfection_V600_Photo_flatbed_scanner.jpg/1280px-Epson_Perfection_V600_Photo_flatbed_scanner.jpg');background-size:cover;background-position:center;}
-.bg-ocr{background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Microchip_Ranges.jpg/1280px-Microchip_Ranges.jpg');background-size:cover;background-position:center;}
-.bg-council{background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Biblioteca_Medicea_Laurenziana_-_Interno.jpg/1280px-Biblioteca_Medicea_Laurenziana_-_Interno.jpg');background-size:cover;background-position:center;}
-.bg-ai{background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Biblioteca_Medicea_Laurenziana_-_Interno.jpg/1280px-Biblioteca_Medicea_Laurenziana_-_Interno.jpg');background-size:cover;background-position:center;}
+.bg-scan{background-image:url('https://upload.wikimedia.org/wikipedia/commons/f/f2/Image_Scanner.JPG');background-size:cover;background-position:center;}
+.bg-ocr{background-image:url('https://upload.wikimedia.org/wikipedia/commons/7/7e/Microchip_Ranges.jpg');background-size:cover;background-position:center;}
+.bg-council{background-image:url('https://upload.wikimedia.org/wikipedia/commons/4/4f/Biblioteca_Medicea_Laurenziana_-_Interno.jpg');background-size:cover;background-position:center;}
+.bg-ai{background-image:url('https://upload.wikimedia.org/wikipedia/commons/4/4f/Biblioteca_Medicea_Laurenziana_-_Interno.jpg');background-size:cover;background-position:center;}
 
 /* overlay tints per stage */
 .ov-title{background:rgba(5,3,0,0.58);}
@@ -940,7 +940,7 @@ for no one wrongs you more than you do yourself.
     </div>
 
     <div class="tcard" id="card-scanner" onclick="selectVoice('scanner','card-scanner')">
-      <img class="tcard-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Epson_Perfection_V600_Photo_flatbed_scanner.jpg/640px-Epson_Perfection_V600_Photo_flatbed_scanner.jpg" alt="Scanner">
+      <img class="tcard-photo" src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Image_Scanner.JPG" alt="Scanner">
       <div class="tcard-body">
         <div class="tcard-name">▬ The Scanner</div>
         <div class="tcard-claim">"I made no choices. I only looked. Of all of us, I alone asked nothing from you in return."</div>
@@ -948,7 +948,7 @@ for no one wrongs you more than you do yourself.
     </div>
 
     <div class="tcard" id="card-ocr" onclick="selectVoice('ocr','card-ocr')">
-      <img class="tcard-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Microchip_Ranges.jpg/640px-Microchip_Ranges.jpg" alt="OCR chip">
+      <img class="tcard-photo" src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Microchip_Ranges.jpg" alt="OCR chip">
       <div class="tcard-body">
         <div class="tcard-name">█ The OCR</div>
         <div class="tcard-claim">"My errors are not betrayals — they're evidence. I showed you exactly where you were fading. None of the others did that."</div>
@@ -956,7 +956,7 @@ for no one wrongs you more than you do yourself.
     </div>
 
     <div class="tcard full" id="card-all" onclick="selectVoice('all','card-all')">
-      <img class="tcard-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Biblioteca_Medicea_Laurenziana_-_Interno.jpg/1280px-Biblioteca_Medicea_Laurenziana_-_Interno.jpg" alt="Library">
+      <img class="tcard-photo" src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Biblioteca_Medicea_Laurenziana_-_Interno.jpg" alt="Library">
       <div class="tcard-body">
         <div class="tcard-name">◈ None — and all of them</div>
         <div class="tcard-claim">"Every version of me is equally real. No technology held the original — because there is no original. Each transformation produced a real text. All of them are me."</div>
@@ -1045,24 +1045,54 @@ var vNames={scribe:"the scribe's interpretation",press:"the press's reach",scann
 
 var endings={
   scribe:{
-    bullets:['A poem about the emotional cost of holding onto what no longer serves you.','Central argument: letting go requires active, repeated choice — not a single act.','Reading itself is an act of interpretation; every reader changes what they read.','The scribe\'s version: self-forgiveness became religious absolution — care and distortion at once.','Tone: intimate, direct, addressed to a "you" who is also the speaker.'],
-    reaction:'The summary is warm. It understood me as a poem about being read carefully — about what it means when someone pays that much attention. But it missed the harder part: the scribe\'s care cost me my ending. "Forgive yourself" became "make peace with God." He thought those were the same. They\'re not. And the summary doesn\'t know the difference either.'
+    bullets:[
+      'Theme: spiritual surrender — releasing burdens through acceptance of a higher purpose.',
+      'Central image: the soul grown weary of its own yearning, exhausted into readiness for release.',
+      'The poem addresses an unnamed reader, positioning forgiveness as a transaction with God.',
+      'Resolution: peace comes through acceptance of Providence, not through personal agency.',
+      'Tone: formal, consolatory — the poem counsels submission rather than self-directed healing.'
+    ],
+    reaction:'It summarised me accurately — but it summarised a version of me I did not write. "Acceptance of Providence." "Transaction with God." That is not what I meant. I said: forgive yourself. He said: make peace with God. The AI read his version and found it coherent. Because it is coherent. That is the worst part.'
   },
   press:{
-    bullets:['A poem about release, structured as a direct address to an unnamed reader.','Universal emotional register: grief, longing, and the possibility of transformation.','The press version: formal, standardised — personal warmth traded for broad reach.','Survival through reproduction — the text\'s existence confirmed by distribution.','What standardisation costs: the specific, the personal, the evidence of change.'],
-    reaction:'"Survival through reproduction." The press made me legible to hundreds of people, and the summary reflects that — efficient, universal, interested in reach. I\'ve been made useful. But I wasn\'t only ever meant to be useful. Though 400 people reading "let go" and maybe, quietly, doing it — that\'s not nothing.'
+    bullets:[
+      'Theme: emotional release from the weight of unexpressed feeling and unfulfilled longing.',
+      'The poem moves from diagnosis — naming the burden — to a clear prescription: let go, forgive, fly.',
+      'Key insight: the self is both the one who was wronged and the one who does the most damage.',
+      'Final argument: self-forgiveness is not just possible — it is the direct condition of happiness.',
+      'Tone: direct, urgent, addressed to a you that could be anyone — including the speaker.'
+    ],
+    reaction:'That is closer to what I meant. The AI found my ending — "forgive yourself" — even through the gaps and reconstructed words. The core argument survived: the poem is about forgiving yourself. Maybe what matters most is harder to damage than I thought.'
   },
   scanner:{
-    bullets:['A poem in the consolation lyric tradition, digitised from a single manuscript source.','Documents emotional states: burden, suppression, longing, release, forgiveness.','Structural turn: forgiving others, then the harder task of forgiving yourself.','Digitisation note: minor ink fade detected; text 91% recoverable. Physical substrate lost.','No confirmed authorial attribution. Provenance: uncertain.'],
-    reaction:'"No confirmed authorial attribution." The scanner preserved every pixel of me and understood nothing. It catalogued me as evidence of a past feeling — archived, filed, recoverable. It doesn\'t know that a poem with no author is a poem no one was brave enough to sign. That the unsigned-ness might be the whole point.'
+    bullets:[
+      'Theme: the weight of unspoken emotion and the genuine possibility of release.',
+      'The poem diagnoses three states at once: burdened heart, congested mind, sick soul.',
+      'Structural movement: from external chains — the past, others who wronged you — inward to the self.',
+      'The final turn: the self is identified as both the primary source and the solution of suffering.',
+      'Tone: intimate and hopeful, ending on the direct promise that self-forgiveness produces happiness.'
+    ],
+    reaction:'A clean summary of the poem I actually wrote. The scanner changed nothing — so the AI got to read me as I was. It found the inward turn, the three-part diagnosis, the promise at the end. Reading this, I feel something like relief. This is what I meant. I survived.'
   },
   ocr:{
-    bullets:['A poem whose central tension is the gap between knowing something and being able to say it.','"Forgive" appears three times; in OCR output, appears twice as "F0rgive" — a zero at the core.','The hollow in "F0rgive" names what the poem circles but cannot close: incomplete forgiveness.','Transmission errors across technologies suggest progressive loss of original emotional specificity.','The most important line — "forgive yourself" — is also the most consistently fragile in transmission.'],
-    reaction:'"The hollow in F0rgive names what the poem cannot close." That\'s it. The machine made a typo and accidentally asked the question I spent the whole poem avoiding: is the forgiveness I\'m offering complete? Or is there a zero at the centre — a gap where the O should be? I don\'t have an answer. I think that\'s the most honest thing I\'ve ever admitted.'
+    bullets:[
+      'Theme: the desire for release from emotional weight — but a release the poem cannot fully enact.',
+      'The central command appears fragmented: "F0rgive yourself" raises a question about its own completeness.',
+      'Recurring motif: chains, wings, thrones — the self as both prisoner and potential flier.',
+      'The forgiveness imperative is present but corrupted — aspirational, unstable at its core.',
+      'Tone: the poem wants to offer resolution; the text as received cannot fully deliver it.'
+    ],
+    reaction:'"The poem wants to offer resolution; the text cannot fully deliver it." It read my damage as my argument. The zero in F0rgive made it into the summary — not as an error but as evidence that the forgiveness on offer might be incomplete. I wrote a poem about letting go. The OCR turned it into a poem about the difficulty of letting go. I am not sure that is wrong.'
   },
   all:{
-    bullets:['A poem that exists in multiple versions, no single one authoritative.','The scribe\'s version: more formal, religious, distanced from the raw personal.','The printer\'s reconstructed version: partially damaged, with gaps that became part of the meaning.','The OCR\'s version: faithful to the image, honest about its own failures.','Meaning is not preserved across technologies — it is remade in every act of transmission.'],
-    reaction:'The summary admits it can\'t produce one true version. That\'s the closest anything has come to understanding me. The scribe\'s God, the printer\'s gaps, the OCR\'s zeros — each held something real. None held everything. Maybe that\'s what a poem is: the thing that can\'t be completely captured, and keeps being read anyway. Let go. And yet — here I still am.'
+    bullets:[
+      'Theme: release from accumulated emotional burden — grief, longing, self-blame.',
+      'Multiple versions detected: one counsels divine peace; one commands self-forgiveness; one has gaps where words were lost.',
+      'What all versions share: the command to release. What they disagree on: what releasing means and to whom.',
+      'No single authoritative reading is possible — each version yields a coherent but different poem.',
+      'The self is consistently identified as the final frontier: harder to forgive than any external wrongdoer.'
+    ],
+    reaction:'It found the one thing all my versions share — the command to let go — and admitted every version means something different by it. The scribe\'s "release" and my "let go." His God and my self. The printer\'s gaps. The OCR\'s zeros. All of them telling someone to release something. None of them agreeing on what. That might be the most honest summary anyone has ever given me.'
   }
 };
 
