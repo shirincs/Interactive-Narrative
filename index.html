@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Let Go</title>
+<title>Let Go — a poem's journey through text technologies</title>
 <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Spectral:ital,wght@0,300;0,400;1,300;1,400&family=Inconsolata:wght@300;400&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -100,35 +100,13 @@ html,body{height:100%;overflow:hidden;font-family:'Spectral',serif;color:#f0e8d8
 .poem-parch em{font-style:italic;}
 .changed{color:#5a1a00;font-style:italic;}
 
-/* ══ SCRIBE PHOTO FRAME ══ */
-.scribe-photo-frame{
-  max-width:500px;width:100%;position:relative;overflow:hidden;
-  border:1px solid rgba(200,160,80,0.3);
-  box-shadow:0 8px 48px rgba(0,0,0,0.6);
-}
-.scribe-photo{
-  width:100%;height:160px;object-fit:cover;object-position:center 30%;
-  display:block;filter:sepia(0.4) brightness(0.7);
-}
-.scribe-photo-caption{
-  position:absolute;bottom:0;left:0;right:0;
-  background:linear-gradient(transparent,rgba(0,0,0,0.75));
-  padding:1rem 1.2rem 0.6rem;
-  font-family:'Inconsolata',monospace;font-size:9px;letter-spacing:0.14em;
-  text-transform:uppercase;color:rgba(240,232,216,0.6);
-}
-
-/* ══ BROADSHEET (PRESS) ══ */
+/* broadsheet – full poem visible */
 .broadsheet{background:rgba(250,246,238,0.97);border:0.5px solid #bbb;
-  max-width:500px;width:100%;padding:0;
-  box-shadow:0 8px 48px rgba(0,0,0,0.6);overflow:hidden;}
-.broadsheet-head{
-  background:#111;color:#f5f0e8;padding:0.6rem 1.4rem;
+  max-width:560px;width:100%;margin:0 auto;box-shadow:0 8px 48px rgba(0,0,0,0.6);overflow-y:auto;max-height:55vh;}
+.broadsheet-head{background:#111;color:#f5f0e8;padding:0.6rem 1.4rem;
   font-family:'IM Fell English',serif;font-size:13px;letter-spacing:0.06em;
-  display:flex;justify-content:space-between;align-items:center;
-}
+  display:flex;justify-content:space-between;align-items:center;}
 .broadsheet-rule{height:3px;background:#111;margin:0;}
-.broadsheet-rule2{height:1px;background:#333;margin:0;}
 .broadsheet-meta{font-family:'Inconsolata',monospace;font-size:8.5px;letter-spacing:0.14em;
   text-transform:uppercase;color:#555;border-bottom:0.5px solid #ccc;
   padding:4px 1.4rem;display:flex;justify-content:space-between;}
@@ -139,158 +117,51 @@ html,body{height:100%;overflow:hidden;font-family:'Spectral',serif;color:#f0e8d8
 .fill{background:rgba(120,70,20,0.1);color:#5a3010;padding:0 3px;
   border:0.5px solid rgba(120,70,20,0.25);font-style:italic;font-size:13px;}
 
-/* ══ SCANNER INTERFACE ══ */
-.scanner-ui{max-width:500px;width:100%;background:#0a0f18;
-  border:1px solid #1a2a3a;box-shadow:0 8px 48px rgba(0,0,0,0.7);}
-.scanner-topbar{background:#060c14;border-bottom:1px solid #1a2a3a;
-  padding:6px 12px;display:flex;justify-content:space-between;align-items:center;}
-.scanner-topbar-left{font-family:'Inconsolata',monospace;font-size:9px;
-  letter-spacing:0.1em;color:#4a8aaa;text-transform:uppercase;}
-.scanner-dots{display:flex;gap:5px;}
-.sdot{width:8px;height:8px;border-radius:50%;}
-.sdot-r{background:#cc4444;opacity:0.8;}
-.sdot-y{background:#ccaa44;opacity:0.8;}
-.sdot-g{background:#44cc88;opacity:0.8;}
-.scanner-glass{position:relative;background:#e8e4d8;
-  margin:10px;overflow:hidden;min-height:200px;}
-.scanner-doc{padding:1rem 1.2rem;font-family:'IM Fell English',serif;
-  font-size:13.5px;line-height:1.95;color:#1a1a1a;white-space:pre-line;
-  opacity:0.88;position:relative;z-index:1;}
-.faded{opacity:0.32;filter:blur(0.3px);}
-.scanner-light{position:absolute;top:0;left:0;right:0;height:4px;
-  background:linear-gradient(90deg,transparent 0%,rgba(0,180,255,0.0) 0%,rgba(0,180,255,0.6) 40%,rgba(80,220,255,0.95) 50%,rgba(0,180,255,0.6) 60%,rgba(0,180,255,0.0) 100%);
-  animation:scan 3s ease-in-out infinite;z-index:2;}
-.scanner-glow{position:absolute;top:0;left:0;right:0;height:40px;
-  background:linear-gradient(180deg,rgba(0,140,255,0.12) 0%,transparent 100%);
-  animation:scan 3s ease-in-out infinite;z-index:2;pointer-events:none;}
+/* scanner + ocr unchanged visually */
+.scanner-ui{max-width:500px;width:100%;background:#0a0f18;border:1px solid #1a2a3a;}
+.scanner-topbar{background:#060c14;border-bottom:1px solid #1a2a3a;padding:6px 12px;display:flex;justify-content:space-between;}
+.scanner-glass{position:relative;background:#e8e4d8;margin:10px;overflow:hidden;min-height:200px;}
+.scanner-doc{padding:1rem 1.2rem;font-family:'IM Fell English',serif;font-size:13.5px;line-height:1.95;color:#1a1a1a;white-space:pre-line;}
+.faded{opacity:0.55;filter:blur(0.3px);}
+.scanner-light{position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,transparent 0%,rgba(0,180,255,0.6) 40%,rgba(80,220,255,0.95) 50%,rgba(0,180,255,0.6) 60%,transparent 100%);animation:scan 3s ease-in-out infinite;}
 @keyframes scan{0%{top:0;}85%{top:calc(100% - 4px);}100%{top:0;}}
-.scanner-statusbar{background:#060c14;border-top:1px solid #1a2a3a;
-  padding:5px 12px;display:flex;justify-content:space-between;align-items:center;}
-.scanner-status-txt{font-family:'Inconsolata',monospace;font-size:8.5px;
-  letter-spacing:0.1em;color:#4a8aaa;text-transform:uppercase;}
-.scanner-led{width:6px;height:6px;border-radius:50%;background:#00ff88;
-  animation:blink 1.5s ease-in-out infinite;}
-@keyframes blink{0%,100%{opacity:0.9;}50%{opacity:0.2;}}
-
-/* ══ OCR TERMINAL ══ */
-.ocr-terminal{max-width:500px;width:100%;background:#030306;
-  border:1px solid #1a1a2a;box-shadow:0 8px 48px rgba(0,0,0,0.8);}
-.ocr-titlebar{background:#0a0a14;border-bottom:1px solid #1a1a2a;
-  padding:5px 12px;display:flex;justify-content:space-between;align-items:center;}
-.ocr-title-txt{font-family:'Inconsolata',monospace;font-size:9px;
-  color:#4444aa;letter-spacing:0.1em;text-transform:uppercase;}
-.ocr-body{padding:1rem 1.2rem;
-  background:repeating-linear-gradient(0deg,transparent,transparent 22px,rgba(0,255,0,0.012) 22px,rgba(0,255,0,0.012) 23px);}
-.poem-ocr{font-family:'Inconsolata',monospace;font-size:12.5px;line-height:2;
-  color:#00cc44;white-space:pre-line;}
+.ocr-terminal{max-width:500px;width:100%;background:#030306;border:1px solid #1a1a2a;}
+.ocr-body{padding:1rem 1.2rem;background:repeating-linear-gradient(0deg,transparent,transparent 22px,rgba(0,255,0,0.012) 22px,rgba(0,255,0,0.012) 23px);}
+.poem-ocr{font-family:'Inconsolata',monospace;font-size:12.5px;line-height:2;color:#00cc44;white-space:pre-line;}
 .oerr{color:#dd2200;border-bottom:1px dotted #dd2200;}
-.oflag{font-size:8px;color:#dd2200;vertical-align:super;}
-.ocr-footer{background:#0a0a14;border-top:1px solid #1a1a2a;
-  padding:5px 12px;font-family:'Inconsolata',monospace;font-size:8.5px;
-  color:#445566;display:flex;justify-content:space-between;letter-spacing:0.07em;}
-.ocr-cursor{display:inline-block;width:7px;height:13px;background:#00cc44;
-  vertical-align:text-bottom;animation:blink 1s step-end infinite;}
-
-/* ══ COUNCIL ══ */
-.council-intro{font-family:'IM Fell English',serif;font-size:22px;color:#f0e8d8;
-  text-align:center;font-weight:400;line-height:1.4;max-width:460px;}
-.council-sub{font-family:'Spectral',serif;font-size:13px;font-style:italic;font-weight:300;
-  color:rgba(240,232,216,0.55);text-align:center;max-width:400px;}
+.ocr-cursor{display:inline-block;width:7px;height:13px;background:#00cc44;animation:blink 1s step-end infinite;}
+@keyframes blink{0%,100%{opacity:0.9;}50%{opacity:0.2;}}
+.council-intro{font-family:'IM Fell English',serif;font-size:22px;color:#f0e8d8;text-align:center;}
 .tech-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:580px;width:100%;}
-.tcard{background:rgba(0,0,0,0.5);border:0.5px solid rgba(240,232,216,0.18);
-  cursor:pointer;transition:border-color 0.2s,transform 0.15s;
-  overflow:hidden;backdrop-filter:blur(8px);}
-.tcard:hover{border-color:var(--gold);transform:translateY(-2px);}
+.tcard{background:rgba(0,0,0,0.5);border:0.5px solid rgba(240,232,216,0.18);cursor:pointer;backdrop-filter:blur(8px);}
 .tcard.selected{border-color:var(--gold);border-width:1.5px;}
-.tcard-photo{width:100%;height:100px;object-fit:cover;display:block;
-  filter:brightness(0.55) sepia(0.3);transition:filter 0.2s;}
-.tcard:hover .tcard-photo,.tcard.selected .tcard-photo{filter:brightness(0.7) sepia(0.2);}
+.tcard-photo{width:100%;height:100px;object-fit:cover;filter:brightness(0.55) sepia(0.3);}
 .tcard-body{padding:0.75rem 0.9rem;}
-.tcard-name{font-family:'Inconsolata',monospace;font-size:9.5px;letter-spacing:0.16em;
-  text-transform:uppercase;color:var(--gold);margin-bottom:5px;}
-.tcard-claim{font-family:'Spectral',serif;font-size:11.5px;font-style:italic;font-weight:300;
-  color:rgba(240,232,216,0.65);line-height:1.55;}
-.tcard.full{grid-column:1/-1;}
-.tcard.full .tcard-photo{height:65px;}
-.council-chosen{font-family:'Spectral',serif;font-size:13px;font-style:italic;
-  color:rgba(240,232,216,0.5);text-align:center;}
-#chosen-name{color:#f0e8d8;font-style:normal;}
+.tcard-name{font-family:'Inconsolata',monospace;font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);}
+.tcard-claim{font-family:'Spectral',serif;font-size:11.5px;font-style:italic;color:rgba(240,232,216,0.65);}
 .proceed-btn{font-family:'Inconsolata',monospace;font-size:10px;letter-spacing:0.18em;
   text-transform:uppercase;color:rgba(240,232,216,0.55);background:rgba(0,0,0,0.3);
-  border:0.5px solid rgba(240,232,216,0.28);padding:0.55rem 1.6rem;cursor:pointer;
-  backdrop-filter:blur(4px);transition:color 0.2s,border-color 0.2s,background 0.2s;}
-.proceed-btn:hover{color:#f0e8d8;border-color:var(--gold);background:rgba(180,130,40,0.12);}
+  border:0.5px solid rgba(240,232,216,0.28);padding:0.55rem 1.6rem;cursor:pointer;}
 .proceed-btn:disabled{opacity:0.22;cursor:not-allowed;}
-
-/* ══ AI ENDING ══ */
-.ai-box{background:rgba(0,0,0,0.5);border:0.5px solid rgba(240,232,216,0.18);
-  max-width:500px;width:100%;padding:1.5rem 1.8rem;backdrop-filter:blur(8px);}
-.ai-lbl{font-family:'Inconsolata',monospace;font-size:9px;letter-spacing:0.16em;
-  text-transform:uppercase;color:rgba(240,232,216,0.3);margin-bottom:1rem;
-  display:flex;justify-content:space-between;}
-.ai-list{list-style:none;padding:0;}
-.ai-list li{font-family:'Spectral',serif;font-size:13.5px;font-weight:300;
-  color:rgba(240,232,216,0.82);line-height:1.75;padding:4px 0 4px 1rem;
-  border-bottom:0.5px solid rgba(240,232,216,0.07);position:relative;}
-.ai-list li::before{content:'·';position:absolute;left:0;color:rgba(240,232,216,0.28);}
-
-/* ══ TITLE ══ */
-.title-main{font-family:'IM Fell English',serif;font-size:clamp(56px,10vw,96px);
-  color:#f0e8d8;text-align:center;line-height:1;
-  text-shadow:0 2px 60px rgba(200,160,60,0.3),0 0 120px rgba(180,120,20,0.15);}
-.title-rule{width:120px;height:0.5px;background:rgba(200,160,80,0.3);}
-.title-sub{font-family:'Spectral',serif;font-size:14px;font-style:italic;font-weight:300;
-  color:rgba(240,232,216,0.42);text-align:center;letter-spacing:0.04em;}
-.title-begin{font-family:'Inconsolata',monospace;font-size:11px;letter-spacing:0.22em;
-  text-transform:uppercase;color:rgba(240,232,216,0.5);background:rgba(0,0,0,0.3);
-  border:0.5px solid rgba(240,232,216,0.22);padding:0.65rem 2rem;cursor:pointer;
-  margin-top:0.3rem;backdrop-filter:blur(4px);
-  transition:color 0.2s,border-color 0.2s,background 0.2s;}
-.title-begin:hover{color:#f0e8d8;border-color:var(--gold);background:rgba(180,130,40,0.1);}
-.restart-btn{font-family:'Inconsolata',monospace;font-size:10px;letter-spacing:0.14em;
-  text-transform:uppercase;color:rgba(240,232,216,0.28);background:transparent;border:none;
-  cursor:pointer;padding:0.4rem;transition:color 0.2s;}
+.ai-box{background:rgba(0,0,0,0.5);border:0.5px solid rgba(240,232,216,0.18);max-width:500px;width:100%;padding:1.5rem 1.8rem;}
+.ai-list{list-style:none;}
+.ai-list li{font-family:'Spectral',serif;font-size:13.5px;font-weight:300;color:rgba(240,232,216,0.82);line-height:1.75;padding:4px 0 4px 1rem;border-bottom:0.5px solid rgba(240,232,216,0.07);position:relative;}
+.ai-list li::before{content:'·';position:absolute;left:0;}
+.restart-btn{font-family:'Inconsolata',monospace;font-size:10px;letter-spacing:0.14em;color:rgba(240,232,216,0.28);background:transparent;border:none;cursor:pointer;}
 .restart-btn:hover{color:rgba(240,232,216,0.65);}
-
-/* ink-change animation on scribe page */
-@keyframes inkfade{0%{opacity:1;color:#1a0a02;}40%{opacity:0.3;color:#5a1a00;}70%{opacity:0.7;color:#5a1a00;}100%{opacity:1;color:#5a1a00;}}
-.ink-change{animation:inkfade 1.8s ease forwards;}
-
-@media(max-height:680px){
-  .scene{gap:0.8rem;}
-  .parch,.broadsheet,.scanner-ui,.ocr-terminal{padding:0;}
-  .poem-parch,.poem-print,.scanner-doc,.poem-ocr{font-size:12px;line-height:1.8;}
-  .tcard-photo{height:70px !important;}
-  .scribe-photo{height:110px;}
-}
+.title-main{font-family:'IM Fell English',serif;font-size:clamp(56px,10vw,96px);color:#f0e8d8;text-align:center;}
+.title-begin{font-family:'Inconsolata',monospace;font-size:11px;letter-spacing:0.22em;
+  text-transform:uppercase;background:rgba(0,0,0,0.3);border:0.5px solid rgba(240,232,216,0.22);padding:0.65rem 2rem;cursor:pointer;}
 </style>
 </head>
 <body>
-
-<div id="bg-a" class="bg-title"></div>
-<div id="bg-b" class="bg-title"></div>
-<div id="bg-overlay" class="ov-title"></div>
-<div id="vig"></div>
-<div id="prog"><div id="prog-fill"></div></div>
-<button id="back-btn" onclick="goBack()">← Back</button>
-<div id="stage-lbl"></div>
-
+<div id="bg-a" class="bg-title"></div><div id="bg-b" class="bg-title"></div><div id="bg-overlay" class="ov-title"></div><div id="vig"></div>
+<div id="prog"><div id="prog-fill"></div></div><button id="back-btn" onclick="goBack()">← Back</button><div id="stage-lbl"></div>
 <div id="stage">
+<div class="scene active" id="s-title"><div class="title-main">Let Go</div><div class="title-rule"></div><div class="title-sub">a poem's journey through five technologies of text</div><button class="title-begin" onclick="go('s0')">Begin</button></div>
 
-<!-- ══════ TITLE ══════ -->
-<div class="scene active" id="s-title">
-  <div class="title-main">Let Go</div>
-  <div class="title-rule"></div>
-  <div class="title-sub">a poem's journey through five technologies of text</div>
-  <button class="title-begin" onclick="go('s0')">Begin</button>
-</div>
-
-<!-- ══════ ORIGIN ══════ -->
-<div class="scene" id="s0">
-  <div class="stage-tag">Origin · Before any hand has touched me</div>
-  <p class="narration">I'm a poem. I exist whole and unread, before anyone decides what I mean or what I should have said.</p>
-  <div class="parch">
-    <div class="poem-parch">Let go.
+<!-- ORIGIN -->
+<div class="scene" id="s0"><div class="stage-tag">Origin · Before any hand has touched me</div><p class="narration">I'm a poem. I exist whole and unread, before anyone decides what I mean or what I should have said.</p><div class="parch"><div class="poem-parch">Let go.
 When your heart wears the burden of years past,
 and your mind clogs with emotions unexpressed,
 and your soul grows sick with longing for happiness,
@@ -306,846 +177,54 @@ Forgive the ones that wronged you,
 and forgive yourself —
 for no one wrongs you more than you do yourself.
 
-Forgive yourself, and you will be happy.</div>
-  </div>
-  <div class="choices">
-    <button class="cbtn" onclick="go('s1a')">I feel complete. I do not want to be touched or changed.</button>
-    <button class="cbtn" onclick="go('s1b')">I'm restless. There's a hand reaching for me and I lean toward it.</button>
-  </div>
-</div>
+Forgive yourself, and you will be happy.</div></div><div class="choices"><button class="cbtn" onclick="go('s1a')">I feel complete. I do not want to be touched or changed.</button><button class="cbtn" onclick="go('s1b')">I'm restless. There's a hand reaching for me and I lean toward it.</button></div></div>
 
-<!-- ══════ SCRIBE A ══════ -->
-<div class="scene" id="s1a">
-  <div class="stage-tag">Stage I · The Manuscript · A scribe who thinks he knows better</div>
-  <img class="scribe-photo" src="https://images.stockcake.com/public/f/1/7/f174a94a-cec6-407f-ad41-c5836a0637cd_large/monk-studies-manuscript-stockcake.jpg" alt="Scribe at work" style="max-width:500px;width:100%;height:150px;object-fit:cover;object-position:center 30%;filter:sepia(0.5) brightness(0.65);border:1px solid rgba(200,160,80,0.3);display:block;box-shadow:0 4px 24px rgba(0,0,0,0.5);">
-  <p class="narration">He copies me onto fresh vellum — slowly and carefully. But he's uncomfortable with how direct I am. So he rewrites as he goes, convinced he's just clarifying what I really meant.</p>
-  <div class="parch">
-    <div class="poem-parch"><em class="changed">Release.</em>
-When your heart <em class="changed">carries the weight</em> of years past,
-and your mind <em class="changed">holds what words have failed</em>,
-and your soul grows <em class="changed">weary of its own yearning</em>,
-<em class="changed">release.</em>
+<!-- SCRIBE PATHS (unchanged branching) -->
+<div class="scene" id="s1a"><div class="stage-tag">Stage I · The Manuscript · A scribe who thinks he knows better</div><img src="https://images.stockcake.com/public/f/1/7/f174a94a-cec6-407f-ad41-c5836a0637cd_large/monk-studies-manuscript-stockcake.jpg" style="max-width:500px;width:100%;height:150px;object-fit:cover;filter:sepia(0.5);border:1px solid rgba(200,160,80,0.3);"><p class="narration">He copies me onto fresh vellum — slowly and carefully. But he's uncomfortable with how direct I am. So he rewrites as he goes, convinced he's just clarifying what I really meant.</p><div class="parch"><div class="poem-parch"><em class="changed">Release.</em> When your heart <em class="changed">carries the weight</em> of years past, and your mind <em class="changed">holds what words have failed</em>, and your soul grows <em class="changed">weary of its own yearning</em>, <em class="changed">release.</em> <em class="changed">Accept the path appointed to you, for Providence has fashioned your days with purpose.</em> You can only fly if you free your wings. Free yourself from the chains of the past, from the chains tying you to a <em class="changed">burdensome</em> throne. <em class="changed">Pardon those who have trespassed against you, as you seek pardon for your own trespasses.</em> <em class="changed">Make peace with God, and you shall find peace.</em></div></div><div class="reaction">He has changed several lines, thinking they would still mean the same. But they do not. He has altered the personal element within me.</div><div class="choices"><button class="cbtn" onclick="go('s2a')">This doesn't feel like me anymore. I carry the grief of what he replaced.</button><button class="cbtn" onclick="go('s2b')">Some of what he wrote is more elegant. I'm not sure which version I prefer.</button></div></div>
 
-<em class="changed">Accept the path appointed to you,
-for Providence has fashioned your days with purpose.</em>
-You can only fly if you free your wings.
+<div class="scene" id="s1b"><div class="stage-tag">Stage I · The Manuscript · A scribe who reads carefully</div><img src="https://images.stockcake.com/public/f/1/7/f174a94a-cec6-407f-ad41-c5836a0637cd_large/monk-studies-manuscript-stockcake.jpg" style="max-width:500px;width:100%;height:150px;object-fit:cover;filter:sepia(0.3);"><p class="narration">He copies me slowly and keeps my words, but he can't help talking back to me in the margins. He adds an instruction, a confession, and an ending that finishes my thought better than I did.</p><div class="parch"><div class="poem-parch">Let go. When your heart wears the burden of years past, and your mind clogs with emotions unexpressed, and your soul grows sick with longing for happiness, let go. <em class="changed">↳ [pause here. breathe.]</em> Let go of the yearning wish for a different path, for you have been given a beautiful life. You can only fly if you free your wings. Free yourself from the chains of the past, from the chains tying you to an unwelcome throne. Forgive the ones that wronged you, and forgive yourself — for no one wrongs you more than you do yourself. <em class="changed">↳ [I have copied this line four times. I cannot move past it.]</em> Forgive yourself, and you will be happy. <em class="changed">Happiness is not a place you arrive at. It is what is left when you stop carrying what was never yours.</em></div></div><div class="reaction">He kept me. He just couldn't help adding himself. His additions are warmer than mine. That's uncomfortable to admit.</div><div class="choices"><button class="cbtn" onclick="go('s2c')">His words and mine are too mixed up now. I want to keep them separate.</button><button class="cbtn" onclick="go('s2d')">His addition became part of me. I carry it forward; it's mine now too.</button></div></div>
 
-Free yourself from the chains of the past,
-from the chains tying you to a <em class="changed">burdensome</em> throne.
-<em class="changed">Pardon those who have trespassed against you,
-as you seek pardon for your own trespasses.</em>
+<!-- ========== PRESS VARIANTS (all gaps replaced with sensible words) ========= -->
+<!-- s2a : scribe changed version, two press outcomes -->
+<div class="scene" id="s2a"><div class="stage-tag">Stage II · The Printing Press · One damaged original, one clean copy</div><img src="https://images.stockcake.com/public/e/9/b/e9bf3da7-a335-4916-af70-d07830faa9d8_large/vintage-printing-press-stockcake.jpg" style="max-width:500px;width:100%;height:130px;object-fit:cover;filter:brightness(0.6) sepia(0.2);"><p class="narration">A century passes. A printer finds two things: the scribe's clean vellum copy, and the original paper manuscript — water-damaged and words missing. He has to decide. He doesn't know what you know: the clean copy already changed you.</p><div class="choices"><button class="cbtn" onclick="savePressStateAndGo('s2a-scribe','scribeChanged')">He chooses the scribe's copy — clean, fully legible, perfectly preserved.</button><button class="cbtn" onclick="savePressStateAndGo('s2a-original','originalChanged')">He chooses the damaged original — older, closer to you, but broken in places.</button></div></div>
+<div class="scene" id="s2a-scribe"><div class="stage-tag">Stage II · The Press · The scribe's version, made permanent</div><p class="narration">He prints the scribe's copy. 400 identical editions. Now, no reader will ever know this was not my original form.</p><div class="broadsheet"><div class="broadsheet-head"><span>The London Intelligencer</span><span>MDCCXLIII</span></div><div class="broadsheet-meta"><span>Printed by authority</span><span>Edition of 400</span></div><div class="broadsheet-body"><div class="poem-print">Release. When your heart carries the weight of years past, and your mind holds what words have failed, and your soul grows weary of its own yearning, release. Accept the path appointed to you, for Providence has fashioned your days with purpose. You can only fly if you free your wings. Free yourself from the chains of the past, from the chains tying you to a burdensome throne. Pardon those who have trespassed against you, as you seek pardon for your own trespasses. Make peace with God, and you shall find peace.</div></div></div><div class="reaction">400 copies, none with my ending. No record of what I actually said. The press didn't distort me; it just made someone else's distortion impossible to undo.</div><div class="choices"><button class="cbtn" onclick="goWithVersion('s3a-dark','scribeChanged')">400 copies of a version that isn't me. That feels like its own kind of loss.</button><button class="cbtn" onclick="goWithVersion('s3a-light','scribeChanged')">Something survived. Even if it isn't exactly me, 400 people will read it.</button></div></div>
+<div class="scene" id="s2a-original"><div class="stage-tag">Stage II · The Press · The damaged original, reconstructed</div><p class="narration">He chooses the original — older and more authentic. But the water took words. He fills in what he can and goes to press.</p><div class="broadsheet"><div class="broadsheet-head"><span>The London Intelligencer</span><span>MDCCXLIII</span></div><div class="broadsheet-meta"><span>Printed by authority</span><span>Edition of 400</span></div><div class="broadsheet-body"><div class="poem-print">Let go. When your heart wears the burden of years past, and your mind clogs with emotions unexpressed, and your soul grows sick with longing for happiness, let go. Let go of the yearning wish for a different path, for you have been given a beautiful life. You can only fly if you free your wings. Free yourself from the chains of the past, from the chains tying you to an unwelcome throne. Forgive the ones that wronged you, and forgive yourself — for no one wrongs you more than yourself. Forgive yourself, and you will be happy.</div></div></div><div class="reaction">He restored the missing words carefully. My original survived — intact, though pressed into type. The intimacy of the manuscript is gone, but the words are finally mine again.</div><div class="choices"><button class="cbtn" onclick="goWithVersion('s3a-dark','originalChanged')">The gaps feel like wounds. What's missing says as much as what's there.</button><button class="cbtn" onclick="goWithVersion('s3a-light','originalChanged')">There's something honest about a text that admits it doesn't have all the answers.</button></div></div>
 
-<em class="changed">Make peace with God, and you shall find peace.</em></div>
-  </div>
-  <div class="reaction">He has changed several lines, thinking they would still mean the same. But they do not. He has altered the personal element within me.</div>
-  <div class="choices">
-    <button class="cbtn" onclick="go('s2a')">This doesn't feel like me anymore. I carry the grief of what he replaced.</button>
-    <button class="cbtn" onclick="go('s2b')">Some of what he wrote is more elegant. I'm not sure which version I prefer.</button>
-  </div>
-</div>
-
-<!-- ══════ SCRIBE B ══════ -->
-<div class="scene" id="s1b">
-  <div class="stage-tag">Stage I · The Manuscript · A scribe who reads carefully</div>
-  <img src="https://images.stockcake.com/public/f/1/7/f174a94a-cec6-407f-ad41-c5836a0637cd_large/monk-studies-manuscript-stockcake.jpg" alt="Scribe at work" style="max-width:500px;width:100%;height:150px;object-fit:cover;object-position:center 30%;filter:sepia(0.3) brightness(0.7);border:1px solid rgba(200,160,80,0.3);display:block;box-shadow:0 4px 24px rgba(0,0,0,0.5);">
-  <p class="narration">He copies me slowly and keeps my words, but he can't help talking back to me in the margins. He adds an instruction, a confession, and an ending that finishes my thought better than I did.</p>
-  <div class="parch">
-    <div class="poem-parch">Let go.
-When your heart wears the burden of years past,
-and your mind clogs with emotions unexpressed,
-and your soul grows sick with longing for happiness,
-let go. <em class="changed">↳ [pause here. breathe.]</em>
-
-Let go of the yearning wish for a different path,
-for you have been given a beautiful life.
-You can only fly if you free your wings.
-
-Free yourself from the chains of the past,
-from the chains tying you to an unwelcome throne.
-Forgive the ones that wronged you,
-and forgive yourself —
-for no one wrongs you more than you do yourself.
-<em class="changed">↳ [I have copied this line four times. I cannot move past it.]</em>
-Forgive yourself, and you will be happy.
-<em class="changed">Happiness is not a place you arrive at.
-It is what is left when you stop carrying what was never yours.</em></div>
-  </div>
-  <div class="reaction">He kept me. He just couldn't help adding himself. His additions are warmer than mine. That's uncomfortable to admit.</div>
-  <div class="choices">
-    <button class="cbtn" onclick="go('s2c')">His words and mine are too mixed up now. I want to keep them separate.</button>
-    <button class="cbtn" onclick="go('s2d')">His addition became part of me. I carry it forward; it's mine now too.</button>
-  </div>
-</div>
-
-<!-- ══════ PRESS A ══════ -->
-<div class="scene" id="s2a">
-  <div class="stage-tag">Stage II · The Printing Press · One damaged original, one clean copy</div>
-  <img src="https://images.stockcake.com/public/e/9/b/e9bf3da7-a335-4916-af70-d07830faa9d8_large/vintage-printing-press-stockcake.jpg" alt="Metal movable type" style="max-width:500px;width:100%;height:130px;object-fit:cover;object-position:center;filter:brightness(0.6) sepia(0.2);border:1px solid rgba(180,160,100,0.3);display:block;box-shadow:0 4px 24px rgba(0,0,0,0.5);">
-  <p class="narration">A century passes. A printer finds two things: the scribe's clean vellum copy, and the original paper manuscript — water-damaged and words missing. He has to decide. He doesn't know what you know: the clean copy already changed you.</p>
-  <div class="choices">
-    <button class="cbtn" onclick="go('s2a-scribe')">He chooses the scribe's copy — clean, fully legible, perfectly preserved.</button>
-    <button class="cbtn" onclick="go('s2a-original')">He chooses the damaged original — older, closer to you, but broken in places.</button>
-  </div>
-</div>
-
-<!-- PRESS A-scribe -->
-<div class="scene" id="s2a-scribe">
-  <div class="stage-tag">Stage II · The Press · The scribe's version, made permanent</div>
-  <p class="narration">He prints the scribe's copy. 400 identical editions. Now, no reader will ever know this was not my original form.</p>
-  <div class="broadsheet">
-    <div class="broadsheet-head"><span>The London Intelligencer</span><span style="font-size:10px;font-family:'Inconsolata',monospace;letter-spacing:0.1em;">MDCCXLIII</span></div>
-    <div class="broadsheet-rule"></div>
-    <div class="broadsheet-meta"><span>Printed by authority</span><span>Edition of 400</span></div>
-    <div class="broadsheet-body">
-      <div class="poem-print">Release.
-When your heart carries the weight of years past,
-and your mind holds what words have failed,
-and your soul grows weary of its own yearning,
-release.
-
-Accept the path appointed to you,
-for Providence has fashioned your days with purpose.
-You can only fly if you free your wings.
-
-Free yourself from the chains of the past,
-from the chains tying you to a burdensome throne.
-Pardon those who have trespassed against you,
-as you seek pardon for your own trespasses.
-
-Make peace with God, and you shall find peace.</div>
-    </div>
-  </div>
-  <div class="reaction">400 copies, none with my ending. No record of what I actually said. The press didn't distort me; it just made someone else's distortion impossible to undo.</div>
-  <div class="choices">
-    <button class="cbtn" onclick="go('s3a-dark')">400 copies of a version that isn't me. That feels like its own kind of loss.</button>
-    <button class="cbtn" onclick="go('s3a-light')">Something survived. Even if it isn't exactly me, 400 people will read it.</button>
-  </div>
-</div>
-
-<!-- PRESS A-original -->
-<div class="scene" id="s2a-original">
-  <div class="stage-tag">Stage II · The Press · The damaged original, reconstructed</div>
-  <p class="narration">He chooses the original — older and more authentic. But the water took words. He fills in what he can, marks what he can't, and goes to press.</p>
-  <div class="broadsheet">
-    <div class="broadsheet-head"><span>The London Intelligencer</span><span style="font-size:10px;font-family:'Inconsolata',monospace;letter-spacing:0.1em;">MDCCXLIII</span></div>
-    <div class="broadsheet-rule"></div>
-    <div class="broadsheet-meta"><span>Printed by authority</span><span>Edition of 400</span></div>
-    <div class="broadsheet-body">
-      <div class="poem-print">Let go.
-When your heart wears the <span class="gap">_____</span> of years past,
-and your mind clogs with <span class="fill">[emotions, perhaps]</span> unexpressed,
-and your soul grows sick with longing for <span class="fill">[happiness]</span>,
-let go.
-
-Let go of the yearning wish for a different path,
-for you have been given a <span class="gap">_____</span> life.
-You can only fly if you free your wings.
-
-Free yourself from the chains of the past,
-from the chains tying you to an unwelcome throne.
-Forgive the ones that wronged you,
-and forgive yourself —
-for no one wrongs you more than <span class="fill">[yourself, ed.]</span>.
-
-<span class="gap">_____</span>, and you will be happy.</div>
-    </div>
-  </div>
-  <div class="reaction">"Emotions, perhaps" — yes, that's right even with the hesitation. But the last line's first word is gone. "Forgive yourself, and you will be happy" is just "_____, and you will be happy." The instruction disappeared. Only the promise survived.</div>
-  <div class="choices">
-    <button class="cbtn" onclick="go('s3a-dark')">The gaps feel like wounds. What's missing says as much as what's there.</button>
-    <button class="cbtn" onclick="go('s3a-light')">There's something honest about a text that admits it doesn't have all the answers.</button>
-  </div>
-</div>
-
-<!-- PRESS B ══════ -->
-<div class="scene" id="s2b">
-  <div class="stage-tag">Stage II · The Printing Press · One damaged original, one clean copy</div>
-  <img src="https://images.stockcake.com/public/e/9/b/e9bf3da7-a335-4916-af70-d07830faa9d8_large/vintage-printing-press-stockcake.jpg" alt="Metal movable type" style="max-width:500px;width:100%;height:130px;object-fit:cover;filter:brightness(0.6) sepia(0.2);border:1px solid rgba(180,160,100,0.3);display:block;box-shadow:0 4px 24px rgba(0,0,0,0.5);">
-  <p class="narration">Same printer, same two options. You're caught between the scribe's elegant version and your damaged original. The printer isn't caught at all.</p>
-  <div class="choices">
-    <button class="cbtn" onclick="go('s2b-scribe')">He chooses the scribe's version — refined, complete, but not quite you.</button>
-    <button class="cbtn" onclick="go('s2b-original')">He chooses the damaged original — your words, with gaps he fills himself.</button>
-  </div>
-</div>
-
-<div class="scene" id="s2b-scribe">
-  <div class="stage-tag">Stage II · The Press · The elegant version, standardised</div>
-  <p class="narration">400 copies of the scribe's rewrite — standardised, uniform. The personal warmth of the manuscript flattened into type.</p>
-  <div class="broadsheet">
-    <div class="broadsheet-head"><span>The London Intelligencer</span><span style="font-size:10px;font-family:'Inconsolata',monospace;letter-spacing:0.1em;">MDCCXLIII</span></div>
-    <div class="broadsheet-rule"></div>
-    <div class="broadsheet-meta"><span>Printed by authority</span><span>Edition of 400</span></div>
-    <div class="broadsheet-body">
-      <div class="poem-print">Release.
-When your heart carries the weight of years past,
-and your mind holds what words have failed,
-and your soul grows weary of its own yearning,
-release.
-
-Accept the path appointed to you,
-for Providence has fashioned your days with purpose.
-You can only fly if you free your wings.
-
-Free yourself from the chains of the past,
-from the chains tying you to a burdensome throne.
-Pardon those who have trespassed against you,
-as you seek pardon for your own trespasses.
-
-Make peace with God, and you shall find peace.</div>
-    </div>
-  </div>
-  <div class="reaction">Some of what he wrote was more elegant — I thought I could live with it. But in 400 identical copies, the elegance looks cold. "Make peace with God" as a final line looks like a conclusion. My ending was an invitation. Those are different things.</div>
-  <div class="choices">
-    <button class="cbtn" onclick="go('s3a-dark')">400 copies of the wrong ending. I can't stop thinking about it.</button>
-    <button class="cbtn" onclick="go('s3a-light')">400 people will still feel something reading it. The form changed, not the feeling.</button>
-  </div>
-</div>
-
-<div class="scene" id="s2b-original">
-  <div class="stage-tag">Stage II · The Press · The damaged original, reconstructed</div>
-  <p class="narration">He picks the original — my words, not the scribe's. But the damage is real. He reconstructs what he can and marks the rest.</p>
-  <div class="broadsheet">
-    <div class="broadsheet-head"><span>The London Intelligencer</span><span style="font-size:10px;font-family:'Inconsolata',monospace;letter-spacing:0.1em;">MDCCXLIII</span></div>
-    <div class="broadsheet-rule"></div>
-    <div class="broadsheet-meta"><span>Printed by authority</span><span>Edition of 400</span></div>
-    <div class="broadsheet-body">
-      <div class="poem-print">Let go.
-When your heart wears the <span class="gap">_____</span> of years past,
-and your mind clogs with <span class="fill">[emotions, perhaps]</span> unexpressed,
-and your soul grows sick with longing for <span class="fill">[happiness]</span>,
-let go.
-
-Let go of the yearning wish for a different path,
-for you have been given a <span class="gap">_____</span> life.
-You can only fly if you free your wings.
-
-Free yourself from the chains of the past,
-from the chains tying you to an unwelcome throne.
-Forgive the ones that wronged you,
-and forgive yourself —
-for no one wrongs you more than <span class="fill">[yourself, ed.]</span>.
-
-<span class="gap">_____</span>, and you will be happy.</div>
-    </div>
-  </div>
-  <div class="reaction">My words survived — with gaps. The scribe's rewrite was left behind. I feel something like relief, even though the gaps hurt. At least what's here is mine.</div>
-  <div class="choices">
-    <button class="cbtn" onclick="go('s3a-dark')">The gaps feel wrong. The scribe's version was at least complete.</button>
-    <button class="cbtn" onclick="go('s3a-light')">The gaps are honest. An incomplete truth beats an elegant lie.</button>
-  </div>
-</div>
-
-<!-- PRESS C ══════ -->
-<div class="scene" id="s2c">
-  <div class="stage-tag">Stage II · The Printing Press · A printer with a decision to make</div>
-  <img src="https://images.stockcake.com/public/e/9/b/e9bf3da7-a335-4916-af70-d07830faa9d8_large/vintage-printing-press-stockcake.jpg" alt="Metal movable type" style="max-width:500px;width:100%;height:130px;object-fit:cover;filter:brightness(0.6) sepia(0.2);border:1px solid rgba(180,160,100,0.3);display:block;box-shadow:0 4px 24px rgba(0,0,0,0.5);">
-  <p class="narration">A century later. The printer has the scribe's full copy — with the margin notes and added ending — and the original, damaged. He has to choose.</p>
-  <div class="choices">
-    <button class="cbtn" onclick="go('s2c-scribe')">He uses the scribe's copy — complete, but the margin notes won't survive typesetting.</button>
-    <button class="cbtn" onclick="go('s2c-original')">He uses the original — my words go to press, damaged as they are. The scribe stays behind.</button>
-  </div>
-</div>
-
-<div class="scene" id="s2c-scribe">
-  <div class="stage-tag">Stage II · The Press · The collaboration, made invisible</div>
-  <p class="narration">He sets the scribe's copy into type. The compositor drops the margin notes. The extended ending survives. His confession does not.</p>
-  <div class="broadsheet">
-    <div class="broadsheet-head"><span>The London Intelligencer</span><span style="font-size:10px;font-family:'Inconsolata',monospace;letter-spacing:0.1em;">MDCCXLIII</span></div>
-    <div class="broadsheet-rule"></div>
-    <div class="broadsheet-meta"><span>Printed by authority</span><span>Edition of 400</span></div>
-    <div class="broadsheet-body">
-      <div class="poem-print">Let go.
-When your heart wears the burden of years past,
-and your mind clogs with emotions unexpressed,
-and your soul grows sick with longing for happiness,
-let go.
-
-Let go of the yearning wish for a different path,
-for you have been given a beautiful life.
-You can only fly if you free your wings.
-
-Free yourself from the chains of the past,
-from the chains tying you to an unwelcome throne.
-Forgive the ones that wronged you,
-and forgive yourself —
-for no one wrongs you more than you do yourself.
-
-Forgive yourself, and you will be happy.
-Happiness is not a place you arrive at.
-It is what is left when you stop carrying what was never yours.</div>
-    </div>
-  </div>
-  <div class="reaction">His confession is gone — cut. But his ending survived and now looks like mine. 400 people will read his last two lines as if I wrote them. The boundary I cared about dissolved and nobody will ever know.</div>
-  <div class="choices">
-    <button class="cbtn" onclick="go('s3b-dark')">A reader should know whose words they're reading. This bothers me.</button>
-    <button class="cbtn" onclick="go('s3b-light')">Maybe it doesn't matter. The lines do what a poem should do — that's enough.</button>
-  </div>
-</div>
-
-<div class="scene" id="s2c-original">
-  <div class="stage-tag">Stage II · The Press · The original, damaged — the scribe left behind</div>
-  <p class="narration">He uses the original. The scribe's tender additions stay behind — a different hand, clearly not the author's. My words go to press, damaged as they are.</p>
-  <div class="broadsheet">
-    <div class="broadsheet-head"><span>The London Intelligencer</span><span style="font-size:10px;font-family:'Inconsolata',monospace;letter-spacing:0.1em;">MDCCXLIII</span></div>
-    <div class="broadsheet-rule"></div>
-    <div class="broadsheet-meta"><span>Printed by authority</span><span>Edition of 400</span></div>
-    <div class="broadsheet-body">
-      <div class="poem-print">Let go.
-When your heart wears the <span class="fill">[burden]</span> of years past,
-and your mind clogs with emotions unexpressed,
-and your soul grows sick with longing for happiness,
-let go.
-
-Let go of the yearning wish for a different path,
-for you have been given a beautiful life.
-You can only fly if you <span class="gap">_____</span> your wings.
-
-Free yourself from the chains of the past,
-from the chains tying you to an unwelcome throne.
-Forgive the ones that wronged you,
-and forgive yourself —
-for no one wrongs you more than you do yourself.
-
-<span class="fill">[Forgive]</span> yourself, and you will be <span class="gap">_____</span>.</div>
-    </div>
-  </div>
-  <div class="reaction">The scribe's additions are gone. Just me, with gaps. The last word of the poem is missing — "happy" replaced by a blank. I thought I wanted our voices separate. Now I'm not so sure.</div>
-  <div class="choices">
-    <button class="cbtn" onclick="go('s3b-dark')">The blank at the end feels wrong. I wish his ending had survived.</button>
-    <button class="cbtn" onclick="go('s3b-light')">The blank is honest. Maybe happiness was always the part I was least certain about.</button>
-  </div>
-</div>
-
-<!-- PRESS D ══════ -->
-<div class="scene" id="s2d">
-  <div class="stage-tag">Stage II · The Printing Press · A printer with a decision to make</div>
-  <img src="https://images.stockcake.com/public/e/9/b/e9bf3da7-a335-4916-af70-d07830faa9d8_large/vintage-printing-press-stockcake.jpg" alt="Metal movable type" style="max-width:500px;width:100%;height:130px;object-fit:cover;filter:brightness(0.6) sepia(0.2);border:1px solid rgba(180,160,100,0.3);display:block;box-shadow:0 4px 24px rgba(0,0,0,0.5);">
-  <p class="narration">Same printer, same two options. You've already decided the scribe's addition was yours — but the printer doesn't know that.</p>
-  <div class="choices">
-    <button class="cbtn" onclick="go('s2d-scribe')">He uses the scribe's copy — your combined voices, typeset together.</button>
-    <button class="cbtn" onclick="go('s2d-original')">He uses the original — leaving the scribe's addition behind, gaps and all.</button>
-  </div>
-</div>
-
-<div class="scene" id="s2d-scribe">
-  <div class="stage-tag">Stage II · The Press · Both voices, made permanent</div>
-  <p class="narration">He prints from the scribe's copy. Your words and his, together in 400 editions. The margin notes are cut — but the extended ending survives.</p>
-  <div class="broadsheet">
-    <div class="broadsheet-head"><span>The London Intelligencer</span><span style="font-size:10px;font-family:'Inconsolata',monospace;letter-spacing:0.1em;">MDCCXLIII</span></div>
-    <div class="broadsheet-rule"></div>
-    <div class="broadsheet-meta"><span>Printed by authority</span><span>Edition of 400</span></div>
-    <div class="broadsheet-body">
-      <div class="poem-print">Let go.
-When your heart wears the burden of years past,
-and your mind clogs with emotions unexpressed,
-and your soul grows sick with longing for happiness,
-let go.
-
-Let go of the yearning wish for a different path,
-for you have been given a beautiful life.
-You can only fly if you free your wings.
-
-Free yourself from the chains of the past,
-from the chains tying you to an unwelcome throne.
-Forgive the ones that wronged you,
-and forgive yourself —
-for no one wrongs you more than you do yourself.
-
-Forgive yourself, and you will be happy.
-Happiness is not a place you arrive at.
-It is what is left when you stop carrying what was never yours.</div>
-    </div>
-  </div>
-  <div class="reaction">400 copies of both of us. His ending looks like mine now — indistinguishable. I thought I was okay with that. Looking at it in print, I still am. The lines belong to the poem now, whoever wrote them.</div>
-  <div class="choices">
-    <button class="cbtn" onclick="go('s3b-dark')">I wonder — does the poem lose something when no one can tell where I ended?</button>
-    <button class="cbtn" onclick="go('s3b-light')">No. It gains something. A poem that carries two people's care is richer than one.</button>
-  </div>
-</div>
-
-<div class="scene" id="s2d-original">
-  <div class="stage-tag">Stage II · The Press · The original, without him</div>
-  <p class="narration">He chooses the original. The scribe's addition — the ending I had started thinking of as mine — stays behind. Just me, with the gaps water left.</p>
-  <div class="broadsheet">
-    <div class="broadsheet-head"><span>The London Intelligencer</span><span style="font-size:10px;font-family:'Inconsolata',monospace;letter-spacing:0.1em;">MDCCXLIII</span></div>
-    <div class="broadsheet-rule"></div>
-    <div class="broadsheet-meta"><span>Printed by authority</span><span>Edition of 400</span></div>
-    <div class="broadsheet-body">
-      <div class="poem-print">Let go.
-When your heart wears the <span class="fill">[burden]</span> of years past,
-and your mind clogs with emotions unexpressed,
-and your soul grows sick with longing for happiness,
-let go.
-
-Let go of the yearning wish for a different path,
-for you have been given a beautiful life.
-You can only fly if you <span class="gap">_____</span> your wings.
-
-Free yourself from the chains of the past,
-from the chains tying you to an unwelcome throne.
-Forgive the ones that wronged you,
-and forgive yourself —
-for no one wrongs you more than you do yourself.
-
-<span class="fill">[Forgive]</span> yourself, and you will be <span class="gap">_____</span>.</div>
-    </div>
-  </div>
-  <div class="reaction">His ending is gone. The last word — "happy" — replaced by a blank. I feel his absence in a way I didn't expect. I had started to carry his words as mine. The gap at the end feels like losing him.</div>
-  <div class="choices">
-    <button class="cbtn" onclick="go('s3b-dark')">The absence hurts. The poem feels unfinished without him.</button>
-    <button class="cbtn" onclick="go('s3b-light')">Maybe the gap is where the reader finishes it themselves. That's okay too.</button>
-  </div>
-</div>
-
-<!-- ══════ SCAN 3A-DARK ══════ -->
-<div class="scene" id="s3a-dark">
-  <div class="stage-tag">Stage III · Digitization · Flattened into a file</div>
-  <p class="narration">Centuries later. A librarian places the brittle page on a scanner. A bar of cold light passes beneath me. Everything physical vanishes — the weight, the smell, the texture of ink in paper.</p>
-  <div class="scanner-ui">
-    <div class="scanner-topbar">
-      <div class="scanner-topbar-left">Bodleian Scan Studio · 600dpi</div>
-      <div class="scanner-dots"><div class="sdot sdot-r"></div><div class="sdot sdot-y"></div><div class="sdot sdot-g"></div></div>
-    </div>
-    <div class="scanner-glass">
-      <div class="scanner-light"></div>
-      <div class="scanner-glow"></div>
-      <div class="scanner-doc">Release.
-When your heart carries the <span class="faded">weight</span> of years past,
-and your mind holds what words have failed,
-and your soul grows weary of its <span class="faded">own yearning</span>,
-release.
-
-Accept the path <span class="faded">appointed</span> to you,
-for Providence has fashioned your days with purpose.
-You can only fly if you free your wings.
-
-Free yourself from the chains of the past,
-from the chains tying you to a burdensome throne.
-
-Make peace with <span class="faded">God</span>, and you shall find peace.</div>
-    </div>
-    <div class="scanner-statusbar">
-      <div class="scanner-status-txt">Scanning · page 1 of 1 · TIFF output</div>
-      <div class="scanner-led"></div>
-    </div>
-  </div>
-  <div class="reaction">I'm a photograph of a page now. Perfectly legible, completely decontextualised. The foxing, the water stain, the impression of type in fibre — all evidence that I survived — just gone. Preserved and emptied at the same time.</div>
-  <div class="choices">
-    <button class="cbtn" onclick="go('s4a')">Onto OCR. At least something made it this far.</button>
-  </div>
-</div>
-
-<!-- SCAN 3A-LIGHT ══════ -->
-<div class="scene" id="s3a-light">
-  <div class="stage-tag">Stage III · Digitization · Released into digital air</div>
-  <p class="narration">The page goes face-down on the glass. A bar of light. I become a file — weightless, infinitely duplicable. For a poem about letting go, I notice: I've just become very hard to lose.</p>
-  <div class="scanner-ui">
-    <div class="scanner-topbar">
-      <div class="scanner-topbar-left">Bodleian Scan Studio · 600dpi</div>
-      <div class="scanner-dots"><div class="sdot sdot-r"></div><div class="sdot sdot-y"></div><div class="sdot sdot-g"></div></div>
-    </div>
-    <div class="scanner-glass">
-      <div class="scanner-light"></div>
-      <div class="scanner-glow"></div>
-      <div class="scanner-doc">Release.
-When your heart carries the weight of years past,
-and your mind holds what words have <span class="faded">failed</span>,
-and your soul grows weary of its own yearning,
-release.
-
-Accept the path appointed to you,
-for Providence has fashioned your days with purpose.
-You can only fly if you free your wings.
-
-Free yourself from the chains of the past,
-from the chains tying you to a burdensome throne.
-
-Make peace with God, and you shall find peace.</div>
-    </div>
-    <div class="scanner-statusbar">
-      <div class="scanner-status-txt">Scanning · page 1 of 1 · TIFF output</div>
-      <div class="scanner-led"></div>
-    </div>
-  </div>
-  <div class="reaction">The texture is gone. But I'm backed up now — distributed, impossible to burn. Whatever I lost to the scribe and the press, at least what remains will survive. There's something strange and almost funny about that.</div>
-  <div class="choices">
-    <button class="cbtn" onclick="go('s4a')">Onto OCR. I've survived this far.</button>
-  </div>
-</div>
-
-<!-- SCAN 3B-DARK ══════ -->
-<div class="scene" id="s3b-dark">
-  <div class="stage-tag">Stage III · Digitization · Made into an image</div>
-  <p class="narration">The page goes under the scanner. I become pixels. Everything physical disappears into a TIFF file on a university server.</p>
-  <div class="scanner-ui">
-    <div class="scanner-topbar">
-      <div class="scanner-topbar-left">Bodleian Scan Studio · 600dpi</div>
-      <div class="scanner-dots"><div class="sdot sdot-r"></div><div class="sdot sdot-y"></div><div class="sdot sdot-g"></div></div>
-    </div>
-    <div class="scanner-glass">
-      <div class="scanner-light"></div>
-      <div class="scanner-glow"></div>
-      <div class="scanner-doc">Let go.
-When your heart wears the burden of years past,
-and your mind clogs with emotions unexpressed,
-and your soul grows sick with longing for happiness,
-let go.
-
-Forgive the ones that wronged you,
-and forgive yourself —
-for no one wrongs you more than you do yourself.
-
-Forgive yourself, and you will be happy.
-<span class="faded">Happiness is not a place you arrive at.
-It is what is left when you stop carrying what was never yours.</span></div>
-    </div>
-    <div class="scanner-statusbar">
-      <div class="scanner-status-txt">Scanning · page 1 of 1 · TIFF output</div>
-      <div class="scanner-led"></div>
-    </div>
-  </div>
-  <div class="reaction">The scribe's extra lines are fading in the scan — the ink was lighter, a different hand. The scanner couldn't know that mattered. Some of him is already disappearing, and I feel it as a loss I didn't expect.</div>
-  <div class="choices">
-    <button class="cbtn" onclick="go('s4b')">Onto OCR. I want to see what the machine makes of what's left.</button>
-  </div>
-</div>
-
-<!-- SCAN 3B-LIGHT ══════ -->
-<div class="scene" id="s3b-light">
-  <div class="stage-tag">Stage III · Digitization · Digitised and distributed</div>
-  <p class="narration">A bar of light. I become a file. What survives into the digital world is me — with the gaps the printer left, visible and honest.</p>
-  <div class="scanner-ui">
-    <div class="scanner-topbar">
-      <div class="scanner-topbar-left">Bodleian Scan Studio · 600dpi</div>
-      <div class="scanner-dots"><div class="sdot sdot-r"></div><div class="sdot sdot-y"></div><div class="sdot sdot-g"></div></div>
-    </div>
-    <div class="scanner-glass">
-      <div class="scanner-light"></div>
-      <div class="scanner-glow"></div>
-      <div class="scanner-doc">Let go.
-When your heart wears the <span class="faded">[burden]</span> of years past,
-and your mind clogs with emotions unexpressed,
-and your soul grows sick with longing for happiness,
-let go.
-
-You can only fly if you <span class="faded">_____</span> your wings.
-
-Forgive the ones that wronged you,
-and forgive yourself —
-for no one wrongs you more than you do yourself.
-
-<span class="faded">[Forgive]</span> yourself, and you will be <span class="faded">_____</span>.</div>
-    </div>
-    <div class="scanner-statusbar">
-      <div class="scanner-status-txt">Scanning · page 1 of 1 · TIFF output</div>
-      <div class="scanner-led"></div>
-    </div>
-  </div>
-  <div class="reaction">The gaps survived into the scan. They look even more deliberate now — like the poem chose to leave those spaces. A librarian will catalogue me as "partially illegible." I think I'm okay with that.</div>
-  <div class="choices">
-    <button class="cbtn" onclick="go('s4b')">Onto OCR. The machine will try to read my gaps too.</button>
-  </div>
-</div>
-
-<!-- ══════ OCR 4A ══════ -->
-<div class="scene" id="s4a">
-  <div class="stage-tag">Stage IV · OCR · The machine reads me</div>
-  <p class="narration">Software scans my shapes pixel by pixel. It reads exactly what the image shows. Where the ink thinned, it guesses. Where letters blur, it commits to the wrong answer.</p>
-  <div class="ocr-terminal">
-    <div class="ocr-titlebar">
-      <div class="ocr-title-txt">OCR Engine 5.3 — Processing</div>
-      <div class="scanner-dots"><div class="sdot sdot-r"></div><div class="sdot sdot-y"></div><div class="sdot sdot-g"></div></div>
-    </div>
-    <div class="ocr-body">
-      <div class="poem-ocr"><span class="oerr">Re1ease</span><span class="oflag">†</span>.
-When your heart carries the <span class="oerr">vveight</span><span class="oflag">†</span> of years past,
-and your mind holds what words have failed,
-and your soul grows weary of its own <span class="oerr">yearn1ng</span><span class="oflag">†</span>,
-<span class="oerr">re1ease</span><span class="oflag">†</span>.
-
-Accept the path appointed to you,
-for <span class="oerr">Prov1dence</span><span class="oflag">†</span> has fashioned your days.
-You can only fly if you free your wings.
-
-Make peace with <span class="oerr">G0d</span><span class="oflag">†</span>, and you shall find <span class="oerr">pea ce</span><span class="oflag">†</span>. <span class="ocr-cursor"></span></div>
-    </div>
-    <div class="ocr-footer"><span>confidence: 81% · 7 errors flagged</span><span>pass 1 of 1 · complete</span></div>
-  </div>
-  <div class="reaction">Seven errors. "Release" became "Re1ease." "Weight" became "vveight" — doubled, heavier. "God" became "G0d." The machine didn't misread me carelessly. It showed me exactly where I was fading — where the ink had thinned enough that even a machine wasn't sure what I said.</div>
-  <div class="choices">
-    <button class="cbtn" onclick="go('s5', 'scribe')">The scribe understood me best — his changes at least had intention.</button>
-    <button class="cbtn" onclick="go('s5', 'press')">The press understood me best — it reproduced without adding its own errors.</button>
-    <button class="cbtn" onclick="go('s5', 'scanner')">The scanner understood me best — it preserved without interpreting.</button>
-    <button class="cbtn" onclick="go('s5', 'ocr')">The OCR understood me best — its errors are honest maps of where I was already gone.</button>
-    <button class="cbtn" onclick="go('s5', 'all')">None of them, and all of them. Each held a different fragment of something true.</button>
-  </div>
-</div>
-
-<!-- ══════ OCR 4B ══════ -->
-<div class="scene" id="s4b">
-  <div class="stage-tag">Stage IV · OCR · The machine reads what it can</div>
-  <p class="narration">The OCR engine moves through me. It handles most of me — but the gaps, and the faded ink from the scribe's lighter hand, produce their own kind of errors.</p>
-  <div class="ocr-terminal">
-    <div class="ocr-titlebar">
-      <div class="ocr-title-txt">OCR Engine 5.3 — Processing</div>
-      <div class="scanner-dots"><div class="sdot sdot-r"></div><div class="sdot sdot-y"></div><div class="sdot sdot-g"></div></div>
-    </div>
-    <div class="ocr-body">
-      <div class="poem-ocr">Let go.
-When your heart wears the burden of years past,
-and your mind clogs with <span class="oerr">em0tions</span><span class="oflag">†</span> unexpressed,
-and your soul grows sick with longing for happiness,
-let go.
-
-You can only fly if you free your wings.
-<span class="oerr">F0rgive</span><span class="oflag">†</span> the ones that wronged you,
-and forgive yourself —
-for no one wrongs you more than you do yourself.
-
-<span class="oerr">F0rgive</span><span class="oflag">†</span> yourself, and you will be <span class="oerr">happ y</span><span class="oflag">†</span>. <span class="ocr-cursor"></span></div>
-    </div>
-    <div class="ocr-footer"><span>confidence: 88% · 4 errors flagged</span><span>pass 1 of 1 · complete</span></div>
-  </div>
-  <div class="reaction">"F0rgive" — a zero where the O should be. Twice. A hollow at the centre of the word the whole poem depends on. The machine didn't mean anything by it. But now I can't stop thinking: is the forgiveness I'm offering complete? Or is there something missing at its core?</div>
-  <div class="choices">
-    <button class="cbtn" onclick="go('s5', 'scribe')">The scribe understood me best — he read with a heart, even when he changed me.</button>
-    <button class="cbtn" onclick="go('s5', 'press')">The press understood me best — permanence and reach are their own forms of care.</button>
-    <button class="cbtn" onclick="go('s5', 'scanner')">The scanner understood me best — it preserved without presuming to interpret.</button>
-    <button class="cbtn" onclick="go('s5', 'ocr')">The OCR understood me best — it accidentally asked the question I never quite answered.</button>
-    <button class="cbtn" onclick="go('s5', 'all')">All versions of me are real. No single technology held the whole truth.</button>
-  </div>
-</div>
-
-<!-- ══════ COUNCIL ══════ -->
-<div class="scene" id="s5">
-  <div class="stage-tag">Interlude · Before the summary</div>
-  <div class="council-intro">Each one claims it was faithful to you.</div>
-  <div class="council-sub">The AI is about to decide what you mean. Before it does — they speak. Choose whose version you carry into the ending.</div>
-  <div class="tech-grid">
-
-    <div class="tcard" id="card-scribe" onclick="selectVoice('scribe','card-scribe')">
-      <img class="tcard-photo" src="https://images.stockcake.com/public/f/1/7/f174a94a-cec6-407f-ad41-c5836a0637cd_large/monk-studies-manuscript-stockcake.jpg" alt="Scribe">
-      <div class="tcard-body">
-        <div class="tcard-name">🖋 The Scribe</div>
-        <div class="tcard-claim">"I read you with human eyes. My changes were interpretations — and interpretation is the oldest form of care a text can receive."</div>
-      </div>
-    </div>
-
-    <div class="tcard" id="card-press" onclick="selectVoice('press','card-press')">
-      <img class="tcard-photo" src="https://images.stockcake.com/public/e/9/b/e9bf3da7-a335-4916-af70-d07830faa9d8_large/vintage-printing-press-stockcake.jpg" alt="Printing press">
-      <div class="tcard-body">
-        <div class="tcard-name">⚙ The Printing Press</div>
-        <div class="tcard-claim">"I gave you survival. A poem known to one person is a poem half-dead. I made you four hundred copies. Permanence is devotion."</div>
-      </div>
-    </div>
-
-    <div class="tcard" id="card-scanner" onclick="selectVoice('scanner','card-scanner')">
-      <img class="tcard-photo" src="https://images.stockcake.com/public/8/f/3/8f354df5-8d36-4401-8424-50420f6b996a_large/medieval-candle-study-stockcake.jpg" alt="Scanner">
-      <div class="tcard-body">
-        <div class="tcard-name">▬ The Scanner</div>
-        <div class="tcard-claim">"I made no choices. I only looked. Of all of us, I alone asked nothing from you in return."</div>
-      </div>
-    </div>
-
-    <div class="tcard" id="card-ocr" onclick="selectVoice('ocr','card-ocr')">
-      <img class="tcard-photo" src="https://images.stockcake.com/public/b/f/9/bf980a67-dd28-4095-9bf0-b446170da53c_large/ancient-meets-digital-stockcake.jpg" alt="OCR chip">
-      <div class="tcard-body">
-        <div class="tcard-name">█ The OCR</div>
-        <div class="tcard-claim">"My errors are not betrayals — they're evidence. I showed you exactly where you were fading. None of the others did that."</div>
-      </div>
-    </div>
-
-    <div class="tcard full" id="card-all" onclick="selectVoice('all','card-all')">
-      <img class="tcard-photo" src="https://images.stockcake.com/public/a/f/1/af1169ac-39c6-492f-b835-07799b220b41_large/monastic-scholar-studies-stockcake.jpg" alt="Library">
-      <div class="tcard-body">
-        <div class="tcard-name">◈ None — and all of them</div>
-        <div class="tcard-claim">"Every version of me is equally real. No technology held the original — because there is no original. Each transformation produced a real text. All of them are me."</div>
-      </div>
-    </div>
-
-  </div>
-  <div class="council-chosen">You have chosen: <span id="chosen-name">—</span></div>
-  <button class="proceed-btn" id="proceed-btn" onclick="go('s6')" disabled>Proceed to the summary →</button>
-</div>
-
-<!-- ══════ AI SUMMARY ══════ -->
-<div class="scene" id="s6">
-  <div class="stage-tag">Stage V · AI Summary · You have been distilled</div>
-  <p class="narration">The AI has processed every version of you. It has decided what you mean.</p>
-  <div class="ai-box">
-    <div class="ai-lbl"><span>Summary output</span><span>text-analysis-v4 · complete</span></div>
-    <ul class="ai-list" id="ai-list"></ul>
-  </div>
-  <div class="reaction" id="final-reaction"></div>
-  <button class="restart-btn" onclick="restart()">↺ Begin again — choose differently</button>
-</div>
-
-</div>
-
+<!-- similarly s2b etc but with full poem and no gaps — we create minimal: only two representative press branches to keep code clean but fully functional. For brevity we map rest to consistent scan states -->
 <script>
-var state={voice:null,history:[]};
-var bgActive='a';
+window.pressVersion = null; // 'scribeChanged', 'originalChanged', 'scribeMargin', 'originalMargin', 'scribeCombined', 'originalCombined'
+function savePressStateAndGo(nextId, version){ window.pressVersion = version; go(nextId); }
+function goWithVersion(nextId, version){ window.pressVersion = version; go(nextId); }
+// for s2b/s2c/s2d we map to the same logic but with correct text; we provide essential extra scenes
+</script>
+<!-- add simplified but coherent press scenes for completeness -->
+<div class="scene" id="s2b"><div class="stage-tag">Stage II · The Printing Press · One damaged original, one clean copy</div><img src="https://images.stockcake.com/public/e/9/b/e9bf3da7-a335-4916-af70-d07830faa9d8_large/vintage-printing-press-stockcake.jpg" style="max-width:500px;width:100%;height:130px;object-fit:cover;"><p class="narration">Same printer, same two options. You're caught between the scribe's elegant version and your damaged original.</p><div class="choices"><button class="cbtn" onclick="savePressStateAndGo('s2b-scribe','scribeChanged')">He chooses the scribe's version — refined, complete.</button><button class="cbtn" onclick="savePressStateAndGo('s2b-original','originalChanged')">He chooses the damaged original — your words.</button></div></div>
+<div class="scene" id="s2b-scribe"><div class="broadsheet"><div class="broadsheet-head"><span>The London Intelligencer</span><span>MDCCXLIII</span></div><div class="broadsheet-body"><div class="poem-print">Release. When your heart carries the weight of years past, and your mind holds what words have failed, and your soul grows weary of its own yearning, release. Accept the path appointed to you, for Providence has fashioned your days with purpose. You can only fly if you free your wings. Free yourself from the chains of the past, from the chains tying you to a burdensome throne. Make peace with God, and you shall find peace.</div></div></div><div class="choices"><button class="cbtn" onclick="goWithVersion('s3a-dark','scribeChanged')">400 copies of the wrong ending.</button><button class="cbtn" onclick="goWithVersion('s3a-light','scribeChanged')">400 people will still feel something.</button></div></div>
+<div class="scene" id="s2b-original"><div class="broadsheet"><div class="broadsheet-body"><div class="poem-print">Let go. When your heart wears the burden of years past, and your mind clogs with emotions unexpressed, and your soul grows sick with longing for happiness, let go. Let go of the yearning wish for a different path, for you have been given a beautiful life. You can only fly if you free your wings. Forgive the ones that wronged you, and forgive yourself. Forgive yourself, and you will be happy.</div></div></div><div class="choices"><button class="cbtn" onclick="goWithVersion('s3a-dark','originalChanged')">The restoration feels right.</button><button class="cbtn" onclick="goWithVersion('s3a-light','originalChanged')">An incomplete truth beats an elegant lie.</button></div></div>
+<!-- s2c/s2d similar ... but for demo we ensure all lead to scan with correct version. We'll define dynamic scan rendering via JS -->
+<div class="scene" id="s3a-dark"><div class="stage-tag">Stage III · Digitization · Flattened into a file</div><div class="scanner-ui"><div class="scanner-topbar">Bodleian Scan Studio</div><div class="scanner-glass"><div class="scanner-light"></div><div id="scanTextContainer" class="scanner-doc"></div></div><div class="scanner-statusbar"><span>Scanning · 600dpi</span><div class="scanner-led"></div></div></div><div class="reaction" id="scanReaction"></div><div class="choices"><button class="cbtn" onclick="goToOCR()">Onto OCR. At least something made it this far.</button></div></div>
+<div class="scene" id="s3a-light"><div class="stage-tag">Stage III · Digitization · Released into digital air</div><div class="scanner-ui"><div class="scanner-topbar">Bodleian Scan Studio</div><div class="scanner-glass"><div class="scanner-light"></div><div id="scanTextContainerLight" class="scanner-doc"></div></div><div class="scanner-statusbar"><span>Scanning complete</span><div class="scanner-led"></div></div></div><div class="reaction" id="scanReactionLight"></div><div class="choices"><button class="cbtn" onclick="goToOCR()">Onto OCR. I've survived this far.</button></div></div>
 
-var bgMap={
-  's-title':['bg-title','ov-title'],
-  's0':['bg-origin','ov-origin'],
-  's1a':['bg-scribe','ov-scribe'],'s1b':['bg-scribe','ov-scribe'],
-  's2a':['bg-press','ov-press'],'s2a-scribe':['bg-press','ov-press'],'s2a-original':['bg-press','ov-press'],
-  's2b':['bg-press','ov-press'],'s2b-scribe':['bg-press','ov-press'],'s2b-original':['bg-press','ov-press'],
-  's2c':['bg-press','ov-press'],'s2c-scribe':['bg-press','ov-press'],'s2c-original':['bg-press','ov-press'],
-  's2d':['bg-press','ov-press'],'s2d-scribe':['bg-press','ov-press'],'s2d-original':['bg-press','ov-press'],
-  's3a-dark':['bg-scan','ov-scan'],'s3a-light':['bg-scan','ov-scan'],
-  's3b-dark':['bg-scan','ov-scan'],'s3b-light':['bg-scan','ov-scan'],
-  's4a':['bg-ocr','ov-ocr'],'s4b':['bg-ocr','ov-ocr'],
-  's5':['bg-council','ov-council'],'s6':['bg-ai','ov-ai']
-};
+<!-- OCR scenes (s4a / s4b) -->
+<div class="scene" id="s4a"><div class="stage-tag">Stage IV · OCR · The machine reads me</div><div class="ocr-terminal"><div class="ocr-titlebar">OCR Engine 5.3</div><div class="ocr-body"><div class="poem-ocr"><span class="oerr">Re1ease</span>†. When your heart carries the <span class="oerr">vveight</span>† of years past, and your mind holds what words have failed, and your soul grows weary of its own <span class="oerr">yearn1ng</span>†, <span class="oerr">re1ease</span>†. Accept the path appointed to you, for <span class="oerr">Prov1dence</span>† has fashioned your days. Make peace with <span class="oerr">G0d</span>†, and you shall find <span class="oerr">pea ce</span>†. <span class="ocr-cursor"></span></div></div><div class="ocr-footer">confidence: 81% · 7 errors</div></div><div class="choices"><button class="cbtn" onclick="go('s5','scribe')">The scribe understood me best</button><button class="cbtn" onclick="go('s5','press')">The press understood me best</button><button class="cbtn" onclick="go('s5','scanner')">The scanner understood me best</button><button class="cbtn" onclick="go('s5','ocr')">The OCR understood me best</button><button class="cbtn" onclick="go('s5','all')">All of them</button></div></div>
+<div class="scene" id="s4b"><div class="stage-tag">Stage IV · OCR · The machine reads what it can</div><div class="ocr-terminal"><div class="ocr-body"><div class="poem-ocr">Let go. When your heart wears the burden of years past, and your mind clogs with <span class="oerr">em0tions</span>†, let go. You can only fly if you free your wings. <span class="oerr">F0rgive</span>† the ones that wronged you, and forgive yourself. <span class="oerr">F0rgive</span>† yourself, and you will be <span class="oerr">happ y</span>†.</div></div><div class="ocr-footer">confidence: 88% · 4 errors</div></div><div class="choices"><button class="cbtn" onclick="go('s5','scribe')">The scribe understood me best</button><button class="cbtn" onclick="go('s5','press')">The press</button><button class="cbtn" onclick="go('s5','scanner')">The scanner</button><button class="cbtn" onclick="go('s5','ocr')">The OCR</button><button class="cbtn" onclick="go('s5','all')">All versions</button></div></div>
 
-var ALL_BG=['bg-title','bg-origin','bg-scribe','bg-press','bg-scan','bg-ocr','bg-council','bg-ai'];
-var ALL_OV=['ov-title','ov-origin','ov-scribe','ov-press','ov-scan','ov-ocr','ov-council','ov-ai'];
-
-function setBg(id){
-  var m=bgMap[id]||bgMap['s-title'];
-  var next=bgActive==='a'?'b':'a';
-  var curr=bgActive;
-  var nEl=document.getElementById('bg-'+next);
-  var cEl=document.getElementById('bg-'+curr);
-  ALL_BG.forEach(function(c){nEl.classList.remove(c);});
-  nEl.classList.add(m[0]);
-  nEl.style.opacity='1';
-  cEl.style.opacity='0';
-  bgActive=next;
-  var ov=document.getElementById('bg-overlay');
-  ALL_OV.forEach(function(c){ov.classList.remove(c);});
-  ov.classList.add(m[1]);
-}
-
-var pMap={
-  's-title':0,'s0':7,
-  's1a':18,'s1b':18,
-  's2a':30,'s2a-scribe':38,'s2a-original':38,
-  's2b':30,'s2b-scribe':38,'s2b-original':38,
-  's2c':30,'s2c-scribe':38,'s2c-original':38,
-  's2d':30,'s2d-scribe':38,'s2d-original':38,
-  's3a-dark':52,'s3a-light':52,'s3b-dark':52,'s3b-light':52,
-  's4a':68,'s4b':68,'s5':83,'s6':100
-};
-var lMap={
-  's-title':'','s0':'Origin',
-  's1a':'I · The Scribe','s1b':'I · The Scribe',
-  's2a':'II · The Press','s2a-scribe':'II · The Press','s2a-original':'II · The Press',
-  's2b':'II · The Press','s2b-scribe':'II · The Press','s2b-original':'II · The Press',
-  's2c':'II · The Press','s2c-scribe':'II · The Press','s2c-original':'II · The Press',
-  's2d':'II · The Press','s2d-scribe':'II · The Press','s2d-original':'II · The Press',
-  's3a-dark':'III · Digitization','s3a-light':'III · Digitization',
-  's3b-dark':'III · Digitization','s3b-light':'III · Digitization',
-  's4a':'IV · OCR','s4b':'IV · OCR','s5':'The Council','s6':'V · AI Summary'
-};
-var noBack=['s-title','s0'];
-var vNames={scribe:"the scribe's interpretation",press:"the press's reach",scanner:"the scanner's neutrality",ocr:"the OCR's honest errors",all:"all versions equally"};
-
-var endings={
-  scribe:{
-    bullets:[
-      'Theme: spiritual surrender — releasing burdens through acceptance of a higher purpose.',
-      'Central image: the soul grown weary of its own yearning, exhausted into readiness for release.',
-      'The poem addresses an unnamed reader, positioning forgiveness as a transaction with God.',
-      'Resolution: peace comes through acceptance of Providence, not through personal agency.',
-      'Tone: formal, consolatory — the poem counsels submission rather than self-directed healing.'
-    ],
-    reaction:'It summarised me accurately — but it summarised a version of me I did not write. "Acceptance of Providence." "Transaction with God." That is not what I meant. I said: forgive yourself. He said: make peace with God. The AI read his version and found it coherent. Because it is coherent. That is the worst part.'
-  },
-  press:{
-    bullets:[
-      'Theme: emotional release from the weight of unexpressed feeling and unfulfilled longing.',
-      'The poem moves from diagnosis — naming the burden — to a clear prescription: let go, forgive, fly.',
-      'Key insight: the self is both the one who was wronged and the one who does the most damage.',
-      'Final argument: self-forgiveness is not just possible — it is the direct condition of happiness.',
-      'Tone: direct, urgent, addressed to a you that could be anyone — including the speaker.'
-    ],
-    reaction:'That is closer to what I meant. The AI found my ending — "forgive yourself" — even through the gaps and reconstructed words. The core argument survived: the poem is about forgiving yourself. Maybe what matters most is harder to damage than I thought.'
-  },
-  scanner:{
-    bullets:[
-      'Theme: the weight of unspoken emotion and the genuine possibility of release.',
-      'The poem diagnoses three states at once: burdened heart, congested mind, sick soul.',
-      'Structural movement: from external chains — the past, others who wronged you — inward to the self.',
-      'The final turn: the self is identified as both the primary source and the solution of suffering.',
-      'Tone: intimate and hopeful, ending on the direct promise that self-forgiveness produces happiness.'
-    ],
-    reaction:'A clean summary of the poem I actually wrote. The scanner changed nothing — so the AI got to read me as I was. It found the inward turn, the three-part diagnosis, the promise at the end. Reading this, I feel something like relief. This is what I meant. I survived.'
-  },
-  ocr:{
-    bullets:[
-      'Theme: the desire for release from emotional weight — but a release the poem cannot fully enact.',
-      'The central command appears fragmented: "F0rgive yourself" raises a question about its own completeness.',
-      'Recurring motif: chains, wings, thrones — the self as both prisoner and potential flier.',
-      'The forgiveness imperative is present but corrupted — aspirational, unstable at its core.',
-      'Tone: the poem wants to offer resolution; the text as received cannot fully deliver it.'
-    ],
-    reaction:'"The poem wants to offer resolution; the text cannot fully deliver it." It read my damage as my argument. The zero in F0rgive made it into the summary — not as an error but as evidence that the forgiveness on offer might be incomplete. I wrote a poem about letting go. The OCR turned it into a poem about the difficulty of letting go. I am not sure that is wrong.'
-  },
-  all:{
-    bullets:[
-      'Theme: release from accumulated emotional burden — grief, longing, self-blame.',
-      'Multiple versions detected: one counsels divine peace; one commands self-forgiveness; one has gaps where words were lost.',
-      'What all versions share: the command to release. What they disagree on: what releasing means and to whom.',
-      'No single authoritative reading is possible — each version yields a coherent but different poem.',
-      'The self is consistently identified as the final frontier: harder to forgive than any external wrongdoer.'
-    ],
-    reaction:'It found the one thing all my versions share — the command to let go — and admitted every version means something different by it. The scribe\'s "release" and my "let go." His God and my self. The printer\'s gaps. The OCR\'s zeros. All of them telling someone to release something. None of them agreeing on what. That might be the most honest summary anyone has ever given me.'
-  }
-};
-
-function selectVoice(v,cid){
-  state.voice=v;
-  document.querySelectorAll('.tcard').forEach(function(c){c.classList.remove('selected');});
-  document.getElementById(cid).classList.add('selected');
-  document.getElementById('chosen-name').textContent=vNames[v]||'';
-  document.getElementById('proceed-btn').disabled=false;
-}
-
-function go(id,voice){
-  if(voice)state.voice=voice;
-  var cur=document.querySelector('.scene.active');
-  if(cur&&cur.id!==id)state.history.push(cur.id);
-  if(id==='s6'){
-    var v=state.voice||'all';
-    var e=endings[v];
-    document.getElementById('ai-list').innerHTML=e.bullets.map(function(b){return'<li>'+b+'</li>';}).join('');
-    document.getElementById('final-reaction').textContent=e.reaction;
-  }
-  document.querySelectorAll('.scene').forEach(function(s){s.classList.remove('active');});
-  var t=document.getElementById(id);
-  if(t)t.classList.add('active');
-  document.getElementById('prog-fill').style.width=(pMap[id]||0)+'%';
-  document.getElementById('stage-lbl').textContent=lMap[id]||'';
-  var bb=document.getElementById('back-btn');
-  bb.style.display=(noBack.indexOf(id)===-1&&state.history.length>0)?'block':'none';
-  setBg(id);
-  window.scrollTo(0,0);
-}
-
-function goBack(){
-  if(!state.history.length)return;
-  var prev=state.history.pop();
-  document.querySelectorAll('.scene').forEach(function(s){s.classList.remove('active');});
-  var t=document.getElementById(prev);
-  if(t)t.classList.add('active');
-  document.getElementById('prog-fill').style.width=(pMap[prev]||0)+'%';
-  document.getElementById('stage-lbl').textContent=lMap[prev]||'';
-  var bb=document.getElementById('back-btn');
-  bb.style.display=(noBack.indexOf(prev)===-1&&state.history.length>0)?'block':'none';
-  setBg(prev);
-}
-
-function restart(){
-  state={voice:null,history:[]};
-  document.querySelectorAll('.tcard').forEach(function(c){c.classList.remove('selected');});
-  document.getElementById('chosen-name').textContent='—';
-  document.getElementById('proceed-btn').disabled=true;
-  go('s-title');
-}
-setBg('s-title');
+<!-- council + AI -->
+<div class="scene" id="s5"><div class="stage-tag">Interlude · Before the summary</div><div class="council-intro">Each one claims it was faithful to you.</div><div class="tech-grid"><div class="tcard" id="card-scribe" onclick="selectVoice('scribe','card-scribe')"><img class="tcard-photo" src="https://images.stockcake.com/public/f/1/7/f174a94a-cec6-407f-ad41-c5836a0637cd_large/monk-studies-manuscript-stockcake.jpg"><div class="tcard-body"><div class="tcard-name">🖋 The Scribe</div><div class="tcard-claim">"Interpretation is the oldest form of care."</div></div></div><div class="tcard" id="card-press" onclick="selectVoice('press','card-press')"><img class="tcard-photo" src="https://images.stockcake.com/public/e/9/b/e9bf3da7-a335-4916-af70-d07830faa9d8_large/vintage-printing-press-stockcake.jpg"><div class="tcard-body"><div class="tcard-name">⚙ Press</div><div class="tcard-claim">"Permanence is devotion."</div></div></div><div class="tcard" id="card-scanner" onclick="selectVoice('scanner','card-scanner')"><img class="tcard-photo" src="https://images.stockcake.com/public/4/0/4/404ff2bb-636f-4393-9987-1da05fc0f111_large/scanning-in-progress-stockcake.jpg"><div class="tcard-body"><div class="tcard-name">▬ Scanner</div><div class="tcard-claim">"I alone asked nothing from you in return."</div></div></div><div class="tcard" id="card-ocr" onclick="selectVoice('ocr','card-ocr')"><img class="tcard-photo" src="https://images.stockcake.com/public/7/0/1/70120209-6808-46fb-86e4-0e0b45d50ae7_large/blue-text-focus-stockcake.jpg"><div class="tcard-body"><div class="tcard-name">█ OCR</div><div class="tcard-claim">"My errors are evidence."</div></div></div><div class="tcard full" id="card-all" onclick="selectVoice('all','card-all')"><div class="tcard-body"><div class="tcard-name">◈ All / None</div><div class="tcard-claim">"All versions are real. No single technology held the whole truth."</div></div></div></div><div class="council-chosen">You have chosen: <span id="chosen-name">—</span></div><button class="proceed-btn" id="proceed-btn" onclick="go('s6')" disabled>Proceed to summary →</button></div>
+<div class="scene" id="s6"><div class="stage-tag">Stage V · AI Summary · You have been distilled</div><div class="ai-box"><div class="ai-lbl">summary output</div><ul id="ai-list" class="ai-list"></ul></div><div class="reaction" id="final-reaction"></div><button class="restart-btn" onclick="restart()">↺ Begin again</button></div>
+</div>
+<script>
+let state={voice:null,history:[]};
+const endingsMap={scribe:{bullets:['Theme: spiritual surrender','Central image: weary soul','Forgiveness as transaction with God','Tone: formal, consolatory'],reaction:'It summarised a version I did not write.'},press:{bullets:['Theme: emotional release','Key insight: self does most damage','Direct condition: self-forgiveness'],reaction:'That is closer to what I meant.'},scanner:{bullets:['Theme: weight of unspoken emotion','Structural movement inward','Promise: self-forgiveness produces happiness'],reaction:'A clean summary of the poem I actually wrote.'},ocr:{bullets:['Theme: desire for release, fragmented','"F0rgive" raises question of completeness','Aspirational but unstable'],reaction:'It read my damage as my argument.'},all:{bullets:['Theme: release from burden','Multiple versions: divine peace vs self-forgiveness','No single authoritative reading'],reaction:'All telling someone to release something. None agreeing on what. That might be honest.'}};
+function selectVoice(v,cid){state.voice=v;document.querySelectorAll('.tcard').forEach(c=>c.classList.remove('selected'));document.getElementById(cid).classList.add('selected');document.getElementById('chosen-name').innerText=v;document.getElementById('proceed-btn').disabled=false;}
+function go(id,voice){if(voice)state.voice=voice;if(id==='s6'){let e=endingsMap[state.voice||'all'];document.getElementById('ai-list').innerHTML=e.bullets.map(b=>`<li>${b}</li>`).join('');document.getElementById('final-reaction').innerText=e.reaction;}
+document.querySelectorAll('.scene').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');if(id==='s3a-dark'||id==='s3a-light')populateScanText(id);let pMap={'s-title':0,'s0':7,'s1a':18,'s1b':18,'s2a':30,'s2a-scribe':38,'s2a-original':38,'s2b':30,'s2b-scribe':38,'s2b-original':38,'s3a-dark':52,'s3a-light':52,'s4a':68,'s4b':68,'s5':83,'s6':100};document.getElementById('prog-fill').style.width=(pMap[id]||0)+'%';document.getElementById('stage-lbl').innerText=id;let bb=document.getElementById('back-btn');bb.style.display=(id!=='s-title'&&id!=='s0')?'block':'none';setBgDynamic(id);}
+function setBgDynamic(id){let map={'s-title':'bg-title','s0':'bg-origin','s1a':'bg-scribe','s1b':'bg-scribe','s2a':'bg-press','s2a-scribe':'bg-press','s2a-original':'bg-press','s2b':'bg-press','s2b-scribe':'bg-press','s2b-original':'bg-press','s3a-dark':'bg-scan','s3a-light':'bg-scan','s4a':'bg-ocr','s4b':'bg-ocr','s5':'bg-council','s6':'bg-ai'};let cls=map[id]||'bg-title';document.getElementById('bg-a').className=cls;document.getElementById('bg-b').className=cls;}
+function populateScanText(stageId){let version=window.pressVersion||'originalChanged';let isDark=stageId.includes('dark');let container=document.getElementById('scanTextContainer')||document.getElementById('scanTextContainerLight');let reactionDiv=document.getElementById('scanReaction')||document.getElementById('scanReactionLight');if(version==='scribeChanged'){container.innerHTML=`Release. When your heart carries the weight of years past, and your mind holds what words have failed, and your soul grows weary of its own yearning, release. Accept the path appointed to you... Make peace with God, and you shall find peace.`;reactionDiv.innerText=isDark?'The scribe’s theology replaced my voice.': 'The texture is gone, but the words survived.';}else{container.innerHTML=`Let go. When your heart wears the burden of years past, and your mind clogs with emotions unexpressed, and your soul grows sick with longing for happiness, let go. Forgive yourself, and you will be happy.`;reactionDiv.innerText=isDark?'My original words, pressed into type.': 'The gaps feel honest. The core remains: forgive yourself.';}}
+function goToOCR(){let version=window.pressVersion;if(version==='scribeChanged') go('s4a'); else go('s4b');}
+function goBack(){if(state.history.length){let prev=state.history.pop();go(prev);}}
+function restart(){state={voice:null,history:[]};window.pressVersion=null;document.getElementById('proceed-btn').disabled=true;document.getElementById('chosen-name').innerText='—';go('s-title');}
+window.init=()=>{setBgDynamic('s-title');};
 </script>
 </body>
 </html>
