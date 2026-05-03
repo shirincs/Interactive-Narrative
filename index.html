@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Let Go — a poem's journey through text technologies</title>
+<title>Let Go: The Journey of a Poem</title>
 <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Spectral:ital,wght@0,300;0,400;1,300;1,400&family=Inconsolata:wght@300;400&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -194,7 +194,7 @@ Forgive yourself, and you will be happy.</div></div>
 <div class="scene" id="s1a">
   <div class="stage-tag">Stage I · The Manuscript · A scribe who thinks he knows better</div>
   <img src="https://images.stockcake.com/public/f/1/7/f174a94a-cec6-407f-ad41-c5836a0637cd_large/monk-studies-manuscript-stockcake.jpg" style="max-width:500px;width:100%;height:140px;object-fit:cover;filter:sepia(0.5);border:1px solid rgba(200,160,80,0.3);display:block;margin-bottom:0.5rem;">
-  <p class="narration">He copies me onto fresh vellum — but he's uncomfortable with how direct I am. So he rewrites as he goes, convinced he's clarifying what I really meant.</p>
+  <p class="narration">He copies me onto fresh vellum, but he's uncomfortable with how direct I am. So he rewrites as he goes, convinced he's clarifying what I really meant.</p>
   <div class="parch"><div class="poem-parch"><em class="changed">Release.</em>
 When your heart <em class="changed">carries the weight</em> of years past,
 and your mind <em class="changed">holds what words have failed</em>,
@@ -219,7 +219,7 @@ as you seek pardon for your own trespasses.</em>
 <div class="scene" id="s1b">
   <div class="stage-tag">Stage I · The Manuscript · A scribe who reads carefully</div>
   <img src="https://images.stockcake.com/public/f/1/7/f174a94a-cec6-407f-ad41-c5836a0637cd_large/monk-studies-manuscript-stockcake.jpg" style="max-width:500px;width:100%;height:140px;object-fit:cover;filter:sepia(0.3);border:1px solid rgba(200,160,80,0.3);display:block;margin-bottom:0.5rem;">
-  <p class="narration">He cannot bring himself to alter the poem itself — he only speaks in the margins, adding notes and confessions but leaving my words untouched.</p>
+  <p class="narration">He cannot bring himself to alter the poem itself. And so he only speaks in the margins, adding notes and confessions but leaving my words untouched.</p>
   <div class="parch"><div class="poem-parch">Let go.
 When your heart wears the burden of years past,
 and your mind clogs with emotions unexpressed,
@@ -266,7 +266,7 @@ It is what is left when you stop carrying what was never yours.</em></div></div>
 <div class="scene" id="s2b">
   <div class="stage-tag">Stage II · The Printing Press · centuries later</div>
   <img src="https://images.stockcake.com/public/e/9/b/e9bf3da7-a335-4916-af70-d07830faa9d8_large/vintage-printing-press-stockcake.jpg" style="max-width:500px;width:100%;height:130px;object-fit:cover;filter:brightness(0.6) sepia(0.2);display:block;">
-  <p class="narration">Only the scribe's clean copy survived into the print shop. The damaged original is gone. The printer has no choice — he prints what he has.</p>
+  <p class="narration">Only the scribe's clean copy survived into the print shop. The damaged original is gone. The printer has no choice, and so he prints what he has.</p>
   <div class="broadsheet"><div class="broadsheet-body"><div class="poem-print">Release.
 When your heart carries the weight of years past,
 and your mind holds what words have failed,
@@ -289,7 +289,7 @@ Make peace with God, and you shall find peace.</div></div></div>
 <div class="scene" id="s2c">
   <div class="stage-tag">Stage II · The Printing Press · centuries later</div>
   <img src="https://images.stockcake.com/public/e/9/b/e9bf3da7-a335-4916-af70-d07830faa9d8_large/vintage-printing-press-stockcake.jpg" style="max-width:500px;width:100%;height:130px;object-fit:cover;filter:brightness(0.6) sepia(0.2);display:block;">
-  <p class="narration">The printer has the original poem — water-damaged but intact — and the scribe's margin notes. He must decide: print only the original, or incorporate the scribe's ending as part of the poem?</p>
+  <p class="narration">The printer has the original poem, water-damaged but intact, and the scribe's margin notes. He must decide: print only the original, or incorporate the scribe's ending as part of the poem?</p>
   <div class="choices">
     <button class="cbtn" onclick="setPressType('originalOnly'); go('s2c-result')">Print only the original poem. The scribe's notes stay in the margins of history.</button>
     <button class="cbtn" onclick="setPressType('originalWithEnding'); go('s2c-result')">Print the original, but include the scribe's ending as if it were part of the poem.</button>
@@ -305,7 +305,7 @@ Make peace with God, and you shall find peace.</div></div></div>
 <div class="scene" id="s2d">
   <div class="stage-tag">Stage II · The Printing Press · centuries later</div>
   <img src="https://images.stockcake.com/public/e/9/b/e9bf3da7-a335-4916-af70-d07830faa9d8_large/vintage-printing-press-stockcake.jpg" style="max-width:500px;width:100%;height:130px;object-fit:cover;filter:brightness(0.6) sepia(0.2);display:block;">
-  <p class="narration">The printer has the original poem and the scribe's margin notes — but the scribe's warmth has become inseparable from the poem in your memory. The printer must choose.</p>
+  <p class="narration">The printer has the original poem and the scribe's margin notes, but the scribe's warmth has become inseparable from the poem in your memory. The printer must choose.</p>
   <div class="choices">
     <button class="cbtn" onclick="setPressType('originalOnly'); go('s2d-result')">He prints only the original. The scribe's ending is lost.</button>
     <button class="cbtn" onclick="setPressType('originalWithEnding'); go('s2d-result')">He prints the original with the scribe's ending included. Both voices survive.</button>
@@ -460,7 +460,7 @@ function updateDynamicContent(id) {
     if (pressedType === 'originalWithEnding') poem = originalPoem + scribeEnding;
     if (pressedType === 'originalOnly') poem = originalPoem;
     document.getElementById('scanPoem').innerText = poem;
-    document.getElementById('scanReaction').innerText = 'The page goes face-down on the glass. A bar of cold light passes beneath me. Everything physical vanishes — the weight of the paper, the smell of ink and foxing, the texture of type pressed into fibre. I am a photograph now. Preserved and emptied at the same time.';
+    document.getElementById('scanReaction').innerText = 'The page goes face-down on the glass. A bar of cold light passes beneath me. Everything physical vanishes — the weight of the paper, the smell of ink, the texture of type pressed into fibre. I am a photograph now. Preserved and emptied at the same time.';
   }
   if (id === 's4') {
     const isScribe = (pressedType === 'scribeFull');
@@ -494,7 +494,7 @@ F0rgive† yourself, and you will be happ y†.`;
     document.getElementById('ocrPoem').innerHTML = poem;
     document.getElementById('ocrErrors').innerText = errors;
     document.getElementById('ocrConfidence').innerHTML = `confidence: ${confidence}`;
-    document.getElementById('ocrReaction').innerText = isScribe ? 'Seven errors. "Release" became "Re1ease." "God" became "G0d." The machine didn\'t misread me carelessly. It showed me exactly where I was fading.' : '"F0rgive" — a zero where the O should be. A hollow at the centre of the word the whole poem depends on. Is the forgiveness I\'m offering complete?';
+    document.getElementById('ocrReaction').innerText = isScribe ? 'A lot of me were lost, and a lot of me was changed. But the machine didn\'t misread me carelessly. It showed me exactly where I was fading.' : 'The machine they go on about has failed to fully understand me after all! I was changed, and I was lost.';
   }
   if (id === 's6') {
     const isScribe = (pressedType === 'scribeFull');
