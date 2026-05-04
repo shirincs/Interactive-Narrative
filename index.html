@@ -250,7 +250,7 @@ It is what is left when you stop carrying what was never yours.</em></div></div>
 <div class="scene" id="s2a">
   <div class="stage-tag">Stage II · The Printing Press · centuries later</div>
   <img src="https://images.stockcake.com/public/e/9/b/e9bf3da7-a335-4916-af70-d07830faa9d8_large/vintage-printing-press-stockcake.jpg" style="max-width:500px;width:100%;height:130px;object-fit:cover;filter:brightness(0.6) sepia(0.2);display:block;">
-  <p class="narration">A printer discovers two things: the scribe's clean vellum copy, and the original paper manuscript — water-damaged, but still legible in places. He must choose which to set in type.</p>
+  <p class="narration">Centuries later, a printer discovers two things: the scribe's clean vellum copy, and the original paper manuscript — water-damaged, but still legible in places. He must choose which to set in type.</p>
   <div class="choices">
     <button class="cbtn" onclick="setPressType('scribeFull'); go('s2a-result')">He prints the scribe's copy — clean, complete, but rewritten.</button>
     <button class="cbtn" onclick="setPressType('originalRestored'); go('s2a-result')">He prints the damaged original — older, authentic, with words restored in grey.</button>
@@ -305,7 +305,7 @@ Make peace with God, and you shall find peace.</div></div></div>
 <div class="scene" id="s2d">
   <div class="stage-tag">Stage II · The Printing Press · centuries later</div>
   <img src="https://images.stockcake.com/public/e/9/b/e9bf3da7-a335-4916-af70-d07830faa9d8_large/vintage-printing-press-stockcake.jpg" style="max-width:500px;width:100%;height:130px;object-fit:cover;filter:brightness(0.6) sepia(0.2);display:block;">
-  <p class="narration">The printer has the original poem and the scribe's margin notes, but the scribe's warmth has become inseparable from the poem in your memory. The printer must choose.</p>
+  <p class="narration">The printer has the original poem and the scribe's margin notes, but the scribe's warmth has become inseparable from the poem in your memory. Help the printer choose.</p>
   <div class="choices">
     <button class="cbtn" onclick="setPressType('originalOnly'); go('s2d-result')">He prints only the original. The scribe's ending is lost.</button>
     <button class="cbtn" onclick="setPressType('originalWithEnding'); go('s2d-result')">He prints the original with the scribe's ending included. Both voices survive.</button>
@@ -460,7 +460,7 @@ function updateDynamicContent(id) {
     const withEnding = (pressedType === 'originalWithEnding');
     const poem = withEnding ? originalPoem + scribeEnding : originalPoem;
     document.getElementById('broadsheetC').innerHTML = `<div class="broadsheet-head"><span>The London Intelligencer</span><span>MDCCXLIII</span></div><div class="broadsheet-body"><div class="poem-print">${poem}</div></div>`;
-    document.getElementById('reactionC').innerText = withEnding ? 'The printer assumed the scribe\'s ending was part of the poem. Now it looks like I wrote those lines. The boundary I cared about dissolved.' : 'The original poem alone. The scribe\'s warmth stays in the margins of history. I feel his absence.';
+    document.getElementById('reactionC').innerText = withEnding ? 'The printer assumed the scribe\'s ending was part of the poem. Now it looks like I wrote those lines. The boundary I cared about is dissolved.' : 'The original poem alone. The scribe\'s warmth stays in the margins of history. I feel his absence.';
   }
   if (id === 's2d-result') {
     const withEnding = (pressedType === 'originalWithEnding');
@@ -473,7 +473,7 @@ function updateDynamicContent(id) {
     if (pressedType === 'originalWithEnding') poem = originalPoem + scribeEnding;
     if (pressedType === 'originalOnly') poem = originalPoem;
     document.getElementById('scanPoem').innerText = poem;
-    document.getElementById('scanReaction').innerText = 'The page goes face-down on the glass. A bar of cold light passes beneath me. Everything physical vanishes — the weight of the paper, the smell of ink, the texture of type pressed into fibre. I am a photograph now. Preserved and emptied at the same time.';
+    document.getElementById('scanReaction').innerText = 'The page goes face-down on the glass. A bar of cold light passes beneath me. Everything physical vanishes — the weight of the paper, the smell of ink, the texture of type pressed into fibre. I am a photograph now, preserved and emptied at the same time.';
   }
   if (id === 's4') {
     const isScribe = (pressedType === 'scribeFull');
@@ -515,7 +515,7 @@ F0rgive† yourself, and you will be happ y†.`;
         bullets: [
           "A poem about release. The speaker addresses someone burdened by the past, urging them to let go of regret and self-blame. Forgiveness is presented as both difficult and necessary. The tone is intimate yet instructional, as if the speaker has learned this lesson the hard way and is passing it along."
         ],
-        reaction: 'It summarised a version I did not write. The scribe\'s theology became permanent.'
+        reaction: 'It summarised a version I did not write. The scribe\'s interpretation became permanent.'
       },
       press: {
         bullets: [
@@ -527,19 +527,19 @@ F0rgive† yourself, and you will be happ y†.`;
         bullets: [
           "A poem about memory and the weight of what stays. The speaker traces the shape of past hurts — regret, longing, self-blame — and arrives at a single instruction: forgive. The tone is quiet and inward, as if the speaker is speaking to themselves more than to anyone else."
         ],
-        reaction: 'A clean summary of the poem I actually wrote. I survived.'
+        reaction: 'A clean summary of the poem I actually wrote. My personality seems to have been erased, but atleast I survived.'
       },
       ocr: {
         bullets: [
           "A poem about release. The speaker names the weight the reader may have undergone and commands it to be set down. Forgiveness is not suggested; it is instructed. The tone is direct and urgent, as if the speaker is running out of time."
         ],
-        reaction: 'It read my damage as my argument. I wrote a poem about letting go. The OCR turned it into a poem about the difficulty of letting go.'
+        reaction: 'It read my damage as an argument. The OCR has altered my intenionality using my materiality as an excuse.'
       },
       all: {
         bullets: [
           "This poem has been read in multiple ways. One reader finds spiritual surrender, while another finds self-directed healing. A third focuses on the gaps and what is missing. What all versions share is the command to let go. What they disagree on is what letting go means and to whom. No single reading is complete. The poem resists reduction."
         ],
-        reaction: 'All of them telling someone to release something. None of them agreeing on what. That might be the most honest summary.'
+        reaction: 'Thank you for playing!'
       }
     };
     const e = summaries[selectedVoice] || summaries.all;
