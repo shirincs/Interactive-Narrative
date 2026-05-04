@@ -347,10 +347,10 @@ Make peace with God, and you shall find peace.</div></div></div>
   <div class="stage-tag">Interlude · Before the summary</div>
   <div class="council-intro">Each one claims it was faithful to you.</div>
   <div class="tech-grid">
-    <div class="tcard" id="card-scribe" onclick="selectVoice('scribe','card-scribe')"><img class="tcard-photo" src="https://images.stockcake.com/public/f/1/7/f174a94a-cec6-407f-ad41-c5836a0637cd_large/monk-studies-manuscript-stockcake.jpg"><div class="tcard-body"><div class="tcard-name">🖋 The Scribe</div><div class="tcard-claim">"Interpretation is the oldest form of care."</div></div></div>
-    <div class="tcard" id="card-press" onclick="selectVoice('press','card-press')"><img class="tcard-photo" src="https://images.stockcake.com/public/e/9/b/e9bf3da7-a335-4916-af70-d07830faa9d8_large/vintage-printing-press-stockcake.jpg"><div class="tcard-body"><div class="tcard-name">⚙ The Press</div><div class="tcard-claim">"Permanence is devotion."</div></div></div>
-    <div class="tcard" id="card-scanner" onclick="selectVoice('scanner','card-scanner')"><img class="tcard-photo" src="https://images.stockcake.com/public/4/0/4/404ff2bb-636f-4393-9987-1da05fc0f111_large/scanning-in-progress-stockcake.jpg"><div class="tcard-body"><div class="tcard-name">▬ Scanner</div><div class="tcard-claim">"I alone asked nothing from you."</div></div></div>
-    <div class="tcard" id="card-ocr" onclick="selectVoice('ocr','card-ocr')"><img class="tcard-photo" src="https://images.stockcake.com/public/7/0/1/70120209-6808-46fb-86e4-0e0b45d50ae7_large/blue-text-focus-stockcake.jpg"><div class="tcard-body"><div class="tcard-name">█ OCR</div><div class="tcard-claim">"My errors are evidence."</div></div></div>
+    <div class="tcard" id="card-scribe" onclick="selectVoice('scribe','card-scribe')"><img class="tcard-photo" src="https://images.stockcake.com/public/f/1/7/f174a94a-cec6-407f-ad41-c5836a0637cd_large/monk-studies-manuscript-stockcake.jpg"><div class="tcard-body"><div class="tcard-name">🖋 The Scribe</div><div class="tcard-claim">"Interpretation is the oldest form of care. My changes indicate my appreciation toward you."</div></div></div>
+    <div class="tcard" id="card-press" onclick="selectVoice('press','card-press')"><img class="tcard-photo" src="https://images.stockcake.com/public/e/9/b/e9bf3da7-a335-4916-af70-d07830faa9d8_large/vintage-printing-press-stockcake.jpg"><div class="tcard-body"><div class="tcard-name">⚙ The Press</div><div class="tcard-claim">"I have made sure you would sustain. Permanence is devotion."</div></div></div>
+    <div class="tcard" id="card-scanner" onclick="selectVoice('scanner','card-scanner')"><img class="tcard-photo" src="https://images.stockcake.com/public/4/0/4/404ff2bb-636f-4393-9987-1da05fc0f111_large/scanning-in-progress-stockcake.jpg"><div class="tcard-body"><div class="tcard-name">▬ Scanner</div><div class="tcard-claim">"I alone asked nothing from you. I neither interfered nor interpreted you."</div></div></div>
+    <div class="tcard" id="card-ocr" onclick="selectVoice('ocr','card-ocr')"><img class="tcard-photo" src="https://images.stockcake.com/public/7/0/1/70120209-6808-46fb-86e4-0e0b45d50ae7_large/blue-text-focus-stockcake.jpg"><div class="tcard-body"><div class="tcard-name">█ OCR</div><div class="tcard-claim">"My errors are evidence of where you were fading. I only showed what you were losing."</div></div></div>
     <div class="tcard full" id="card-all" onclick="selectVoice('all','card-all')"><div class="tcard-body"><div class="tcard-name">◈ All of them</div><div class="tcard-claim">"Every version is real. No single technology held the whole truth."</div></div></div>
   </div>
   <div class="council-chosen">You have chosen: <span id="chosen-name">—</span></div>
@@ -416,7 +416,9 @@ function goToUnifiedOCR() { go('s4'); }
 function go(id, voice) {
   if (voice) selectedVoice = voice;
   const current = document.querySelector('.scene.active');
-  if (current && current.id !== id && current.id !== 's-title') historyStack.push(current.id);
+  if (current && current.id !== id && current.id !== 's-title') {
+    historyStack.push(current.id);
+  }
   document.querySelectorAll('.scene').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   const prog = { 's-title':0,'s0':7,'s1a':18,'s1b':18,'s2a':30,'s2a-result':38,'s2b':38,'s2c':30,'s2c-result':38,'s2d':30,'s2d-result':38,'s3':52,'s4':68,'s5':83,'s6':100 };
@@ -497,16 +499,39 @@ F0rgive† yourself, and you will be happ y†.`;
     document.getElementById('ocrReaction').innerText = isScribe ? 'A lot of me were lost, and a lot of me was changed. But the machine didn\'t misread me carelessly. It showed me exactly where I was fading.' : 'The machine they go on about has failed to fully understand me after all! I was changed, and I was lost.';
   }
   if (id === 's6') {
-    const isScribe = (pressedType === 'scribeFull');
-    const poemSummary = isScribe ? '"Release. Make peace with God."' : '"Let go. Forgive yourself."';
-    const endings = {
-      scribe: { bullets: [`Final version: ${poemSummary}`, 'Theme: spiritual surrender — releasing through acceptance of a higher purpose.', 'The scribe transformed "forgive yourself" into "make peace with God."'], reaction: 'It summarised a version I did not write. The scribe\'s theology became permanent.' },
-      press: { bullets: [`Final version: ${poemSummary}`, 'Theme: emotional release from unexpressed feeling.', 'Key insight: the self does the most damage. Self-forgiveness is the condition of happiness.'], reaction: 'That is closer to what I meant. The core argument survived.' },
-      scanner: { bullets: [`Final version: ${poemSummary}`, 'Theme: the weight of unspoken emotion.', 'Tone: intimate and hopeful — the poem ends on a promise.'], reaction: 'A clean summary of the poem I actually wrote. I survived.' },
-      ocr: { bullets: [`Final version: ${poemSummary.replace(/forgive/i, 'F0rgive')}`, 'Theme: the desire for release — but a release the poem cannot fully enact.', 'The central command appears fragmented.'], reaction: 'It read my damage as my argument. I wrote a poem about letting go. The OCR turned it into a poem about the difficulty of letting go.' },
-      all: { bullets: [`Final version: multiple traces — ${poemSummary}`, 'Theme: release from accumulated burden.', 'What all versions share: the command to release. What they disagree on: what releasing means.'], reaction: 'All of them telling someone to release something. None of them agreeing on what. That might be the most honest summary.' }
+    const summaries = {
+      scribe: {
+        bullets: [
+          "A poem about release. The speaker addresses someone burdened by the past, urging them to let go of regret and self-blame. Forgiveness is presented as both difficult and necessary. The tone is intimate yet instructional, as if the speaker has learned this lesson the hard way and is passing it along."
+        ],
+        reaction: 'It summarised a version I did not write. The scribe\'s theology became permanent.'
+      },
+      press: {
+        bullets: [
+          "A poem about carrying weight and learning to set it down. The speaker names the burden — regret, self-blame, the longing for a different past — and then offers a way out. Forgiveness is the answer. The tone is steady and reflective, as if the speaker has spent a long time arriving at this conclusion."
+        ],
+        reaction: 'That is closer to what I meant. I am glad the core argument survived.'
+      },
+      scanner: {
+        bullets: [
+          "A poem about memory and the weight of what stays. The speaker traces the shape of past hurts — regret, longing, self-blame — and arrives at a single instruction: forgive. The tone is quiet and inward, as if the speaker is speaking to themselves more than to anyone else."
+        ],
+        reaction: 'A clean summary of the poem I actually wrote. I survived.'
+      },
+      ocr: {
+        bullets: [
+          "A poem about release. The speaker names the weight the reader may have undergone and commands it to be set down. Forgiveness is not suggested; it is instructed. The tone is direct and urgent, as if the speaker is running out of time."
+        ],
+        reaction: 'It read my damage as my argument. I wrote a poem about letting go. The OCR turned it into a poem about the difficulty of letting go.'
+      },
+      all: {
+        bullets: [
+          "This poem has been read in multiple ways. One reader finds spiritual surrender, while another finds self-directed healing. A third focuses on the gaps and what is missing. What all versions share is the command to let go. What they disagree on is what letting go means and to whom. No single reading is complete. The poem resists reduction."
+        ],
+        reaction: 'All of them telling someone to release something. None of them agreeing on what. That might be the most honest summary.'
+      }
     };
-    const e = endings[selectedVoice] || endings.all;
+    const e = summaries[selectedVoice] || summaries.all;
     document.getElementById('ai-list').innerHTML = e.bullets.map(b => `<li>${b}</li>`).join('');
     document.getElementById('finalReaction').innerText = e.reaction;
   }
@@ -521,7 +546,10 @@ function selectVoice(v, cardId) {
 }
 
 function goBack() {
-  if (historyStack.length) go(historyStack.pop());
+  if (historyStack.length > 0) {
+    const prev = historyStack.pop();
+    go(prev);
+  }
 }
 
 function restart() {
