@@ -415,12 +415,20 @@ function goToUnifiedOCR() { go('s4'); }
 
 function go(id, voice) {
   if (voice) selectedVoice = voice;
-  const current = document.querySelector('.scene.active');
-  if (current && current.id !== id && current.id !== 's-title') {
-    historyStack.push(current.id);
+  
+  // Get current active scene ID before changing
+  const currentActive = document.querySelector('.scene.active');
+  const currentId = currentActive ? currentActive.id : null;
+  
+  // Only add to history if we're actually moving to a different scene
+  // and not going back (avoid duplicates when using back button)
+  if (currentId && currentId !== id && !window.isGoingBack) {
+    historyStack.push(currentId);
   }
+  
   document.querySelectorAll('.scene').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
+  
   const prog = { 's-title':0,'s0':7,'s1a':18,'s1b':18,'s2a':30,'s2a-result':38,'s2b':38,'s2c':30,'s2c-result':38,'s2d':30,'s2d-result':38,'s3':52,'s4':68,'s5':83,'s6':100 };
   document.getElementById('prog-fill').style.width = (prog[id]||0)+'%';
   document.getElementById('stage-lbl').innerText = id.replace('s','Stage ');
@@ -428,6 +436,9 @@ function go(id, voice) {
   document.getElementById('back-btn').style.display = (noBack.indexOf(id)===-1 && historyStack.length>0)?'block':'none';
   updateBackground(id);
   updateDynamicContent(id);
+  
+  // Reset the goingBack flag
+  window.isGoingBack = false;
 }
 
 function updateBackground(id) {
@@ -547,6 +558,7 @@ function selectVoice(v, cardId) {
 
 function goBack() {
   if (historyStack.length > 0) {
+    window.isGoingBack = true;
     const prev = historyStack.pop();
     go(prev);
   }
@@ -559,6 +571,7 @@ function restart() {
   historyStack = [];
   document.getElementById('proceed-btn').disabled = true;
   document.getElementById('chosen-name').innerText = '—';
+  window.isGoingBack = false;
   go('s-title');
 }
 </script>
